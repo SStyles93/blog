@@ -140,19 +140,98 @@ To use it I connected it to either the `Base Color` or the `Emissive Color` The 
 
 ### Outline function
 
-The necessity to have a dynamic outline, that reacted to the players position and rotation when he crossed interactable objects, brought me to create this "Coloured_Outline" Material Function.
+The necessity to have a dynamic outline, that reacted to the players position and rotation when he crossed interactable objects, brought me to create this "Coloured_Outline" Material Function. Using the `Fresnel`, `Time` & `Sine` Nodes I created an "Emissive" effect.
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Outline_Colour.PNG "MF_Coloured_Outline"){: width="100%"}
 
-The idea behind it was to give the artist the possibility to change its color in a simple "Color palette" for that purpose I linked an [Unreal Material Parameters Collection](https://docs.unrealengine.com/4.26/en-US/RenderingAndGraphics/Materials/ParameterCollections/) to it.
+The first thing to acknowledge is that in Unreal Engine, you can not modify in run-time static materials. For that reason I had to code an "Interactable" component and so that every object that had it would override its materials and create a dynamic material for it.
+The `Begin Play()` method that initializes objects was the following:
 
-![]({{ site.baseurl }}/assets/images/ueshaderwork/MPC.PNG "MPC"){: width="100%"}
+Interactable.cpp:
+```c++
+void UInteractable::BeginPlay()
+{
+	Super::BeginPlay();
 
+	TArray<UStaticMeshComponent*> Meshes;
+	GetOwner()->GetComponents<UStaticMeshComponent>(Meshes, true);
+	for (int32 i = 0; i < Meshes.Num(); i++)
+	{
+		UStaticMeshComponent* StaticMeshComponent = Meshes[i];
+		UMaterialInterface* Material = StaticMeshComponent->GetMaterial(0);
+		UMaterialInstanceDynamic* DynMaterial = UMaterialInstanceDynamic::Create(Material, GetOuter());
+		//UMaterialInstanceDynamic* DynMaterial = UMaterialInstanceDynamic::Create(Material, Meshes);
+		DynMaterials.Add(DynMaterial);
+		StaticMeshComponent->SetMaterial(0, DynMaterial);
+	}
+
+	//...
+}
+```
+Note that there is `TArray<UMaterialInstanceDynamic*> DynMaterials;` located in the private variables of the `.h` file.
+
+The `Enable_Outline` parameter (float) is used in the C++ code to activate it or not. I first went with a `Static bool` parameter but after research, since it is static, you can not modify it in code thus rendering it's activation impossible. Here is the code related to the "Interactable" objects:
+
+Interactable.h
+```c++
+UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Outline", meta = (AllowPrivateAccess = "true", ClampMin = "0.0", ClampMax = "1.0", UIMin = "0.0", UIMax = "1.0"))
+float MaxOutlineThickness = 0.3f;
+UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Outline", meta = (AllowPrivateAccess = "true"))
+float OutlineThickness = 0.0f;	
+UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Outline", meta = (AllowPrivateAccess = "true"))
+float CurrentOutlineValue = 0.0f;
+//This float is used instead of a bool siince materials only have static bools
+float OutlineEnabled = 0.0f;
+```
+
+Interactable.cpp
+```c++
+void UInteractable::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	
+	if (EnableOutline)
+	{
+
+		OutlineThickness >= MaxOutlineThickness ? OutlineThickness = MaxOutlineThickness : OutlineThickness += DeltaTime;
+		OutlineEnabled = 1.0f;
+	}
+	else
+	{
+		OutlineThickness <= 0.0f ? OutlineThickness = 0.0f : OutlineThickness -= DeltaTime;
+		OutlineEnabled = 0.0f;
+	}
+	if (CurrentOutlineValue != OutlineThickness)
+	{
+		CurrentOutlineValue = OutlineThickness;
+		SetOutline(OutlineThickness);
+	}
+```
+
+The MF_Outline is the base function used to create the outline of objects. It simply colors every part of an object that has a normal vector direction according to the camera's position with a value superior to the `Outline_Thickness`.
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Outline.PNG "MF_Outline"){: width="100%"}
 
+I also linked an [Unreal Material Parameters Collection](https://docs.unrealengine.com/4.26/en-US/RenderingAndGraphics/Materials/ParameterCollections/) to it. The idea was to give the artist the possibility to change its color in a simple "Color palette" for that purpose 
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/Outline_Use.gif "Outline Use"){: width="100%"}
 
 ### Distortion function
+The distortion function was a simple function that just took the `Time`, `Panner` and `VertexNormalWS` nodes with a Normal map in a `TextureParameter2D` node to deform the object .
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Distortion.PNG "Distortion MF"){: width="100%"}
+
+The only specificity was to multiply the `R` and `G` channels by the `Distortion_Power`, that was controlled in the C++ code, so that the effect could be enabled or not.
+
+To use it I just had to branch it to world position offset in the object's material node.
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/Distortion_Use.PNG "Distortion MF Use"){: width="100%"}
+
+After branching it to the materials and calling
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/Distortion_Use.gif "Distortion Use"){: width="100%"}
+
+
 
 ### Object fading
 
