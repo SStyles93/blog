@@ -1,6 +1,8 @@
 ---
-title: UnrealShaderWork - Specialisation project
+title: Unreal Shader Work - Specialisation project
+categories: [Programming, Graphic]
 tags: [unrealengine, c++, shader, post-process, hlsl]
+image: assets/images/ueshaderwork/FireFly.gif
 ---
 
 During the last year of bachelor's degree in Game Programming at the SAE-Institute, the students of the Games Programming section had to create a game in collaboration with the Game Art and Audio Engineering sections. The purpose of the module was to simulate what was, for some, a first work experience in a professional-like environment.
@@ -37,7 +39,7 @@ In this blogpost, I am going to detail the steps of the major task I have been d
 
 In this section the following shaders will be exposed and detailed: 
 - [Stepped cell shading](#stepped-cell-shading)
-- [Watercolour shader](#watercolour-shader)
+- [Watercolor shader](#watercolor-shader)
 - [Rim function](#rim-function)
 - [Outline function](#outline-function)
 - [Distortion function](#distortion-function)
@@ -50,11 +52,105 @@ Multiple iterations were done before being validated by the "Art Director", the 
 
 ### Stepped cell shading
 
-### Watercolour shader
+Since a major part of stylized games use cell shading, that was the first shader I tried to produce.
+After multiple tests using sequenced unreal `if` nodes, I finally created a custom [HLSL](https://en.wikipedia.org/wiki/High-Level_Shader_Language) shader using the custom unreal node.
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_CellShade.PNG "Cell Shader Material Function"){: width="100%"}
+
+In this material function (MF_) I get the SkyAtmosphereLightDirection and do a dot product with the `VertexNormalWS` (Object's Vertex Normal in World Space) to set a multiplication value of the BaseColor according to the position of the SkyLight. The internal code of the shader is the following:
+
+```c++
+float3 col;
+float T = 0;
+int steps = Steps;
+float Tstep = 1.0/steps;
+
+for(int i = 0; i < steps; i++)
+{
+    if(LightIntensity < T)
+    {
+        col = BaseColor * T;
+        return col;
+    }
+     T += Tstep;
+}
+
+return BaseColor;
+```
+
+To use this material function it is necessary to branch the function as shown below:
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_CellShade_Use.PNG "How to use the Material Function"){: width="100%"}
+
+The variables to input are:
+- `BaseColor`: The object's color
+- `Exposure`: The value by which we want to multiply the final colors.
+- `Steps`: The amount of desired separations 
+
+The result is the following:
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_CellShade_Result.PNG "Material Function result"){: width="100%"}
+
+### Watercolor shader
+
+This shader had the principle task of replicating a watercolor effect on the assets in local/world space.
+After multiple trials the final version of my shader was transformed in a material function to simplify it's modification.
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Watercolor.PNG "Watercolor Material Function"){: width="100%"}
+
+This function gave the user the ability to change the watercolor effect of each material instance that used this material function.
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Watercolor_Params.PNG "watercolor shader use"){: width="100%"}
+
+The different parameters are the following:
+- `Metalness & Roughness`: Value between 0 and 1 to define these values.
+- `Enable_Texture`: Enables the possibility to input a texture as `BaseColor`.
+- `Enable_Second_Colour`: Enables the possibility to have a second color channel.
+- `Second_Texture_Multiplier`: Changes the saturation value of the second texture
+
+The `Second_` values are used with a Noise material function to give the diffusion effect to objects.
+![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Noise.PNG "Noise Material Function"){: width="100%"}
+
+The Noise parameters are the following: 
+- `Noise_Scale_X & _Y`: Used to scale the given noise.
+- `Black & White_Values`: Used to clamp the Black and White values of the given noise.
+- `Noise_Texture`: The Noise used to "spread" colors.
+- `Invert_Noise`: Inverts the black and white values of the Noise texture.
+
+To use it in a Material, the `MF_Noise` is given as an alpha to a `Lerp` with the `BaseColors`
+![]({{ site.baseurl }}/assets/images/ueshaderwork/Watercolor_Use.PNG "Watercolour Use"){: width="100%"}
+
+
+The final result gives some sort of a color "spread".
+![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_Render.PNG "Boat with watercolor shader"){: width="100%"}
 
 ### Rim function
+Since Dordogne has a specific outline on the characters that depends of the light source, I decided to create the same function in Unreal.
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/dordogne.jpg "dordogne outline"){: width="100%"}
+
+It was accomplished by using a `Fresnel Node` and subtracting it with the inverse of the dot between the light source and the `VertexNormalWS` (vertex normal world space) node.
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Rim.PNG "Rim material function"){: width="100%"}
+
+
+To use it I connected it to either the `Base Color` or the `Emissive Color` The final result was the following:
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/Rim_Shader.gif "Dynamic rim shader"){: width="100%"}
 
 ### Outline function
+
+The necessity to have a dynamic outline, that reacted to the players position and rotation when he crossed interactable objects, brought me to create this "Coloured_Outline" Material Function.
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Outline_Colour.PNG "MF_Coloured_Outline"){: width="100%"}
+
+The idea behind it was to give the artist the possibility to change its color in a simple "Color palette" for that purpose I linked an [Unreal Material Parameters Collection](https://docs.unrealengine.com/4.26/en-US/RenderingAndGraphics/Materials/ParameterCollections/) to it.
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/MPC.PNG "MPC"){: width="100%"}
+
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Outline.PNG "MF_Outline"){: width="100%"}
+
 
 ### Distortion function
 
@@ -66,9 +162,9 @@ Multiple iterations were done before being validated by the "Art Director", the 
 
 The final result of the watercolour shader was the following:
 
-![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_Render.PNG "Editor render"){: width="100%"}
 
-![]({{ site.baseurl }}/assets/images/ueshaderwork/Rim_Shader.gif "Dynamic rim shader"){: width="100%"}
+
+
 
 ## Post Processing
 
