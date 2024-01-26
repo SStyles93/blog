@@ -12,7 +12,7 @@ I am also and working as **head of programming** at [StylesStudio](https://style
 
 You can find some of my projects below.
 
-You can also see my **[Portfolio]()**
+You can also see my **Portfolio**
 
 ## Published projects
 
