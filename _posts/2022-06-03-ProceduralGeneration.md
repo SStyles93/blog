@@ -1,6 +1,6 @@
 ---
 title: Procedural Generation - binary space partitioning
-categories: [Programming, Algorithm]
+categories: [Programming, Gameplay]
 tags: [procedural generation, unity, c#, bsp, graph]
 image: /assets/images/pcg/picture20.png
 ---

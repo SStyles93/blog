@@ -1,6 +1,8 @@
 ---
 title: Project Producing - First experience as a Producer
+categories: [Producing]
 tags: [production, unrealengine, nas, git, trello, google-drive]
+image: /assets/images/projectproducing/PP_Intro.gif
 ---
 
 During the last year of studies at the SAE-Institute the students of the Games Programming section have to create a game in collaboration with the Game Art and Audio Engineering sections. The purpose of the module is to simulate what is, for some, a first work experience in a professional-like environment.

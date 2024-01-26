@@ -1,6 +1,6 @@
 ---
 title: Unreal Shader Work - Specialisation project
-categories: [Programming, Graphic]
+categories: [Graphic, UnrealEngine]
 tags: [unrealengine, c++, shader, post-process, hlsl]
 image: assets/images/ueshaderwork/FireFly.gif
 ---

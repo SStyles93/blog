@@ -17,10 +17,10 @@ timezone: Europe/Zurich
 
 title: Samuel Styles # the main title
 
-tagline: Personal Portfolio  # it will display as the sub-title
+tagline: Graphic Programmer  # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
- Programmer, Game developer and Graphic Programmer
+ Programmer, Graphic Programmer
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.

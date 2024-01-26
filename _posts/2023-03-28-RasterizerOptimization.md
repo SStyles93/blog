@@ -1,6 +1,6 @@
 ---
 title: Rasterizer - From a naive implementation to an optimized version
-categories: [Programming, Graphic]
+categories: [Graphic, CPU]
 tags: [rasterizer, omp, 3d, c++, multi-threading, benchmark, tracy]
 image: /assets/images/rasterizer/RenderScene.PNG
 ---

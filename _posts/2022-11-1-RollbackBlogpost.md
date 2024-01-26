@@ -1,6 +1,6 @@
 ---
 title: CatFight - Animation System in an ECS multiplayer rollback project
-categories: [Programming, Animation]
+categories: [Programming, Network]
 tags: [animation, ecs, multiplayer, online, network, rollback, c++]
 image: /assets/images/rollback/Gameplay.gif
 ---
