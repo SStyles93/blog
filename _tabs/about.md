@@ -4,12 +4,15 @@ icon: fas fa-info-circle
 order: 1
 ---
 
-Hi!
-I'm **Samuel Styles** a **Graphic Programming** enthusiast!
-I am currently doing a **Bachelor's degree** at **[SAE Institute](https://www.sae.edu/ch-ge/)** and working on other projects on the side.
+Hi!  
+
+I'm **Samuel Styles** a **Graphic Programming** enthusiast!  
+I am currently doing a **Bachelor's degree** at **[SAE Institute](https://www.sae.edu/ch-ge/)** and working on other projects on the side.  
 I am also and working as **head of programming** at [StylesStudio](https://styles-studio.com/).
 
 You can find some of my projects below.
+
+You can also see my **[Portfolio]()**
 
 ## Published projects
 
@@ -40,8 +43,7 @@ I was in a professional retraining financed by social welfare.
 Instead I decided to propose a new professional situation that is 
 now consider possible in the social aid program.  
   
-**What I like**  
+**Things I like**  
 ‍Movie : Ready Player One  
 Music : Yiruma (Piano) & Generally Rock  
-Books : Human science or Computer science  
-Diverse coding sites  
+Books : Human science or Computer science   
