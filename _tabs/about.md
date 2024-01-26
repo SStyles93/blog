@@ -4,10 +4,10 @@ icon: fas fa-info-circle
 order: 1
 ---
 
-I started my first studies as an economic then I went to train as a mechatronic engineer. 
+I started my first studies as an economic then I went to train as a mechatronic engineer.   
 I decided to pursue game development after a physical injury stopped me from working 
-as mechatronic engineer. I am now doing a BS at SAE Institute and working on other projects on the side.   
-I am actually working toward the obtention of my Bachelors degree and working as a CTO in StylesStudio.
+as mechatronic engineer. I am now doing a BS at SAE Institute and working on other projects on the side.  
+I am actually working to obtain my **Bachelors degree** and working as **CTO** in [StylesStudio](https://styles-studio.com/).
 
 ## Published projects
 
@@ -25,19 +25,20 @@ I am actually working toward the obtention of my Bachelors degree and working as
    
 ### More Information
 
-Fun Fact  
+**Fun Fact**  
 ‍I had a kid at 21 and I had to be responsible to offers a correct environment for my family while studying.  
   
-Someone close I look up to  
-‍Maurizio Rigamonti for his knowledge. He is trying to promote, 
+**Someone close I look up to**  
+[Maurizio Rigamonti](https://www.linkedin.com/in/mauriziorigamonti/) for his knowledge. He is trying to promote, 
 structures and expand the video game environment in Switzerland. 
   
-The time I went against the rules  
+**The time I went against the rules**  
 ‍I was supposed to be oriented by the swiss federation whilst 
 I was in a professional retraining financed by social welfare. 
 Instead I decided to propose a new professional situation that is 
 now consider possible in the social aid program.  
   
+**What I like**
 ‍Movie : Ready Player One  
 Music : Yiruma (Piano) & Generally Rock  
 Books : Human science or Computer science  
