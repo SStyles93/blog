@@ -142,8 +142,6 @@ To use it I connected it to either the `Base Color` or the `Emissive Color` The 
 
 ### Water shader
 
-The final result of the watercolour shader was the following:
-
 ## Post Processing
 
 For this part of the blog post, we are not going to go in depth trough the work process since it is not the intended focus point. Instead a simple overview of the final shader's state will be exposed.
