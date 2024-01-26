@@ -6,7 +6,7 @@ order: 1
 
 I started my first studies as an economic then I went to train as a mechatronic engineer.   
 I decided to pursue game development after a physical injury stopped me from working 
-as mechatronic engineer. I am now doing a BS at SAE Institute and working on other projects on the side.  
+as mechatronic engineer. I am now doing a BSc at SAE Institute and working on other projects on the side.  
 I am actually working to obtain my **Bachelors degree** and working as **CTO** in [StylesStudio](https://styles-studio.com/).
 
 ## Published projects

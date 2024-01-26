@@ -159,6 +159,105 @@ The distortion function was a simple function that just took the `Time`, `Panner
 
 The only specificity was to multiply the `R` and `G` channels by the `Distortion_Power`, that was controlled in the C++ code, so that the effect could be enabled or not.
 
+Below you can find the related code in the `.h` file:
+```c++
+private:
+
+	bool tempDistortionState = false;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Distortion", meta = (AllowPrivateAccess = "true", ClampMin = "0.0", ClampMax = "100.0", UIMin = "0.0", UIMax = "100.0"))
+	float DistortionPower = 20.0f;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Distortion", meta = (AllowPrivateAccess = "true"))
+	float DistortionSpeed = 0.25f;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Distortion", meta = (AllowPrivateAccess = "true", ClampMin = "-1.0", ClampMax = "1.0", UIMin = "-1.0", UIMax = "1.0"))
+	float DistortionDirectionX = 0.0f;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Distortion", meta = (AllowPrivateAccess = "true", ClampMin = "-1.0", ClampMax = "1.0", UIMin = "-1.0", UIMax = "1.0"))
+	float DistortionDirectionY = 0.03f;
+
+	void SetOutline(float value);
+	void SetDistortion(bool value);
+	void SetDistortionValues();
+
+```
+and in the `.cpp` file:
+```c++
+
+void UInteractable::BeginPlay()
+{
+	Super::BeginPlay();
+
+	//...
+
+	SetDistortionValues();
+}
+
+void UInteractable::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+    //...
+
+#if WITH_EDITOR
+	SetDistortionValues();
+#endif
+
+	if (tempDistortionState != EnableDistortion)
+	{
+		SetDistortion(EnableDistortion);
+		tempDistortionState = EnableDistortion;
+	}
+}
+
+/// <summary>
+/// Sets the Outline Thickness
+/// </summary>
+/// <param name="Value">The value of the outline thickness</param>
+void UInteractable::SetOutline(float value)
+{
+	for (auto& DynMat : DynMaterials)
+	{
+		DynMat->SetScalarParameterValue("Outline_Thickness", value);
+		DynMat->SetScalarParameterValue("Enable_Outline", OutlineEnabled);
+	}
+}
+
+/// <summary>
+/// Sets the state of the distortion effect
+/// </summary>
+/// <param name="value">True = Enabled</param>
+void UInteractable::SetDistortion(bool value)
+{
+	switch (value)
+	{
+	case true:
+		for (auto& DynMat : DynMaterials)
+		{
+			DynMat->SetScalarParameterValue("Distortion_Power", DistortionPower);
+		}
+		break;
+	case false:
+		for (auto& DynMat : DynMaterials)
+		{
+			DynMat->SetScalarParameterValue("Distortion_Power", 0.0f);
+		}
+		break;
+	}
+}
+
+/// <summary>
+/// Sets the value of distortion for the Interactable Shaders
+/// </summary>
+void UInteractable::SetDistortionValues()
+{
+	for (auto& DynMat : DynMaterials)
+	{
+		DynMat->SetScalarParameterValue("Distortion_Speed", DistortionSpeed);
+		DynMat->SetScalarParameterValue("Distortion_Power_X", DistortionDirectionX);
+		DynMat->SetScalarParameterValue("Distortion_Power_Y", DistortionDirectionY);
+	}
+}
+
+```
+
 To use it I just had to branch it to world position offset in the object's material node.
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/Distortion_Use.PNG "Distortion MF Use"){: width="100%"}
@@ -168,6 +267,8 @@ After branching it to the materials and calling
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/Distortion_Use.gif "Distortion Use"){: width="100%"}
 
 ### Object fading
+
+
 
 ## Final result
 
