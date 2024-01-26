@@ -4,10 +4,12 @@ icon: fas fa-info-circle
 order: 1
 ---
 
-I started my first studies as an economic then I went to train as a mechatronic engineer.   
-I decided to pursue game development after a physical injury stopped me from working 
-as mechatronic engineer. I am now doing a BSc at SAE Institute and working on other projects on the side.  
-I am actually working to obtain my **Bachelors degree** and working as **CTO** in [StylesStudio](https://styles-studio.com/).
+Hi!
+I'm **Samuel Styles** a **Graphic Programming** enthusiast!
+I am currently doing a **Bachelor's degree** at **[SAE Institute](https://www.sae.edu/ch-ge/)** and working on other projects on the side.
+I am also and working as **head of programming** at [StylesStudio](https://styles-studio.com/).
+
+You can find some of my projects below.
 
 ## Published projects
 
@@ -25,7 +27,7 @@ I am actually working to obtain my **Bachelors degree** and working as **CTO** i
    
 ### More Information
 
-**Fun Fact**  
+**Interesting Fact**  
 ‍I had a kid at 21 and I had to be responsible to offers a correct environment for my family while studying.  
   
 **Someone close I look up to**  
@@ -38,7 +40,7 @@ I was in a professional retraining financed by social welfare.
 Instead I decided to propose a new professional situation that is 
 now consider possible in the social aid program.  
   
-**What I like**
+**What I like**  
 ‍Movie : Ready Player One  
 Music : Yiruma (Piano) & Generally Rock  
 Books : Human science or Computer science  
