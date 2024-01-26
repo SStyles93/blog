@@ -5,45 +5,32 @@ tags: [unrealengine, c++, shader, post-process, hlsl]
 image: assets/images/ueshaderwork/Outline_Use.gif
 ---
 
-During the last year of bachelor's degree in Game Programming at the SAE-Institute, the students of the Games Programming section had to create a game in collaboration with the Game Art and Audio Engineering sections. The purpose of the module was to simulate what was, for some, a first work experience in a professional-like environment.
+The necessity of creating interactable visual effects in an Unreal Engine game resulted in this research, the work that followed and finally this blogpost.
 
 ## Contextualisation
 
-For this project I had the opportunity to work as a Graphic Programmer on two game projects made in the Unreal Engine 5.3.
+During the last year of bachelor's degree in Game Programming at the SAE-Institute, the students of the Games Programming section had to create a game in collaboration with the Game Art and Audio Engineering sections. The purpose of the module was to simulate what was, for some, a first work experience in a professional-like environment.
 
-Project Girl & Kitty  | Project VR
-:-----:|:-----:
-![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_Map_01.PNG "GK_First_Map"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/VR_Map_01.PNG "VR_First_Map"){: width="100%"} 
+For this module I had the opportunity to work as a Graphic Programmer on two game projects made in the Unreal Engine 5.3.
+The project that demanded the most work in terms of shader work was first called "The Project Girl & Kitty".
+![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_Map_01.PNG "GK_First_Map"){: width="100%"}
+_Project Girl & Kitty Scene render_
 
 For both project we had a limited production time, roughly 8 months, with a team of 27 people.
-
 The tasks I worked on were the following:
 - Creation of [shaders](https://en.wikipedia.org/wiki/Shader) and functions to replicate a watercolour style
-- Graphic tools for the artists
-- Asset integration, colorization, test and review
 - Creation of Landscape shaders, [Virtual Texturing](https://docs.unrealengine.com/4.26/en-US/RenderingAndGraphics/VirtualTexturing/)
 - Creation of a stylized water shader
+- Asset integration, colorization, test and review
 - Creation of specific objects shaders and code (Plant Growth, Glowing Outline, Vertex deformation)
-
-The VR project, being [PBR](https://en.wikipedia.org/wiki/Physically_based_rendering) based, didn't require specific shaders. For that reason, the focus will be emphasized on the research, iterations and global work done for the Girl & Kitty project.
-
-The first elements to acknowledge is the art direction. One of the references given for the art style was "Dordogne"
-
-![]({{ site.baseurl }}/assets/images/ueshaderwork/Dordogne.PNG "Dordogne in game footage"){: width="100%"}
-
-The only problem was that compared to Dordogne, a game made with hand-painted textures by "[Un je ne sais quoi](https://unjenesaisquoi.fr/)" a professional french studio, we didn't have as much time and would risk having incoherent texturing from the artists. For that reason a major part of the texturing was done with shaders.
+- Graphic tools for the artists
 
 ## Shaders
 
-In this blogpost, I am going to detail the steps of the major task I have been doing during these projects as a graphic programmer.
-
-In this section the following shaders will be exposed and detailed: 
+In this blogpost, I am going to detail the work done towards the creation of the following interactive shaders:
 - [Outline function](#outline-function)
 - [Distortion function](#distortion-function)
 - [Object fading](#object-fading)
-
-Multiple iterations were done before being validated by the "Art Director", the head of the Game Art section.
-![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_Iterations.PNG "Shader Iterations"){: width="100%"}
 
 ### Outline function
 

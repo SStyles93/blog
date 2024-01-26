@@ -1,7 +1,7 @@
 ---
 title: About me
 icon: fas fa-info-circle
-order: 4
+order: 1
 ---
 
 I started my first studies as an economic then I went to train as a mechatronic engineer. 
