@@ -5,7 +5,7 @@ tags: [unrealengine, c++, shader, post-process, hlsl]
 image: assets/images/ueshaderwork/FireFly.gif
 ---
 
-Creating stylized shaders for a specific artistic direction in a game project
+Creating stylized shaders with a specific artistic direction in a student game project was the reason of the research and work exposed in this blogpost.
 
 ## Contextualisation
 
