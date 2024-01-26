@@ -25,12 +25,184 @@ The tasks I worked on were the following:
 - Creation of specific objects shaders and code (Plant Growth, Glowing Outline, Vertex deformation)
 - Graphic tools for the artists
 
-## Shaders
-
 In this blogpost, I am going to detail the work done towards the creation of the following interactive shaders:
 - [Outline function](#outline-function)
 - [Distortion function](#distortion-function)
 - [Object fading](#object-fading)
+
+## Interactable class and dynamic materials
+
+Before going in detail into the shader creation, the first thing to acknowledge is that in Unreal Engine, you can not modify objects materials in run-time since they are static. For that reason I had to code an "Interactable" component class so that every object that had it would override its materials and create a dynamic version of them.  
+
+Below you can see the `Interactable.h` code:
+```c++
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
+#include "Interactable.generated.h"
+
+
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+class PROJECTGIRLANDKITTY_API UInteractable : public UActorComponent
+{
+	GENERATED_BODY()
+
+public:	
+
+	UInteractable();
+
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Outline", meta = (AllowPrivateAccess = "true"))
+	bool EnableOutline = false;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Distortion", meta = (AllowPrivateAccess = "true"))
+	bool EnableDistortion = false;
+	
+protected:
+
+	virtual void BeginPlay() override;
+
+
+private:
+	
+	TArray<UMaterialInstanceDynamic*> DynMaterials;
+	
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Outline", meta = (AllowPrivateAccess = "true", ClampMin = "0.0", ClampMax = "1.0", UIMin = "0.0", UIMax = "1.0"))
+	float MaxOutlineThickness = 0.3f;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Outline", meta = (AllowPrivateAccess = "true"))
+	float OutlineThickness = 0.0f;	
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Outline", meta = (AllowPrivateAccess = "true"))
+	float CurrentOutlineValue = 0.0f;
+	//This float is used instead of a bool siince materials only have static bools
+	float OutlineEnabled = 0.0f;
+
+	bool tempDistortionState = false;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Distortion", meta = (AllowPrivateAccess = "true", ClampMin = "0.0", ClampMax = "100.0", UIMin = "0.0", UIMax = "100.0"))
+	float DistortionPower = 20.0f;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Distortion", meta = (AllowPrivateAccess = "true"))
+	float DistortionSpeed = 0.25f;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Distortion", meta = (AllowPrivateAccess = "true", ClampMin = "-1.0", ClampMax = "1.0", UIMin = "-1.0", UIMax = "1.0"))
+	float DistortionDirectionX = 0.0f;
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Visuals|Distortion", meta = (AllowPrivateAccess = "true", ClampMin = "-1.0", ClampMax = "1.0", UIMin = "-1.0", UIMax = "1.0"))
+	float DistortionDirectionY = 0.03f;
+
+	void SetOutline(float value);
+	void SetDistortion(bool value);
+	void SetDistortionValues();
+
+};
+```
+And here the `Interactable.cpp` code:
+```c++
+#include "Interactable.h"
+
+UInteractable::UInteractable()
+{
+	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
+	// off to improve performance if you don't need them.
+	PrimaryComponentTick.bCanEverTick = true;
+}
+
+void UInteractable::BeginPlay()
+{
+	Super::BeginPlay();
+
+	TArray<UStaticMeshComponent*> Meshes;
+	GetOwner()->GetComponents<UStaticMeshComponent>(Meshes, true);
+	for (int32 i = 0; i < Meshes.Num(); i++)
+	{
+		UStaticMeshComponent* StaticMeshComponent = Meshes[i];
+		UMaterialInterface* Material = StaticMeshComponent->GetMaterial(0);
+		UMaterialInstanceDynamic* DynMaterial = UMaterialInstanceDynamic::Create(Material, GetOuter());
+		DynMaterials.Add(DynMaterial);
+		StaticMeshComponent->SetMaterial(0, DynMaterial);
+	}
+
+	SetDistortionValues();
+}
+
+void UInteractable::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	
+	if (EnableOutline)
+	{
+
+		OutlineThickness >= MaxOutlineThickness ? OutlineThickness = MaxOutlineThickness : OutlineThickness += DeltaTime;
+		OutlineEnabled = 1.0f;
+	}
+	else
+	{
+		OutlineThickness <= 0.0f ? OutlineThickness = 0.0f : OutlineThickness -= DeltaTime;
+		OutlineEnabled = 0.0f;
+	}
+	if (CurrentOutlineValue != OutlineThickness)
+	{
+		CurrentOutlineValue = OutlineThickness;
+		SetOutline(OutlineThickness);
+	}
+
+#if WITH_EDITOR
+	SetDistortionValues();
+#endif
+
+	if (tempDistortionState != EnableDistortion)
+	{
+		SetDistortion(EnableDistortion);
+		tempDistortionState = EnableDistortion;
+	}
+}
+
+/// <summary>
+/// Sets the Outline Thickness
+/// </summary>
+/// <param name="Value">The value of the outline thickness</param>
+void UInteractable::SetOutline(float value)
+{
+	for (auto& DynMat : DynMaterials)
+	{
+		DynMat->SetScalarParameterValue("Outline_Thickness", value);
+		DynMat->SetScalarParameterValue("Enable_Outline", OutlineEnabled);
+	}
+}
+
+/// <summary>
+/// Sets the state of the distortion effect
+/// </summary>
+/// <param name="value">True = Enabled</param>
+void UInteractable::SetDistortion(bool value)
+{
+	switch (value)
+	{
+	case true:
+		for (auto& DynMat : DynMaterials)
+		{
+			DynMat->SetScalarParameterValue("Distortion_Power", DistortionPower);
+		}
+		break;
+	case false:
+		for (auto& DynMat : DynMaterials)
+		{
+			DynMat->SetScalarParameterValue("Distortion_Power", 0.0f);
+		}
+		break;
+	}
+}
+
+/// <summary>
+/// Sets the value of distortion for the Interactable Shaders
+/// </summary>
+void UInteractable::SetDistortionValues()
+{
+	for (auto& DynMat : DynMaterials)
+	{
+		DynMat->SetScalarParameterValue("Distortion_Speed", DistortionSpeed);
+		DynMat->SetScalarParameterValue("Distortion_Power_X", DistortionDirectionX);
+		DynMat->SetScalarParameterValue("Distortion_Power_Y", DistortionDirectionY);
+	}
+}
+```
 
 ### Outline function
 
@@ -38,8 +210,7 @@ The necessity to have a dynamic outline, that reacted to the players position an
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Outline_Colour.PNG "MF_Coloured_Outline"){: width="100%"}
 
-The first thing to acknowledge is that in Unreal Engine, you can not modify in run-time static materials. For that reason I had to code an "Interactable" component and so that every object that had it would override its materials and create a dynamic material for it.
-The `Begin Play()` method that initializes objects was the following:
+
 
 Interactable.cpp:
 ```c++

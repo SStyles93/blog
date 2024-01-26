@@ -49,7 +49,7 @@ in the following way:
 
 -   The result
 
-## THE BASIC KNOWLEDGE
+## The basic knowledge
 
 In order to understand what PCG (procedural generation) is, there is a
 minimum knowledge to have before starting. Since this is a blogpost and
@@ -163,11 +163,11 @@ start over again with the two sub-areas as we did with the first main
 area until we reach the conditions we want to meet (minimum area, size,
 width, height, aso...).
 
-There are other types of generation, but this blogspot is not intended
+There are other types of generation, but this blogpost is not intended
 to go through all of them. These are only some examples explained in a
 very simple and amateur way.
 
-## THE TYPE OF PCG I CHOSE
+## The types of PCG I chose
 
  In order to apply procedural generation to a game, I decided to use one
 of the games I made with Unity during a previous exam that was
@@ -180,7 +180,7 @@ Since the game's map was basically intended to be cut into areas with
 different levels of difficulty for each of these areas, my choice was
 quite easy and the best fit for it was definitely the BSP.
 
-## THE TOOLS I USED
+## The tools I used
 
 Unity is delivered with a lot of tools to help developers create games
 fast. Thanks to the tools built in unity I was able to rapidly see what
@@ -204,7 +204,7 @@ maps without having to worry about what goes where.
 
 ![](/assets/images/pcg/picture8.png){: width="100%"}
 
-## DEEP DIVE IN THE CODE
+## Deep dive in the code
 
 ### The Boundary
 
@@ -332,7 +332,7 @@ The final result looks like this:
 
 ![](/assets/images/pcg/picture20.png){: width="100%"}
 
-## SUMMARY
+## Summary
 
 If you have reached this point, I would first of all like to thank you
 for reading. My goal was to explain without too many details what

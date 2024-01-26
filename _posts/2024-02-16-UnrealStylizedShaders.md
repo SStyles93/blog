@@ -5,9 +5,11 @@ tags: [unrealengine, c++, shader, post-process, hlsl]
 image: assets/images/ueshaderwork/FireFly.gif
 ---
 
-During the last year of bachelor's degree in Game Programming at the SAE-Institute, the students of the Games Programming section had to create a game in collaboration with the Game Art and Audio Engineering sections. The purpose of the module was to simulate what was, for some, a first work experience in a professional-like environment.
+Creating stylized shaders for a specific artistic direction in a game project
 
 ## Contextualisation
+
+During the last year of bachelor's degree in Game Programming at the SAE-Institute, the students of the Games Programming section had to create a game in collaboration with the Game Art and Audio Engineering sections. The purpose of the module was to simulate what was, for some, a first work experience in a professional-like environment.
 
 For this project I had the opportunity to work as a Graphic Programmer on two game projects made in the Unreal Engine 5.3.
 
