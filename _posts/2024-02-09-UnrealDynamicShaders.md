@@ -26,9 +26,9 @@ The tasks I worked on were the following:
 - Graphic tools for the artists
 
 In this blogpost, I am going to detail the work done towards the creation of the following interactive shaders:
-- [Outline function](#outline-function)
-- [Distortion function](#distortion-function)
-- [Object fading](#object-fading)
+- [Outlining shader](#outlining-shader)
+- [Distortion shader](#distortion-shader)
+- [Fading shader](#fading-shader)
 
 ## Interactable class and dynamic materials
 
@@ -319,7 +319,7 @@ Here you can see the result after branching the material function to the materia
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/Distortion_Use.gif "Distortion Use"){: width="100%"}
 
-### Fading function
+### Fading shader
 #### Fading function
 
 The last dynamic shader I did was to be able to have magical plants growing when the player arrived in a defined area.  
