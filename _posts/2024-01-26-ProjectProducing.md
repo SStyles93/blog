@@ -1,7 +1,6 @@
 ---
 title: Project Producing - First experience as a Producer
 categories: [Producing]
-tags: [production, unrealengine, nas, git, trello, google-drive]
 image: /assets/images/projectproducing/PP_Intro.gif
 ---
 

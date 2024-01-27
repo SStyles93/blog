@@ -1,7 +1,6 @@
 ---
 title: Unreal Dynamic Shaders - Specialisation project
 categories: [Graphic, UnrealEngine]
-tags: [unrealengine, c++, shader, post-process, hlsl]
 image: assets/images/ueshaderwork/Outline_Use.gif
 ---
 

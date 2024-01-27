@@ -1,7 +1,6 @@
 ---
 title: OpenGL Scene - Detailed Implementation
 categories: [Graphic, OpenGL]
-tags: [opengl, c++, glsl, ibl, pbr]
 image: /assets/images/opengl/lastScene.PNG
 ---
 
