@@ -12,8 +12,6 @@ I am also and working as **head of programming** at [StylesStudio](https://style
 
 You can find some of my projects below.
 
-You can also see my **Portfolio**
-
 ## Published projects
 
 <iframe src="https://store.steampowered.com/widget/2010500/" frameborder="0" width="646" height="190"></iframe>  
