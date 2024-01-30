@@ -162,12 +162,47 @@ The final result connected to the `Emissive Color` of a plane white material was
 ### Landscape and virtual texturing
 After discussion with a Game Artist friend participating in the project she pointed out the necessity of having a landscape material, that would blend vegetation and the ground seemingly.
 
+My first step toward its creation was to read the Unreal Engine 5 documentation about [Landscape](https://docs.unrealengine.com/4.26/en-US/RenderingAndGraphics/Materials/ExpressionReference/Landscape/).
+
 #### Landscape material
+After reading the documentation, I got the `Landscape Coordinates` and broke them with the `BreakOutFloat2Component` node and multiplied each output with `Path_Tiling_X` and `Path_Tiling_Y` (2 exposed floats) to then [append](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/ExpressionReference/VectorOps/) them back together. That gave the possibility to scale the terrain's texture.
+
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Path.PNG "Virtual Texturing Path base"){: width="100%"}
+
+The same logic was applied to the grass layer.  
+The `Landscape Coordinates`, after modification, were used as input for UVs of the `BaseColor` and the `Normal` of each layer.
+
+The exposed variables for the `BaseColor` (_bc) were the following: 
+- `Tint` multiplied each channel (R,G,B,A) by the given values.
+- `Intensity` multiplied all channels uniformly.
+- `Contrast` took every channel and powered it by the given value.
+- `Saturation` used the [Desaturation](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/ExpressionReference/Color/) node. The input was inverted with the [OneMinus](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/ExpressionReference/Math/#oneminus) node just for better understanding by the artists.
+
+Finally the [Saturate](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/ExpressionReference/Math/#saturate) node was to clamp all values between `0` and `1`.
+
+For the `Normal` (_n), the only variable was the `Intensity` (inverted again) that was connected to a `FlattenNormal` node.
+
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Grass.PNG "Virtual Texturing Grass base"){: width="100%"}
+
+The output was then injected in a [Make Material Attribute](https://docs.unrealengine.com/5.0/en-US/material-attributes-expressions-in-unreal-engine/) node.
+
+#### Virtual texturing
+After the "normal" texture treatment part each layer was connected to a [Landscape Layer Blend](https://docs.unrealengine.com/5.0/en-US/landscape-material-layer-blending-in-unreal-engine/#landscapelayerblendnode) node. That node gave the possibility to link each texture to a defined landscape layer.
+The [Break Material Attributes](https://docs.unrealengine.com/5.0/en-US/material-attributes-expressions-in-unreal-engine/#breakmaterialattributes) node that followed was used to connect the material output to the master node but also to connect it simultaneously to the [Runtime Virtual Texture Output](https://docs.unrealengine.com/5.0/en-US/runtime-virtual-texturing-in-unreal-engine/).
+
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_MakeMAT.PNG "Virtual Texturing make material"){: width="100%"}
+
+That `Runtime Virtual Texture Output` node took all the parameters from the `Break Material Attributes` node except from the `Normal` that was translated from [Tagent Space](https://en.wikipedia.org/wiki/Tangent_space) to [World Space](https://learnopengl.com/Getting-started/Coordinate-Systems#:~:text=The%20coordinates%20in%20world%20space,preferably%20in%20a%20realistic%20fashion) and the `WorldHeight` that took the `Y` axis of the `Absolute World Position` with a `Mask` node.
+
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_RTVT.PNG "Virtual Texturing Run-time Virt.Texturing"){: width="100%"}
 
+#### Setup, integration and use
+- Setup in UE landscape
+- VT Layers
+- Lanscape Tools
+- Material usage (grass)
+
+#### Final result
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Blend.gif "Virtual Texturing blend"){: width="100%"}
 
 ### Water shader
