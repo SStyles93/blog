@@ -387,6 +387,6 @@ In the end, even though it took a certain amount of time and iteration, the effe
 
 ## Conclusion
 
-To conclude this blogpost I would say that, even though this work wasn't really relative to Graphic programming, it has taught me a lot regarding Unreal Engine 5, its interface, the materials and the hierarchy behind them, the tools and possibilities available.
+To conclude this blogpost I would say that, even though this work wasn't really relative to Graphic programming, it has taught me a lot regarding Unreal Engine 5, its interface, the materials and the hierarchy behind them, the tools and possibilities available.  
 
-Since I was more used to Unity, having to use the system of dynamic materials was really complicated to understand and work with at the beginning but, in the end, I think that what I have learned has a lot of value and has trained me to get used to a different interface and way of doing things. Overall it was really an interesting project to work on and feel proud of what I was able to accomplish giving the fact that I had no knowledge of Unreal's material system before.
+Since I was more used to Unity, having to use the system of dynamic materials was really complicated to understand and work with at the beginning but, in the end, I think that what I have learned was really valuable and has trained me to get used to a different interface and way of doing things. Overall it was really an interesting project to work on and I feel proud of what I was able to accomplish giving the fact that I had no knowledge of Unreal's material system before.
