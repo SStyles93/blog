@@ -42,7 +42,7 @@ In this section the following shaders will be exposed and detailed:
 - [Stepped cell shading](#stepped-cell-shading)
 - [Watercolor shader](#watercolor-shader)
 - [Rim function](#rim-function)
-- [Landscape and vitrual texturing](#landscape-and-vitrual-texturing)
+- [Landscape and vitrual texturing](#landscape-and-virtual-texturing)
 - [Water shader](#water-shader)  
 
 Multiple iterations were done before being validated by the "Art Director", the head of the Game Art section.
@@ -51,11 +51,11 @@ Multiple iterations were done before being validated by the "Art Director", the 
 ### Stepped cell shading
 
 Since a major part of stylized games use cell shading, that was the first shader I tried to produce.
-After multiple tests using sequenced unreal `if` nodes, I finally created a custom [HLSL](https://en.wikipedia.org/wiki/High-Level_Shader_Language) shader using the custom unreal node.
+After multiple tests using sequenced unreal `if` nodes, I finally created a custom [HLSL](https://en.wikipedia.org/wiki/High-Level_Shader_Language) shader using the [Custom unreal node](https://docs.unrealengine.com/5.2/en-US/custom-material-expressions-in-unreal-engine/).
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_CellShade.PNG "Cell Shader Material Function"){: width="100%"}
 
-In this material function (MF_) I get the SkyAtmosphereLightDirection and do a dot product with the `VertexNormalWS` (Object's Vertex Normal in World Space) to set a multiplication value of the BaseColor according to the position of the SkyLight. The internal code of the shader is the following:
+In this material function (MF_) I get the SkyAtmosphereLightDirection and do a dot product with the `VertexNormalWS` (see [Coordinates Expressions](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/ExpressionReference/Coordinates/)) to set a multiplication value of the BaseColor according to the position of the SkyLight. The internal code of the shader is the following:
 
 ```c++
 float3 col;
@@ -137,7 +137,13 @@ To use it I connected it to either the `Base Color` or the `Emissive Color` The 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/Rim_Shader.gif "Dynamic rim shader"){: width="100%"}
 
 
-### Landscape and vitrual texturing
+### Landscape and virtual texturing
+
+After discussion with a Game Artist friend participating in the project the necessity of having a landscape material, that would blend vegetation and the ground seemingly, appeared.
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Blend.gif "Virtual Texturing blend"){: width="100%"}
+
+
 
 ### Water shader
 
