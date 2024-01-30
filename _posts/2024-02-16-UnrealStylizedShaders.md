@@ -1,5 +1,5 @@
 ---
-title: Unreal Stylized Shader - Specialisation project
+title: Unreal Stylized Shader - Specialization project
 categories: [Graphic, UnrealEngine]
 image: assets/images/ueshaderwork/FireFly.gif
 ---
@@ -40,7 +40,7 @@ In this section the following shaders will be exposed and detailed:
 - [Stepped cell shading](#stepped-cell-shading)
 - [Watercolor shader](#watercolor-shader)
 - [Rim function](#rim-function)
-- [Landscape and vitrual texturing](#landscape-and-virtual-texturing)
+- [Landscape and virtual texturing](#landscape-and-virtual-texturing)
 - [Water shader](#water-shader)  
 
 Multiple iterations were done before being validated by the "Art Director", the head of the Game Art section.
@@ -192,14 +192,14 @@ The [Break Material Attributes](https://docs.unrealengine.com/5.0/en-US/material
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_MakeMAT.PNG "Virtual Texturing make material"){: width="100%"}
 
-That `Runtime Virtual Texture Output` node took all the parameters from the `Break Material Attributes` node except from the `Normal` that was translated from [Tagent Space](https://en.wikipedia.org/wiki/Tangent_space) to [World Space](https://learnopengl.com/Getting-started/Coordinate-Systems#:~:text=The%20coordinates%20in%20world%20space,preferably%20in%20a%20realistic%20fashion) and the `WorldHeight` that took the `Y` axis of the `Absolute World Position` with a `Mask` node.
+That `Runtime Virtual Texture Output` node took all the parameters from the `Break Material Attributes` node except from the `Normal` that was translated from [Tangent Space](https://en.wikipedia.org/wiki/Tangent_space) to [World Space](https://learnopengl.com/Getting-started/Coordinate-Systems#:~:text=The%20coordinates%20in%20world%20space,preferably%20in%20a%20realistic%20fashion) and the `WorldHeight` that took the `Y` axis of the `Absolute World Position` with a `Mask` node.
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_RTVT.PNG "Virtual Texturing Run-time Virt.Texturing"){: width="100%"}
 
 #### Setup, integration and use
 - Setup in UE landscape
 - VT Layers
-- Lanscape Tools
+- Landscape Tools
 - Material usage (grass)
 
 #### Final result
@@ -272,7 +272,7 @@ return col;
 ```
 
 
-To use it, we just had to create a [PostProcessVolume](https://docs.unrealengine.com/5.0/en-US/post-process-effects-in-unreal-engine/) in the scene and plug it in "Rengering Features -> Post Process Materials -> Array"
+To use it, we just had to create a [PostProcessVolume](https://docs.unrealengine.com/5.0/en-US/post-process-effects-in-unreal-engine/) in the scene and plug it in "Rendering Features -> Post Process Materials -> Array"
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_PP_use.PNG "Kuwahara filter use"){: width="100%"}
 
