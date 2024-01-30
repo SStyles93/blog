@@ -11,17 +11,18 @@ The necessity of creating interactable visual effects in an Unreal Engine game r
 During the last year of bachelor's degree in Game Programming at the SAE-Institute, the students of the Games Programming section had to create a game in collaboration with the Game Art and Audio Engineering sections. The purpose of the module was to simulate what was, for some, a first work experience in a professional-like environment.
 
 For this module I had the opportunity to work as a Graphic Programmer on two game projects made in the Unreal Engine 5.3.
-The project that demanded the most work in terms of shader work was first called "The Project Girl & Kitty".
+The project that demanded the most work in terms of shader creation was first first know as "The Project Girl & Kitty".
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_Map_01.PNG "GK_First_Map"){: width="100%"}
 _Project Girl & Kitty Scene render_
 
 For both project we had a limited production time, roughly 8 months, with a team of 27 people.
 The tasks I worked on were the following:
+- Project producing
 - Creation of [shaders](https://en.wikipedia.org/wiki/Shader) and functions to replicate a watercolour style
 - Creation of Landscape shaders, [Virtual Texturing](https://docs.unrealengine.com/4.26/en-US/RenderingAndGraphics/VirtualTexturing/)
 - Creation of a stylized water shader
 - Asset integration, colorization, test and review
-- Creation of specific objects shaders and code (Plant Growth, Glowing Outline, Vertex deformation)
+- Creation of specific object's shaders and code (Plant Growth, Glowing Outline, Vertex deformation)
 - Graphic tools for the artists
 
 In this blogpost, I am going to detail the work done towards the creation of the following interactive shaders:
@@ -34,6 +35,7 @@ In this blogpost, I am going to detail the work done towards the creation of the
 Before going in detail into the shader creation, the first thing to acknowledge is that in Unreal Engine, you can not modify objects materials in run-time since they are static. For that reason I had to code an "Interactable" component class so that every object that had it would override its materials and create a dynamic version of them.  
 
 Below you can see the `Interactable.h` code related to the dynamic material creation:
+The `Interactalbe.h` file:
 ```c++
 #pragma once
 
@@ -67,7 +69,7 @@ private:
 ```
 As you can see the `DynMaterials` is an `Array` that stores the materials created at run-time.
 
-And here the `Interactable.cpp` code:
+And the `Interactable.cpp` file:
 ```c++
 #include "Interactable.h"
 
@@ -94,27 +96,27 @@ void UInteractable::BeginPlay()
 	//...
 }
 ```
-The code above takes all the `Meshes` and creates a dynamic material instance and stores it in the `DynMaterials` array.
-Thanks to this component class, all exposed variables in shaders are now accessible via code or blueprint.
+The code above takes all the `Meshes` and creates a dynamic material instance for each of them and stores it in the `DynMaterials` array.
+Thanks to this unreal component class, all exposed variables in the materials were accessible via code or blueprint.
 
 ## Shaders
 ### Outlining shader
 #### Outline function
 The necessity to have a dynamic outline, that reacted to the players position and rotation when he crossed interactable objects, brought me to create this "Coloured_Outline" Shader.
-Using the `Fresnel`, `Time` & `Sine` Nodes I created an "Emissive" effect.
+Using the `Fresnel`, `Time` & `Sine` Nodes I first created an "Emissive" effect.
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Outline_Colour.PNG "MF_Coloured_Outline"){: width="100%"}
 
 The `Enable_Outline` parameter (float) is used in the C++ code to activate it or not. I first tried using a `Static bool` parameter but after research, since it is static, you can not modify it in code thus rendering it's activation impossible. 
 
-The MF_Outline is the base function used to create the outline of objects. It simply colors every part of an object that has a normal vector direction according to the camera's position with a value superior to the `Outline_Thickness`.
+The MF_Outline is the base function used to create the outline of objects. It colors every part of an object that has a normal direction, according to the camera's position, with a value superior to the `Outline_Thickness`.
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Outline.PNG "MF_Outline"){: width="100%"}
 
 #### C++ code
 
 Once the shader done, I had to create the methods that would be used in game to enable and modify the outline.
-Here is the code related to the Outline of the "Interactable" objects:
+Below is the code related to the Outline of the "Interactable" objects:
 
  Interactable.h
 ```c++
@@ -173,7 +175,7 @@ void UInteractable::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 	}
 }
 ```
-Then, to avoid un-useful work every frame, the `OutlineThickness` would be evaluated with the `CurrentOutlineValue` and if it had changed the `SetOutline` method would be called and the values previously mentioned would be set to equal.
+Then, to avoid un-useful work every frame, the `OutlineThickness` would be evaluated with the `CurrentOutlineValue` and if it had changed, the `SetOutline` method would be called and the values previously mentioned would be equalized.
 
 ```c++
 /// <summary>
@@ -189,7 +191,7 @@ void UInteractable::SetOutline(float value)
 	}
 }
 ```
-The `SetOutline` method above gets the dynamic materials parameters by string and changes their values. In this case the `Outline_Thickness` is changes with the `value` parameter and the `Enable_Outline` is set with the classes variable `EnableOutline`.
+The `SetOutline` method above gets the dynamic materials parameters by string and changes their values. In this case the `Outline_Thickness` is changed with the `value` parameter and the `Enable_Outline` is set with the classes variable `OutlineEnabled`.
 
 #### Result
 
@@ -199,7 +201,7 @@ In the end, I also linked an [Unreal Material Parameters Collection](https://doc
 
 ### Distortion shader
 #### Distortion function
-The distortion function was a simple function that just took the `Time`, `Panner` and `VertexNormalWS` nodes with a Normal map in a `TextureParameter2D` node to deform the object.
+The distortion function was a function that just took the `Time`, `Panner` and `VertexNormalWS` nodes with a Normal map in a `TextureParameter2D` node to deform the object.
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Distortion.PNG "Distortion MF"){: width="100%"}
 
@@ -214,6 +216,8 @@ To use it I had to branch it to world position offset in the object's material n
 Similarly to the Outline shader, the distortion also required its variables and methods.  
 Below you can find the code related to the distortion in the `.h` file:
 ```c++
+//...
+//The rest of the Interactable.h file
 //...
 
 private:
@@ -286,7 +290,7 @@ void UInteractable::SetDistortionValues()
 }
 ```
 
-Below the `SetDistortion(bool value)` method just change the state of activation of all dynamic material on the objects.
+Below the `SetDistortion(bool value)` method changed the state of activation of all dynamic material on the objects.
 ```c++
 /// <summary>
 /// Sets the state of the distortion effect
@@ -334,15 +338,15 @@ Then the material function was linked to a material's Opacity Mask. The material
 
 #### Blueprint code
 
-As for the previous shader, I had to create the code to activate the fading effect. The only difference was that for this effect I had to manually select the meshes on which the effect has going to be applied. For that reason I created the same `Begin()` function but in blueprint.  
+As for the previous shaders, I had to create the code to activate the fading effect. The only difference was that, due to the diversity of possible plants, I had to manually select the meshes on which the effect has going to be applied. For that reason I created the same `Begin()` function but in blueprint.  
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Fade_DynMat.PNG "Fade Even Begin"){: width="100%"}
 
 The `Create Dynamic Fade Material` function replicated what had been done in the previous C++ codes using a [Blueprint Function Library](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/BlueprintFunctionLibraries/).
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Fade_DynMatFunction.PNG "Create dynamic mat function"){: width="100%"}
 
-The next step was to code the detection and be sure that only the player could activate it with the main character. To do so, I checked by tag if the colliding element was effectively the player.  
-I also exposed a variable of type `Trigger Base` that gave the possibility to assign a trigger from outside of the blueprint.
+The next step was to code the detection. To be sure that only the player could activate it with the main character, I checked by tag if the colliding element was effectively the player.  
+I also exposed a variable of type `Trigger Base` that gave the possibility to assign a trigger from outside the blueprint.
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Fade_CollisionDetection.PNG "Collision detection"){: width="100%"}
 
@@ -358,7 +362,7 @@ First of all, when the trigger was activated, the first element in my `DynMats` 
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/MF_Fade_Timeline.PNG "UETimeline"){: width="100%"}
 
-Then, when finished, the `Mat_Index` was incremented and the next material had the same logic applied until there were no more material to update.
+Then, when finished, the `Mat_Index` was incremented and the next material was updated with the same logic until there were no more material to update.
 
 #### Lighting
 
