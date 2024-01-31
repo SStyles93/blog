@@ -202,12 +202,17 @@ To have and interactive grass effect I started by creating a material with all t
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Grass.PNG "Grass material wind"){: width="100%"}
 
-
+The specificity of this material is its transformation from `Tangent Space` to `World Space` and back again, integrating the terrain blending between.
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_MatGeneral.PNG "Grass material general overview"){: width="100%"}
 
+For the blending, the material takes the `Virtual Texture`'s parameters and will blend them according to the `VirtualBlendHeight` and `VirtualFalloff` parameters.
+
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Mat.PNG "Grass material texture blend"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_MatBlend.PNG "Grass material height blend"){: width="100%"}
 
+The last part of the material is just breaking every material attribute and re-assigning them to the master node.
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_MatGeneral2.PNG "Grass material break and assign"){: width="50%"}
 
 #### Setup, integration and use
 
