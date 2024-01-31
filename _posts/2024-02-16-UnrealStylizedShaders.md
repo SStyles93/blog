@@ -229,13 +229,38 @@ To the [Runtime Vitrual Texture Volume](https://docs.unrealengine.com/5.0/en-US/
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_VT.PNG "Runtime Virtual Texture Volume"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Draw.PNG "Landscape Painting"){: width="100%"}
 
-Thanks to all this process and the node previously created.
-**MATERIAL WITH GRASS AND INTERACTION WITH VT**
-
 #### Final result
+Thanks to all this process and the materials previously created the level artists were able to create landscapes and paint them with their desired texture, integrate foliage in the scene and modify at their blending at their conveiniance.
+
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Blend.gif "Virtual Texturing blend"){: width="100%"}
 
 ### Water shader
+
+Into mega node
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water.PNG "Water material"){: width="100%"}
+
+Base colour & depth check
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_Colour.PNG "Water material colour"){: width="100%"}
+
+shoreline dist1
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_Shoreline.PNG "Water material shoreline distance"){: width="100%"}
+
+shoreline dist2
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_ColourDistortion.PNG "Water material shoreline distortion 1&2"){: width="100%"}
+
+Normal dist
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_NormalDistortion.PNG "Water material normal distortion"){: width="100%"}
+
+Iteration of tweaking
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_Tweaking.PNG "Water material tweaking"){: width="100%"}
+
+finality master node + params
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_MasterNode.PNG "Water material master node"){: width="100%"}
+
+#### Result
+The result of the material in game
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_Result.PNG "Water material result in game"){: width="100%"}
+
 ## Post Processing
 For this part of the blog post, we are not going to go in depth trough the work process since it is not the intended focus point. Instead a simple overview of the final shader's state will be exposed.
 
