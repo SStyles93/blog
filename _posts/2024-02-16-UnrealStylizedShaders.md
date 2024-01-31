@@ -194,13 +194,38 @@ The [Break Material Attributes](https://docs.unrealengine.com/5.0/en-US/material
 
 That `Runtime Virtual Texture Output` node took all the parameters from the `Break Material Attributes` node except from the `Normal` that was translated from [Tangent Space](https://en.wikipedia.org/wiki/Tangent_space) to [World Space](https://learnopengl.com/Getting-started/Coordinate-Systems#:~:text=The%20coordinates%20in%20world%20space,preferably%20in%20a%20realistic%20fashion) and the `WorldHeight` that took the `Y` axis of the `Absolute World Position` with a `Mask` node.
 
-![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_RTVT.PNG "Virtual Texturing Run-time Virt.Texturing"){: width="100%"}
+![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_RTVT.PNG "Virtual Texturing Run-time VirtualTexturing"){: width="100%"}
+
+#### Grass Material
+
+To have and interactive grass effect I started by creating a material with all the basics that my previous materials contained and adding a wind "function" that took divers variables for wind boost, weight, speed, direction, and so on... 
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Grass.PNG "Grass material wind"){: width="100%"}
+
+
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_MatGeneral.PNG "Grass material general overview"){: width="100%"}
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Mat.PNG "Grass material texture blend"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_MatBlend.PNG "Grass material height blend"){: width="100%"}
+
 
 #### Setup, integration and use
-- Setup in UE landscape
-- VT Layers
-- Landscape Tools
-- Material usage (grass)
+
+Once the Materials done I created a Landscape [Material Instance](https://docs.unrealengine.com/5.0/en-US/creating-and-using-material-instances-in-unreal-engine/#creatingametrialinstance), that had to be created per map, and [Landscape Layers](https://docs.unrealengine.com/4.26/en-US/BuildingWorlds/Landscape/Materials/).
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape.PNG "Material Instance creation"){: width="50%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Layer.PNG "Landscape Layers"){: width="100%"}
+
+Then, I just followed the Unreal documentation to setup my maps.  
+From the Landscape creation and connecting the Layers
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Creation.PNG "Landscape creation"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Layer_Plug.PNG "Landscape Layer plug"){: width="100%"}
+
+To the [Runtime Vitrual Texture Volume](https://docs.unrealengine.com/5.0/en-US/runtime-virtual-texturing-in-unreal-engine/) that was bound to the Landscape and finally painting the Map
+
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_VT.PNG "Runtime Virtual Texture Volume"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Draw.PNG "Landscape Painting"){: width="100%"}
+
+Thanks to all this process and the node previously created.
+**MATERIAL WITH GRASS AND INTERACTION WITH VT**
 
 #### Final result
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Blend.gif "Virtual Texturing blend"){: width="100%"}
