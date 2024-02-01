@@ -265,16 +265,16 @@ The final part of the node was assembled with two `Lerp` nodes that took in acco
 The shader probably could have been much better, taking the movement of objects in consideration per example, but the final result was nevertheless quite pleasing and satisfied the team that was working on the project.
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_Result.gif "Water material result in game"){: width="100%"}
 
-## Post Processing
+### Post Processing
 For this part of the blog post, we are not going to go in depth trough the work process since it is not the intended focus point. Instead a simple overview of the final shader's state will be exposed.
-
-The idea of using a post processing shader came first of all from the necessity of having a screen space effect that would give a diffusion of color between objects in a scene. To accomplish that effect a simple shader using [HLSL](https://fr.wikipedia.org/wiki/High-Level_Shading_Language) was created to obtain a [Kuwahara](https://en.wikipedia.org/wiki/Kuwahara_filter) filter effect in screen space.
-
+#### Kuwahara function
+The idea of using a post processing shader came first of all from the necessity of having a screen space effect that would give a diffusion of color between objects in a scene. To accomplish that effect a simple shader using [HLSL](https://fr.wikipedia.org/wiki/High-Level_Shading_Language) was created to obtain a [Kuwahara](https://en.wikipedia.org/wiki/Kuwahara_filter) filter effect in screen space.  
 The Unreal Engine material node looked like this:
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_KuwaharaNode.PNG "Kuwahara filter node in UnrealEngine 5.3"){: width="100%"}
 
-and the HLSL code was the following:
+#### HLSL code
+The HLSL code was the following:
 
 ```c++
 float3 mean[4] = 
@@ -330,11 +330,12 @@ for(int l = 0; l < 4; l++)
 return col;
 ```
 
-
+#### Use
 To use it, we just had to create a [PostProcessVolume](https://docs.unrealengine.com/5.0/en-US/post-process-effects-in-unreal-engine/) in the scene and plug it in "Rendering Features -> Post Process Materials -> Array"
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_PP_use.PNG "Kuwahara filter use"){: width="100%"}
 
+#### Result
 Here you can see the result of the post processing shader being used:
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_KuwaharaFilter.gif "Kuwahara filter effect"){: width="100%"}
