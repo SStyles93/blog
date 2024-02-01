@@ -229,37 +229,41 @@ To the [Runtime Vitrual Texture Volume](https://docs.unrealengine.com/5.0/en-US/
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_VT.PNG "Runtime Virtual Texture Volume"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Draw.PNG "Landscape Painting"){: width="100%"}
 
-#### Final result
+#### Result
 Thanks to all this process and the materials previously created the level artists were able to create landscapes and paint them with their desired texture, integrate foliage in the scene and modify at their blending at their conveiniance.
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Blend.gif "Virtual Texturing blend"){: width="100%"}
 
 ### Water shader
 
-Into mega node
+One of the game mechanics was the ability to use a boat and navigate on water, for that reason I created a water material that you can overview below.
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water.PNG "Water material"){: width="100%"}
 
-Base colour & depth check
+#### Water color
+The base color component of it was a `Lerp` between two exposed colors with a [Depth Fade](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/ExpressionReference/Depth/#depthfade) node in the `Alpha` chanel. That enabled a transition between the lighter and darker parts of the water.
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_Colour.PNG "Water material colour"){: width="100%"}
 
-shoreline dist1
+#### Shorelines
+To simulate stylized shorelines a `DistanceToNearestSurface` node was used with the `AbsoluteWorldPosition` node so that the intersection of meshes would be detected and create lines on the water plane at a defined distance. A `Time` node was then used to be able to change their position on the water plane.
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_Shoreline.PNG "Water material shoreline distance"){: width="100%"}
 
-shoreline dist2
+So that the shoreline wouldn't be static two identic distortion functions where created taking different noise textures and parameters, those parameters are self explanatory. The only specificity was the [panner](https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/HowTo/AnimatingUVCoords/#pannernodebreakdown) node that gave me the possibility to displace UV's without creating a node or function for that.
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_ColourDistortion.PNG "Water material shoreline distortion 1&2"){: width="100%"}
 
-Normal dist
+#### Normal distortion
+At that point the shorelines were acceptable but the water did not have any kind of movement to it, for that reason I created a distortion effect of the normal taking the previously generated noise from the shoreline distortion. Different parameters where exposed to be able to control the effect from material instances.
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_NormalDistortion.PNG "Water material normal distortion"){: width="100%"}
 
-Iteration of tweaking
+#### Tweaking iterations
+Due to a lack of time, a big part of the shader was just iterations of multiple shoreline assembly until the result was pleasing. For that reason I am not going to go in depth in this part of the node. With the previous parts any replication can be adapted according to preferences.
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_Tweaking.PNG "Water material tweaking"){: width="100%"}
 
-finality master node + params
+The final part of the node was assembled with two `Lerp` nodes that took in account the shorelines, one for the base color and the other for the opacity chanel with again a `Depth Fade` node. The normal distortion was just directly connected to the master node. 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_MasterNode.PNG "Water material master node"){: width="100%"}
 
 #### Result
-The result of the material in game
-![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_Result.PNG "Water material result in game"){: width="100%"}
+The shader probably could have been much better, taking the movement of objects in consideration per example, but the final result was nevertheless quite pleasing and satisfied the team that was working on the project.
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Water_Result.gif "Water material result in game"){: width="100%"}
 
 ## Post Processing
 For this part of the blog post, we are not going to go in depth trough the work process since it is not the intended focus point. Instead a simple overview of the final shader's state will be exposed.
@@ -336,16 +340,7 @@ Here you can see the result of the post processing shader being used:
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_KuwaharaFilter.gif "Kuwahara filter effect"){: width="100%"}
 
 ## Final result
-After multiple trials and exchanges with colleges and teachers, the results were the following:
+After a lot of research, watching youtube videos, reading the UnrealEngine 5 documentation, reading blogs; exchanges with colleges and teachers; multiples trials and errors, the final result looked pleasing. It probably did not really reproduce the desired watercolor effect, at least not as a hand made painting could have been done, but it certainly gave a good style to the environment and a real "vibe" to it.
 
-Shader Only  | Shader + PostProcess
-:-----:|:-----:
-![]({{ site.baseurl }}/assets/images/ueshaderwork/Final_without_PP.PNG "Watercolor shader without post-process"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/Final_with_PP.PNG "Watercolor shader with post-process"){: width="90%"} 
-
-Final result of shaders
-{: style="text-align: center"}
-![]({{ site.baseurl }}/assets/images/ueshaderwork/Final_PP_Scene.PNG "Final Scene"){: width="100%"}
-
-## Conclusion
-
-123
+![]({{ site.baseurl }}/assets/images/ueshaderwork/Final_Result.gif "Final Scene"){: width="100%"}
+_Scene evolution_
