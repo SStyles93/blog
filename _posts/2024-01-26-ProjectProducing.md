@@ -37,30 +37,55 @@ The hierarchy was layed out from left to right. The stakeholders to whom we were
 
 ## The tools
 ### Production Tools
-#### Programmers tools
-
-The game engine we used was [Unreal Engine 5.3](https://www.unrealengine.com/en-US/blog/unreal-engine-5-3-is-now-available). The decision came from the head of game programming. Since Unreal is vastly used in the game industry it probably was a wise decision.
+#### Programming tools
+##### Unreal Engine 5.3
+The game engine we had to use was [Unreal Engine 5.3](https://www.unrealengine.com/en-US/blog/unreal-engine-5-3-is-now-available). The obligation came from Elias Farhan, the head of game programming. Since Unreal is vastly used in the game industry it probably was a wise decision.
 ![]({{ site.baseurl }}/assets/images/projectproducing/UE5.PNG "UnrealEngine5.3"){: width="100%"}
+_Unreal Engine 5.3 environment_
 
-- UE 5.3
-- Perforce
-- Git
-- Nextcould
-- NAS
-- Wwise
-- 3DS Max
-- Maya
-- ZBrush
-- Substance Painter & Designer
+##### Perforce
+Initially we wanted to setup [Perforce](https://www.perforce.com/)
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Perforce.PNG "Perforce environment"){: width="100%"}
+_Perforce environment_
+
+but, due to our internet provider, we couldn't and ended up installing [GitLab](#gitlab) on a self-hosted server.
+
+##### GitLab
+
+[GitLab](https://about.gitlab.com/)
+![]({{ site.baseurl }}/assets/images/projectproducing/Gitlab.PNG "Gitlab server"){: width="100%"}
+_Gitlab server_
+
+##### Nextcould
+[Nextcloud](https://nextcloud.com/)
+
+##### NAS
+[NAS](https://en.wikipedia.org/wiki/Network-attached_storage)
+
+#### Audio tools
+##### Pro Tools
+For the production of sounds, the audio section principally used [Pro tools](https://www.avid.com/pro-tools) and divers sound banks or personal recordings.
+##### Wwise
+To facilitate the integration to UnrealEngine they used [Wwise](https://www.audiokinetic.com/en/products/wwise/) and, since we couldn't have perforce, transmitted their work to us with a USB key.
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Wwise.PNG "Wwise environment"){: width="100%"}
+_Wwise environment_
+
+#### Artistic tools
+##### 3DS Max
+
+##### Maya
+##### ZBrush
+##### Substance Painter & Designer
 
 
-### Organisation Tools
-
-- Drive (Explain why no Jira)
-- Trello
-- Miro
-- Discord
-- Whatsapp
+### Organization Tools
+#### Google Drive
+#### Trello
+#### Miro
+#### Discord
+#### Whatsapp
 
 
 ## The process
