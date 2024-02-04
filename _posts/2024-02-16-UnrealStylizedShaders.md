@@ -223,12 +223,12 @@ From the Landscape creation and connecting the Layers
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Creation.PNG "Landscape creation"){: width="100%"} _Landscape creation_ | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Layer_Plug.PNG "Landscape Layer plug"){: width="100%"} _Landscape Layer connection_
 
-To the [Runtime Vitrual Texture Volume](https://docs.unrealengine.com/5.0/en-US/runtime-virtual-texturing-in-unreal-engine/) that was bound to the Landscape and finally painting the Map
+To the [Runtime Virtual Texture Volume](https://docs.unrealengine.com/5.0/en-US/runtime-virtual-texturing-in-unreal-engine/) that was bound to the Landscape and finally painting the Map
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_VT.PNG "Runtime Virtual Texture Volume"){: width="100%"} _Runtime Virtual Texture Volume_ | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Draw.PNG "Landscape Painting"){: width="100%"} _Landscape Painting_
 
 #### Result
-Thanks to all this process and the materials previously created the level artists were able to create landscapes and paint them with their desired texture, integrate foliage in the scene and modify at their blending at their conveiniance.
+Thanks to all this process and the materials previously created the level artists were able to create landscapes and paint them with their desired texture, integrate foliage in the scene and modify at their blending at their convenience.
 
 ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Blend.gif "Virtual Texturing blend"){: width="100%"}
 

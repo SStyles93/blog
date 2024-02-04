@@ -35,15 +35,16 @@ The organization chart is the following
 
 The hierarchy was layed out from left to right. The stakeholders to whom we were accountable are placed on the left. Since I was producer, I was responsible for presenting the work done by the teams to them. Then, for each project, a product owner was nominated per project to follow the work and define the tasks according to the general objectives previously defined. The programmers were dispatched on the two projects according to necessities. The game artists were assigned to one project or the other. For the audio engineering section, we had two leads that would organize and dispatch work for both projects.
 
-## The tools
-### Production Tools
-#### Programming tools
-##### Unreal Engine 5.3
+
+## Production Tools
+This part of the blog is and overview and brief exposition of the tools we used for the game's production, it is categorized by domain.
+### Programming tools
+#### Unreal Engine 5.3
 The game engine we had to use was [Unreal Engine 5.3](https://www.unrealengine.com/en-US/blog/unreal-engine-5-3-is-now-available). The obligation came from Elias Farhan, the head of game programming. Since Unreal is vastly used in the game industry it probably was a wise decision.
 ![]({{ site.baseurl }}/assets/images/projectproducing/UE5.PNG "UnrealEngine5.3"){: width="100%"}
 _Unreal Engine 5.3 environment_
 
-##### Perforce
+#### Perforce
 Initially we wanted to setup [Perforce](https://www.perforce.com/) for both projects ot be able to work together, have version control and be able to lock file and avoid having a destructive workflow or too many merge conflicts.
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Perforce.PNG "Perforce environment"){: width="100%"}
@@ -51,19 +52,19 @@ _Perforce environment_
 
 The problem was that, due to our internet provider, we couldn't set it up and finally installed [GitLab](#gitlab) on a self-hosted server.
 
-##### GitLab
+#### GitLab
 
 The self-hosting of [GitLab](https://about.gitlab.com/) was done by [Fabian Huber](https://www.fabianhbr.ch/) and the process is explained in one of his blogs that you can find [here](https://blog.stowy.ch/posts/devops-specialisation-projects/).
 ![]({{ site.baseurl }}/assets/images/projectproducing/Gitlab.PNG "Gitlab server"){: width="100%"}
 _Gitlab server_
 
-##### Nextcould
+#### Nextcould
 [Nextcloud](https://nextcloud.com/) was used for the team to transfer files, specifically the artists' assets. Once again the server was self-hosted and setup by Fabian. The details are explained [here](https://blog.stowy.ch/posts/devops-specialisation-projects/#nextcloud).
 ![]({{ site.baseurl }}/assets/images/projectproducing/Nextcloud.PNG "Nextcloud server"){: width="100%"}
 _Nextcloud interface_
 
 
-##### NAS
+#### NAS
 Since the project was self-hosted, we decided to create a secondary server to backup all the project.
 To do so, I setup, with Fabian's help, a [NAS](https://en.wikipedia.org/wiki/Network-attached_storage) using a [Raspberry Pi 4 model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) with 4GB of [RAM](https://en.wikipedia.org/wiki/Random-access_memory)
 and a WesternDigital [My Book Duo](https://www.westerndigital.com/products/external-drives/wd-my-book-duo-usb-3-1-hdd?sku=WDBFBE0160JBK-NESN).
@@ -75,22 +76,22 @@ I also had to create the accounts and everything related to user identification.
 
 Then, Fabian created a script to compress and send files to the NAS with a [cronjob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/). The details of his implementation are explained [here](https://blog.stowy.ch/posts/devops-specialisation-projects/#backups).
 
-#### Audio tools
-##### Pro Tools
+### Audio tools
+#### Pro Tools
 For the production of sounds, the audio section principally used [Pro tools](https://www.avid.com/pro-tools) and divers sound banks or personal recordings.
-##### Wwise
+#### Wwise
 To facilitate the integration to UnrealEngine they used [Wwise](https://www.audiokinetic.com/en/products/wwise/) and, since we couldn't have perforce, transmitted their work to us with a USB key.
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Wwise.PNG "Wwise environment"){: width="100%"}
 _Wwise environment_
 
-#### Artistic tools
-##### 3DS Max & Maya
+### Artistic tools
+#### 3DS Max & Maya
 The tools used by the artists where principally [3DS Max](https://www.autodesk.com/products/3ds-max/overview?term=1-YEAR&tab=subscription) and [Maya](https://www.autodesk.com/products/maya/overview?term=1-YEAR&tab=subscription) for [Hard Surface modeling](https://www.3ds.com/store/cad/organic-modeling).
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/3dsmax.PNG "3DS Max environment"){: width="100%"} _3DS Max environment_ | ![]({{ site.baseurl }}/assets/images/projectproducing/Maya.PNG "Maya environment"){: width="100%"} _Maya environment_
 
-##### ZBrush
+#### ZBrush
 In some cases [Zbrush](https://www.maxon.net/en/zbrush) was used for organic modeling or sculpting.
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Zbrush.PNG "Zbrush environment"){: width="100%"}
@@ -105,27 +106,36 @@ or for one of the humanoid assets the project VR.
 ![]({{ site.baseurl }}/assets/images/projectproducing/Cadaver.PNG "Cadaver character"){: width="100%"} _VR cadaver character_
 
 
-##### Substance Painter & Designer
+#### Substance Painter & Designer
+For the project VR, the artists used [Substance Painter](https://www.adobe.com/products/substance3d-painter.html) and [Substance Designer](https://www.adobe.com/products/substance3d-designer.html) to create the textures of their assets.
 
+![]({{ site.baseurl }}/assets/images/projectproducing/SubstancePainter.PNG "Substance Painter environment"){: width="100%"} _Substance Painter environment_ | ![]({{ site.baseurl }}/assets/images/projectproducing/SubstanceDesigner.PNG "Substance Designer environment"){: width="100%"}  _SubstanceDesigner environment_
 
-### Organization Tools
-#### Google Drive
-#### Trello
-#### Miro
-#### Discord
-#### Whatsapp
+For the project Girl & Kitty, the texturing was done in Unreal Engine 5, for more information about that process you can read the blog post made about it [here](https://sstyles93.github.io/blog/posts/UnrealStylizedShaders/#contextualization)
+
+## Organization Tools
+This part is and overview and exposition of the tools we used for the project's organization.
+### Google Drive
+#### Weekly
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Drive_weekly.PNG "Weekly presentation"){: width="100%"} _Weekly presentation_
+
+### Trello
+### Miro
+### Discord
+### Whatsapp
 
 
 ## The process
 
 What happened and why
 
-## Managment Style
+## Management Style
 
 Too nice ? too hard ? 
 -> Why I couldn't be effective
 
-## Personnal Thoughts
+## Personal Thoughts
 
 - It was hard. 
 - It took time
@@ -134,5 +144,5 @@ Too nice ? too hard ?
 
 ## Conclusion
 
-- Nice experice
+- Nice experience
 - Doesn't work in a school (collegues don't respect planning & hierarchy)
