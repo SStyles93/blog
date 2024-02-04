@@ -11,9 +11,7 @@ During the last year of bachelor's degree in Game Programming at the SAE-Institu
 
 For this project I had the opportunity to work as a Graphic Programmer on two game projects made in the Unreal Engine 5.3.
 
-Project Girl & Kitty  | Project VR
-:-----:|:-----:
-![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_Map_01.PNG "GK_First_Map"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/VR_Map_01.PNG "VR_First_Map"){: width="100%"} 
+![]({{ site.baseurl }}/assets/images/ueshaderwork/GK_Map_01.PNG "GK_First_Map"){: width="100%"} _Project Girl & Kitty_ | ![]({{ site.baseurl }}/assets/images/ueshaderwork/VR_Map_01.PNG "VR_First_Map"){: width="100%"} _Project VR_
 
 For both project we had a limited production time, roughly 8 months, with a team of 27 people.
 
@@ -208,7 +206,7 @@ The specificity of this material is its transformation from `Tangent Space` to `
 
 For the blending, the material takes the `Virtual Texture`'s parameters and will blend them according to the `VirtualBlendHeight` and `VirtualFalloff` parameters.
 
-![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Mat.PNG "Grass material texture blend"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_MatBlend.PNG "Grass material height blend"){: width="100%"}
+![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_Mat.PNG "Grass material texture blend"){: width="100%"} _Grass material texture blend_ | ![]({{ site.baseurl }}/assets/images/ueshaderwork/VT_MatBlend.PNG "Grass material height blend"){: width="100%"} _Grass material height blend_
 
 The last part of the material is just breaking every material attribute and re-assigning them to the master node.
 
@@ -218,16 +216,16 @@ The last part of the material is just breaking every material attribute and re-a
 
 Once the Materials done I created a Landscape [Material Instance](https://docs.unrealengine.com/5.0/en-US/creating-and-using-material-instances-in-unreal-engine/#creatingametrialinstance), that had to be created per map, and [Landscape Layers](https://docs.unrealengine.com/4.26/en-US/BuildingWorlds/Landscape/Materials/).
 
-![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape.PNG "Material Instance creation"){: width="50%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Layer.PNG "Landscape Layers"){: width="100%"}
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape.PNG "Material Instance creation"){: width="50%"} _Material Instance creation_ | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Layer.PNG "Landscape Layers"){: width="100%"} _Landscape Layers_
 
 Then, I just followed the Unreal documentation to setup my maps.  
 From the Landscape creation and connecting the Layers
 
-![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Creation.PNG "Landscape creation"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Layer_Plug.PNG "Landscape Layer plug"){: width="100%"}
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Creation.PNG "Landscape creation"){: width="100%"} _Landscape creation_ | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Layer_Plug.PNG "Landscape Layer plug"){: width="100%"} _Landscape Layer connection_
 
 To the [Runtime Vitrual Texture Volume](https://docs.unrealengine.com/5.0/en-US/runtime-virtual-texturing-in-unreal-engine/) that was bound to the Landscape and finally painting the Map
 
-![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_VT.PNG "Runtime Virtual Texture Volume"){: width="100%"} | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Draw.PNG "Landscape Painting"){: width="100%"}
+![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_VT.PNG "Runtime Virtual Texture Volume"){: width="100%"} _Runtime Virtual Texture Volume_ | ![]({{ site.baseurl }}/assets/images/ueshaderwork/M_Landscape_Draw.PNG "Landscape Painting"){: width="100%"} _Landscape Painting_
 
 #### Result
 Thanks to all this process and the materials previously created the level artists were able to create landscapes and paint them with their desired texture, integrate foliage in the scene and modify at their blending at their conveiniance.

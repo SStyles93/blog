@@ -15,11 +15,11 @@ One of the roles I inherited was to be the producer for both project. All the pr
 
 At the beginning, all the students were teamed up and had to present 8 game pitches to the stakeholders. From these 8 pitches 4 were selected to be improved and presented again. In the end two projects were selected to be produced. For both projects the students had to rework the pitches, create a game design document and a technical document and present them at the beginning of June 2023.
 
-![]({{ site.baseurl }}/assets/images/projectproducing/GK_Pitch.PNG "Pitch Girl and Kitty "){: width="100%"} | ![]({{ site.baseurl }}/assets/images/projectproducing/VR_Pitch.PNG "Pitch project VR"){: width="100%"}
+![]({{ site.baseurl }}/assets/images/projectproducing/GK_Pitch.PNG "Pitch Girl and Kitty "){: width="100%"} _GK Pitch front page_ | ![]({{ site.baseurl }}/assets/images/projectproducing/VR_Pitch.PNG "Pitch project VR"){: width="100%"} _VR Pitch front page_ 
 
 Once the pitches were presented, two game art students (one per project) were designated to create the concept art that would later be used to guide the artistic production. The concept art references and work was finished and presented for the beginning of July.
 
-![]({{ site.baseurl }}/assets/images/projectproducing/GK_Concept.PNG "Concept Girl and Kitty "){: width="100%"} | ![]({{ site.baseurl }}/assets/images/projectproducing/VR_Concept.PNG "Concept project VR"){: width="100%"}
+![]({{ site.baseurl }}/assets/images/projectproducing/GK_Concept.PNG "Concept Girl and Kitty"){: width="100%"} _Concept Girl and Kitty_ | ![]({{ site.baseurl }}/assets/images/projectproducing/VR_Concept.PNG "Concept project VR"){: width="100%"} _Concept project VR_
 
 The game design was defined and improved in parallel by the game programmers. Two prototypes were created in parallel.
 
@@ -44,24 +44,36 @@ The game engine we had to use was [Unreal Engine 5.3](https://www.unrealengine.c
 _Unreal Engine 5.3 environment_
 
 ##### Perforce
-Initially we wanted to setup [Perforce](https://www.perforce.com/)
+Initially we wanted to setup [Perforce](https://www.perforce.com/) for both projects ot be able to work together, have version control and be able to lock file and avoid having a destructive workflow or too many merge conflicts.
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Perforce.PNG "Perforce environment"){: width="100%"}
 _Perforce environment_
 
-but, due to our internet provider, we couldn't and ended up installing [GitLab](#gitlab) on a self-hosted server.
+The problem was that, due to our internet provider, we couldn't set it up and finally installed [GitLab](#gitlab) on a self-hosted server.
 
 ##### GitLab
 
-[GitLab](https://about.gitlab.com/)
+The self-hosting of [GitLab](https://about.gitlab.com/) was done by [Fabian Huber](https://www.fabianhbr.ch/) and the process is explained in one of his blogs that you can find [here](https://blog.stowy.ch/posts/devops-specialisation-projects/).
 ![]({{ site.baseurl }}/assets/images/projectproducing/Gitlab.PNG "Gitlab server"){: width="100%"}
 _Gitlab server_
 
 ##### Nextcould
-[Nextcloud](https://nextcloud.com/)
+[Nextcloud](https://nextcloud.com/) was used for the team to transfer files, specifically the artists' assets. Once again the server was self-hosted and setup by Fabian. The details are explained [here](https://blog.stowy.ch/posts/devops-specialisation-projects/#nextcloud).
+![]({{ site.baseurl }}/assets/images/projectproducing/Nextcloud.PNG "Nextcloud server"){: width="100%"}
+_Nextcloud interface_
+
 
 ##### NAS
-[NAS](https://en.wikipedia.org/wiki/Network-attached_storage)
+Since the project was self-hosted, we decided to create a secondary server to backup all the project.
+To do so, I setup, with Fabian's help, a [NAS](https://en.wikipedia.org/wiki/Network-attached_storage) using a [Raspberry Pi 4 model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) with 4GB of [RAM](https://en.wikipedia.org/wiki/Random-access_memory)
+and a WesternDigital [My Book Duo](https://www.westerndigital.com/products/external-drives/wd-my-book-duo-usb-3-1-hdd?sku=WDBFBE0160JBK-NESN).
+The framework I used was [OpenMediaVault](https://www.openmediavault.org/) and the server was accessed by [Styles Studio](https://styles-studio.com/)' s domain name. I also added the [SSH](https://en.wikipedia.org/wiki/Secure_Shell) and [SSL](https://en.wikipedia.org/wiki/Transport_Layer_Security#SSL_1.0,_2.0,_and_3.0) protocols to access the server in a more secure way.
+![]({{ site.baseurl }}/assets/images/projectproducing/NAS.PNG "NAS tools"){: width="100%"}
+
+The last tool used regarding this server was [WinSCP](https://winscp.net/eng/index.php) to manage files in a more user-friendly way.
+I also had to create the accounts and everything related to user identification.
+
+Then, Fabian created a script to compress and send files to the NAS with a [cronjob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/). The details of his implementation are explained [here](https://blog.stowy.ch/posts/devops-specialisation-projects/#backups).
 
 #### Audio tools
 ##### Pro Tools
@@ -73,10 +85,26 @@ To facilitate the integration to UnrealEngine they used [Wwise](https://www.audi
 _Wwise environment_
 
 #### Artistic tools
-##### 3DS Max
+##### 3DS Max & Maya
+The tools used by the artists where principally [3DS Max](https://www.autodesk.com/products/3ds-max/overview?term=1-YEAR&tab=subscription) and [Maya](https://www.autodesk.com/products/maya/overview?term=1-YEAR&tab=subscription) for [Hard Surface modeling](https://www.3ds.com/store/cad/organic-modeling).
 
-##### Maya
+![]({{ site.baseurl }}/assets/images/projectproducing/3dsmax.PNG "3DS Max environment"){: width="100%"} _3DS Max environment_ | ![]({{ site.baseurl }}/assets/images/projectproducing/Maya.PNG "Maya environment"){: width="100%"} _Maya environment_
+
 ##### ZBrush
+In some cases [Zbrush](https://www.maxon.net/en/zbrush) was used for organic modeling or sculpting.
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Zbrush.PNG "Zbrush environment"){: width="100%"}
+_Zbrush environment_
+
+Some examples of its use was for one of the characters in the project Girl and Kitty
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Girl.PNG "Girl Wireframe"){: width="100%"} _Girl Wireframe_ | ![]({{ site.baseurl }}/assets/images/projectproducing/Girl2.PNG "Girl Mesh"){: width="100%"} _Girl Mesh_
+
+or for one of the humanoid assets the project VR.
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Cadaver.PNG "Cadaver character"){: width="100%"} _VR cadaver character_
+
+
 ##### Substance Painter & Designer
 
 
