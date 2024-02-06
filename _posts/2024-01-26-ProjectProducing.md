@@ -117,12 +117,45 @@ For the project Girl & Kitty, the texturing was done in Unreal Engine 5, for mor
 This part is and overview and exposition of the tools we used for the project's organization.
 ### Google Drive
 #### Weekly
+One of the utilities of having a common drive was to store google slides. Since every week I had to present the general improvements done on the project, it was useful to be able to store our slides in a common folder. In general the product owners or myself were responsible for their creation.
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Drive_weekly.PNG "Weekly presentation"){: width="100%"} _Weekly presentation_
 
+To keep everything as clear a possible our work was always exposed with the same hierarchy: General Production, Project Girl and Kitty and then the Project VR. With screenshots and bullet points for every member of the projects.
+
+#### Project folders
+Each project had its own folder with diverse documents inside. Going from technical documents to game design, these folders contained all the necessary resources created or found by the members.
+
+![]({{ site.baseurl }}/assets/images/projectproducing/VR_Folder.PNG "VR Folder and content"){: width="100%"} _VR Folder and content_ | ![]({{ site.baseurl }}/assets/images/projectproducing/GK_Folder.PNG "GK Folder and content"){: width="100%"} _GK Folder and content_
+
+#### Example Folder & Archives 
+These folder contained all the documents received from William Marié to help us organize the production, pitch examples we used as references and all documents that were outdated.
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Example_Folder.PNG "Example Folder"){: width="100%"} _Example Folder_ | ![]({{ site.baseurl }}/assets/images/projectproducing/Archives_Folder.PNG "Archives Folder"){: width="100%"} _Archives Folder_
+
+#### Admin folder
+This folder was probably the most used by the product owners and myself. It contained all the documents related to the two projects and their
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Admin_Folder.PNG "Admin Folder"){: width="100%"} _Admin Folder_
+
 ### Trello
+
+[Trello](https://trello.com/en)
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Trello_general.PNG "Trello workspaces"){: width="100%"} _Trello workspaces_
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Trello_board.PNG "Trello G&K board"){: width="100%"} _Trello Girl and Kitty board_
+
 ### Miro
+
+[Miro](https://miro.com/)
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Miro_workspaces.PNG "Miro workspaces"){: width="100%"} _Miro workspaces_
+
 ### Discord
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Discord.PNG "Projects Discord"){: width="100%"} _Projects Discord_
+
 ### Whatsapp
 
 
@@ -145,4 +178,4 @@ Too nice ? too hard ?
 ## Conclusion
 
 - Nice experience
-- Doesn't work in a school (collegues don't respect planning & hierarchy)
+- Doesn't work in a school (colleagues don't respect planning & hierarchy)
