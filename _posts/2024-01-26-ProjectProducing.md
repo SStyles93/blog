@@ -156,9 +156,6 @@ This folder was probably the most used by the product owners and myself. It cont
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Discord.PNG "Projects Discord"){: width="100%"} _Projects Discord_
 
-### Whatsapp
-
-
 ## The process
 
 What happened and why
