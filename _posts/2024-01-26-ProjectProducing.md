@@ -36,7 +36,7 @@ The organization chart is the following
 The hierarchy was layed out from left to right. The stakeholders to whom we were accountable are placed on the left. Since I was producer, I was responsible for presenting the work done by the teams to them. Then, for each project, a product owner was nominated per project to follow the work and define the tasks according to the general objectives previously defined. The programmers were dispatched on the two projects according to necessities. The game artists were assigned to one project or the other. For the audio engineering section, we had two leads that would organize and dispatch work for both projects.
 
 
-## Production Tools
+## Production tools
 This part of the blog is and overview and brief exposition of the tools we used for the game's production, it is categorized by domain.
 ### Programming tools
 #### Unreal Engine 5.3
@@ -77,7 +77,7 @@ I also had to create the accounts and everything related to user identification.
 Then, Fabian created a script to compress and send files to the NAS with a [cronjob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/). The details of his implementation are explained [here](https://blog.stowy.ch/posts/devops-specialisation-projects/#backups).
 
 ### Audio tools
-#### Pro Tools
+#### Pro tools
 For the production of sounds, the audio section principally used [Pro tools](https://www.avid.com/pro-tools) and divers sound banks or personal recordings.
 #### Wwise
 To facilitate the integration to UnrealEngine they used [Wwise](https://www.audiokinetic.com/en/products/wwise/) and, since we couldn't have perforce, transmitted their work to us with a USB key.
@@ -113,9 +113,11 @@ For the project VR, the artists used [Substance Painter](https://www.adobe.com/p
 
 For the project Girl & Kitty, the texturing was done in Unreal Engine 5, for more information about that process you can read the blog post made about it [here](https://sstyles93.github.io/blog/posts/UnrealStylizedShaders/#contextualization)
 
-## Organization Tools
+## Organization tools
 This part is and overview and exposition of the tools we used for the project's organization.
-### Google Drive
+### Google drive
+Since the project was established with approximately 30 people, we had to be able to all access and exchange files. For that reason we used Google Drive. Since it was a major "tool" we used, I wanted to expose its structure and content.
+
 #### Weekly
 One of the utilities of having a common drive was to store google slides. Since every week I had to present the general improvements done on the project, it was useful to be able to store our slides in a common folder. In general the product owners or myself were responsible for their creation.
 
@@ -128,33 +130,69 @@ Each project had its own folder with diverse documents inside. Going from techni
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/VR_Folder.PNG "VR Folder and content"){: width="100%"} _VR Folder and content_ | ![]({{ site.baseurl }}/assets/images/projectproducing/GK_Folder.PNG "GK Folder and content"){: width="100%"} _GK Folder and content_
 
-#### Example Folder & Archives 
+#### Example folder & archives 
 These folder contained all the documents received from William Marié to help us organize the production, pitch examples we used as references and all documents that were outdated.
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Example_Folder.PNG "Example Folder"){: width="100%"} _Example Folder_ | ![]({{ site.baseurl }}/assets/images/projectproducing/Archives_Folder.PNG "Archives Folder"){: width="100%"} _Archives Folder_
 
 #### Admin folder
-This folder was probably the most used by the product owners and myself. It contained all the documents related to the two projects and their
+This folder was probably the most used by the product owners and myself. It contained all the documents related to the two projects and their management.
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Admin_Folder.PNG "Admin Folder"){: width="100%"} _Admin Folder_
 
+The different documents were the following:
+- Risks: Potential problems we could have encountered and the way we could ideally fix them.
+- Resources: A spreadsheet where team members could input their availability.
+- Production Tracker: Principally use by myself to set the milestones and global tasks.
+- Participants: A list of the team members and their contact information.
+- Backlog VR and G&K: The task tracker sheets we used to try and improve productivity over time.
+
 ### Trello
 
-[Trello](https://trello.com/en)
+[Trello](https://trello.com/en) was one of the tools we used as a task tracker. We had three board, one per project and an administrative.
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Trello_general.PNG "Trello workspaces"){: width="100%"} _Trello workspaces_
 
+These boards were, at the beginning used by everyone. We had made categories to sort the different stages of work:
+- Backlog: The work that was emitted by a product owner but not yet assigned.
+- Todo: the task that were assigned and had to be done.
+- In Progress: the assigned tasks currently being done.
+- Validation: Used for the fulfilled tasks that had to be review by the leads, product owners, producer or heads of department.
+- Done: The task that were officially finished
+
+Once the process was done and a task had effectively been validated, it was generally updated on the different Backlogs and stored in the Trello archives.
+
 ![]({{ site.baseurl }}/assets/images/projectproducing/Trello_board.PNG "Trello G&K board"){: width="100%"} _Trello Girl and Kitty board_
+
+At the beginning we all used trello but in the end, the game artists and sound engineers found it more convenient to use an Excels list (see [Project folders](#project-folders)).
 
 ### Miro
 
-[Miro](https://miro.com/)
+[Miro](https://miro.com/) was tool we used to design and do brainstorming. We had three boards, one per project and one for administrative work. 
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Miro_workspaces.PNG "Miro workspaces"){: width="100%"} _Miro workspaces_
 
+Since it is an online broadcasted whiteboard, we could all work together: draw, write and expose our ideas in a more graphical way.
+
+![]({{ site.baseurl }}/assets/images/projectproducing/Miro_board.PNG "Miro VR board"){: width="100%"} _Miro VR board_
+
+It ended up being really useful when designing the game flow, mechanics and enigma ideas.
+
 ### Discord
+To communicate on a more daily basis we used [discord](https://discord.com/).
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Discord.PNG "Projects Discord"){: width="100%"} _Projects Discord_
+
+The different canal created where the following:
+- General: for general notifications about the projects.
+- Administrative: to expose administrative decisions.
+- PV: stands for "Procès-Verbal", verbal process, where we posted transcripts of meetings.
+- Department canals (prog/audio): for specific information relative to a department.
+- stand-up: to keep track of the different action points emitted during project meetings.
+- Weekly-images: canal used to expose current state of work and advancement of tasks with a more visual impact.
+- General: a vocal canal used for general meetings.
+
+We also had specific canals for each project: general, artistic-refs, gameplay-refs and a vocal room for meetings.
 
 ## The process
 
