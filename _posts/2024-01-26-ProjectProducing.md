@@ -196,15 +196,15 @@ The different canal created where the following:
 We also had specific canals for each project: general, artistic-refs, gameplay-refs and a vocal room for meetings.
 
 ## My role
-
-The role itself comprised several tasks, including organising milestone objectives, reviewing sprint objectives with the product owners (PO), preparing and presenting the specific work and overall progress accomplished each week to the stakeholders, ensuring productivity, and resolving potential issues, whether they were human or technically related.
+### 
+The role itself comprised several tasks, including organizing milestone objectives, reviewing sprint objectives with the product owners (PO), preparing and presenting the specific work and overall progress accomplished each week to the stakeholders, ensuring productivity, and resolving potential issues, whether they were human or technically related.
 These tasks, relatively low in number, took a considerable amount of time and patience.
 
 
 ### Problems Encountered
 
 During the process I encountered multiple problems related to people.
-First of all, there were issues with assuming everyone understood things, leading to confusion. Another problem was not being clear about why we had organised a hierarchy and tasks in a certain way, causing some mix-ups and trouble in the teams. Dealing with conflicts between different departments and within our own teams was tough. Managing workloads was challenging, especially when people had other important responsibilities to handle first. Making decisions during critical moments was part of the job, but it sometimes disappointed, created tensions among team members and hurt feelings. Feeling like I didn't have enough power due to the hierarchy made me question my role and whether I was taken seriously.
+First of all, there were issues with assuming everyone understood things, leading to confusion. Another problem was not being clear about why we had organized a hierarchy and tasks in a certain way, causing some mix-ups and trouble in the teams. Dealing with conflicts between different departments and within our own teams was tough. Managing workloads was challenging, especially when people had other important responsibilities to handle first. Making decisions during critical moments was part of the job, but it sometimes disappointed, created tensions among team members and hurt feelings. Feeling like I didn't have enough power due to the hierarchy made me question my role and whether I was taken seriously.
 The last problem regarding human interaction was the difficulty to manage time, objectives and tasks with non-responsive people. The lack of communication from them resulted in greater delays, work that was unfinished  or hadn’t even been started despite the fact that it had been planned. We also suffered from a wave of coronavirus that really didn’t help and reduced productivity too.
 
 Regarding the work, we faced an enormous workload, which was physically and mentally challenging. There were conflicts between production and academic planning, causing production problems and a general reduction of performance for all the departments. The production plans changed during the process, requiring quick adjustments. Additionally, we had a lack of knowledge and practice making some tasks difficult either for myself as a producer or for others in their own roles and endeavors.
@@ -215,9 +215,9 @@ Regarding the production itself, we had issues concerning the infrastructure and
 ### What I learned
 Through my experiences as a producer, I've learned valuable lessons that I believe are crucial for future projects. Firstly, I learned not to underestimate the importance of ensuring that everyone truly understands the information. Assuming universal understanding can lead to confusion, so it's essential to take the time to ensure clarity.
 
-Clear communication emerged as a powerful tool in project management. I discovered that being crystal clear about why tasks are organised in a certain way can prevent misunderstandings and improve teamwork. It definitely is a lesson on the impact of effective communication on a project’s success.
+Clear communication emerged as a powerful tool in project management. I discovered that being crystal clear about why tasks are organized in a certain way can prevent misunderstandings and improve teamwork. It definitely is a lesson on the impact of effective communication on a project’s success.
 
-Another important realisation is that the role of a producer is a full-time commitment. The time and dedication required for this role should not be underestimated or neglected. The responsibilities, from managing conflicts to making critical decisions, demand consistent attention and effort.
+Another important realization is that the role of a producer is a full-time commitment. The time and dedication required for this role should not be underestimated or neglected. The responsibilities, from managing conflicts to making critical decisions, demand consistent attention and effort.
 
 Furthermore, I learned that effective communication, while crucial, can be time-consuming, sometimes surpassing initial expectations. Acknowledging and planning for the time investment in communication is vital for realistic project management. These insights have equipped me with a more nuanced understanding of the producer's role and the key factors that contribute to successful project outcomes.
 

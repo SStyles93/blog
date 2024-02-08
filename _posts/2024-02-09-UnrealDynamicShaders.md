@@ -1,12 +1,12 @@
 ---
-title: Unreal Dynamic Shaders - Specialisation project
+title: Unreal Dynamic Shaders - Specialization project
 categories: [Graphic, UnrealEngine]
 image: assets/images/ueshaderwork/Outline_Use.gif
 ---
 
-The necessity of creating interactable visual effects in an Unreal Engine game resulted in this research, the work that followed and finally this blogpost.
+The necessity of creating interactive visual effects in an Unreal Engine game resulted in this research, the work that followed and finally this blogpost.
 
-## Contextualisation
+## Contextualization
 
 During the last year of bachelor's degree in Game Programming at the SAE-Institute, the students of the Games Programming section had to create a game in collaboration with the Game Art and Audio Engineering sections. The purpose of the module was to simulate what was, for some, a first work experience in a professional-like environment.
 
@@ -18,7 +18,7 @@ _Project Girl & Kitty Scene render_
 For both project we had a limited production time, roughly 8 months, with a team of 27 people.
 The tasks I worked on were the following:
 - Project producing
-- Creation of [shaders](https://en.wikipedia.org/wiki/Shader) and functions to replicate a watercolour style
+- Creation of [shaders](https://en.wikipedia.org/wiki/Shader) and functions to replicate a watercolor style
 - Creation of Landscape shaders, [Virtual Texturing](https://docs.unrealengine.com/4.26/en-US/RenderingAndGraphics/VirtualTexturing/)
 - Creation of a stylized water shader
 - Asset integration, colorization, test and review
@@ -30,12 +30,12 @@ In this blogpost, I am going to detail the work done towards the creation of the
 - [Distortion shader](#distortion-shader)
 - [Fading shader](#fading-shader)
 
-## Interactable class and dynamic materials
+## Interactive class and dynamic materials
 
 Before going in detail into the shader creation, the first thing to acknowledge is that in Unreal Engine, you can not modify objects materials in run-time since they are static. For that reason I had to code an "Interactable" component class so that every object that had it would override its materials and create a dynamic version of them.  
 
 Below you can see the `Interactable.h` code related to the dynamic material creation:
-The `Interactalbe.h` file:
+The `Interactable.h` file:
 ```c++
 #pragma once
 
