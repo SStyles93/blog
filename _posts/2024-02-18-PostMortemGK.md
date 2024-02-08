@@ -17,23 +17,22 @@ The pitch for this project was the following:  “Explore the dream worlds of a 
 The team was split into three teams : Programming, Art and Audio. Each person also had a more specific role. For the artists, it was assigned by the teacher, as for the programmers, it appeared from the skills of each and everyone.
 The goal was for the audio team to be able to work on the game though a WWise session hosted on a perforce server. However, during the production, we weren’t able to set that up due to technical difficulties. Meaning that we couldn’t integrate the audio engineering section’s work before the end of the final deadline and that the integration could only be done before with a USB key.
 
-The team composition was the following:
-Stakeholders:
+#### Stakeholders:
 - Elias Farhan (Head Game Programming)
 - Nicolas Vallée (Head Game Art)
 - Stéphane Chapelle (Head Audio)
 - Nicolas Brière (Project Guidance)
-Programmers: 
+#### Programmers: 
 - Samuel (Producer & Graphic programmer)
 - Dylan (Gameplayer Programmer)
 - Némoz (Gameplayer Programmer and Game Designer)
-Artists:
+#### Artists:
 - Johanna (Product Owner & Lead concept)
 - Carla (Character & Asset modelling)
 - José (Character, Asset, Environment modelling & integration)
 - Elodie (Environment & Asset modelling)
 - Matthias (Research & Development) 
-Audio:
+#### Audio:
 - Eliott (Lead audio & Music production)
 - Théo (Lead audio & Music production/mixing with Wwise)
 - Benjamin (audio production)
@@ -100,5 +99,5 @@ Secondly, the substantial amount of work required to create shaders, going from 
 Throughout this process, I had the occasion of learning and mastering crucial facets of Unreal Engine 5, refining my skills in game development.
 Discovering and learning in depth the Unreal Shader Pipeline, I developed expertise in optimising the unreal rendering processes, unravelling the intricacies of shader development. The node-based material system became my primary tool, where I mastered the art of material creation, utilising master nodes and material instances to reproduce a specific art style. I also discovered the post-processing tools that became very useful for refining visual quality and landscape and foliage tools that gave me the possibility to sculpt expansive and detailed outdoor environments. The adoption of virtual texturing transformed my approach to handling textures, allowing for the creation of virtual terrains without compromising performance. Linking C++ classes to shaders added a layer of interactivity to my creations, bringing them to life with responsive elements. 
 Overall the knowledge acquired during this project was priceless, especially given that Unreal Engine is a vastly used engine in the game development industry. 
-# Conclusion
+## Conclusion
 This project was overall really interesting. Even though the technical problems piled up, making the process really hard, the end result is acceptable given circumstances. I think we can still say that we all did our best despite the difficulties.
