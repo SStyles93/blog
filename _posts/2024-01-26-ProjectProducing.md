@@ -12,8 +12,8 @@ During the last year of studies at the SAE-Institute the students of the Games P
 One of the roles I inherited was to be the producer for both project. All the process, tools used and personal thoughts regarding this role will be exposed and commented throughout this article.
 
 ## The projects
-### Overview
 
+### Overview
 At the beginning, all the students were teamed up and had to present 8 game pitches to the stakeholders. From these 8 pitches 4 were selected to be improved and presented again. In the end two projects were selected to be produced. For both projects the students had to rework the pitches, create a game design document and a technical document and present them at the beginning of June 2023.
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/GK_Pitch.PNG "Pitch Girl and Kitty "){: width="100%"} _GK Pitch front page_ | ![]({{ site.baseurl }}/assets/images/projectproducing/VR_Pitch.PNG "Pitch project VR"){: width="100%"} _VR Pitch front page_ 
@@ -39,7 +39,9 @@ The hierarchy was layed out from left to right. The stakeholders to whom we were
 
 ### Production tools
 This part of the blog is and overview and brief exposition of the tools we used for the game's production, it is categorized by domain.
+
 #### Programming tools
+
 ##### Unreal Engine 5.3
 The game engine we had to use was [Unreal Engine 5.3](https://www.unrealengine.com/en-US/blog/unreal-engine-5-3-is-now-available). The obligation came from Elias Farhan, the head of game programming. Since Unreal is vastly used in the game industry it probably was a wise decision.
 ![]({{ site.baseurl }}/assets/images/projectproducing/UE5.PNG "UnrealEngine5.3"){: width="100%"}
@@ -78,8 +80,11 @@ I also had to create the accounts and everything related to user identification.
 Then, Fabian created a script to compress and send files to the NAS with a [cronjob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/). The details of his implementation are explained [here](https://blog.stowy.ch/posts/devops-specialisation-projects/#backups).
 
 #### Audio tools
+
 ##### Pro tools
+
 For the production of sounds, the audio section principally used [Pro tools](https://www.avid.com/pro-tools) and divers sound banks or personal recordings.
+
 ##### Wwise
 To facilitate the integration to UnrealEngine they used [Wwise](https://www.audiokinetic.com/en/products/wwise/) and, since we couldn't have perforce, transmitted their work to us with a USB key.
 
@@ -87,6 +92,7 @@ To facilitate the integration to UnrealEngine they used [Wwise](https://www.audi
 _Wwise environment_
 
 #### Artistic tools
+
 ##### 3DS Max & Maya
 The tools used by the artists where principally [3DS Max](https://www.autodesk.com/products/3ds-max/overview?term=1-YEAR&tab=subscription) and [Maya](https://www.autodesk.com/products/maya/overview?term=1-YEAR&tab=subscription) for [Hard Surface modeling](https://www.3ds.com/store/cad/organic-modeling).
 
@@ -116,6 +122,7 @@ For the project Girl & Kitty, the texturing was done in Unreal Engine 5, for mor
 
 ### Organization tools
 This part is and overview and exposition of the tools we used for the project's organization.
+
 #### Google drive
 Since the project was established with approximately 30 people, we had to be able to all access and exchange files. For that reason we used Google Drive. Since it was a major "tool" we used, I wanted to expose its structure and content.
 
@@ -149,7 +156,6 @@ The different documents were the following:
 - Backlog VR and G&K: The task tracker sheets we used to try and improve productivity over time.
 
 #### Trello
-
 [Trello](https://trello.com/en) was one of the tools we used as a task tracker. We had three board, one per project and an administrative.
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Trello_general.PNG "Trello workspaces"){: width="100%"} _Trello workspaces_
@@ -168,7 +174,6 @@ Once the process was done and a task had effectively been validated, it was gene
 At the beginning we all used trello but in the end, the game artists and sound engineers found it more convenient to use an Excels list (see [Project folders](#project-folders)).
 
 #### Miro
-
 [Miro](https://miro.com/) was tool we used to design and do brainstorming. We had three boards, one per project and one for administrative work. 
 
 ![]({{ site.baseurl }}/assets/images/projectproducing/Miro_workspaces.PNG "Miro workspaces"){: width="100%"} _Miro workspaces_
@@ -196,13 +201,13 @@ The different canal created where the following:
 We also had specific canals for each project: general, artistic-refs, gameplay-refs and a vocal room for meetings.
 
 ## My role
-### 
+
+### Overview
 The role itself comprised several tasks, including organizing milestone objectives, reviewing sprint objectives with the product owners (PO), preparing and presenting the specific work and overall progress accomplished each week to the stakeholders, ensuring productivity, and resolving potential issues, whether they were human or technically related.
 These tasks, relatively low in number, took a considerable amount of time and patience.
 
 
 ### Problems Encountered
-
 During the process I encountered multiple problems related to people.
 First of all, there were issues with assuming everyone understood things, leading to confusion. Another problem was not being clear about why we had organized a hierarchy and tasks in a certain way, causing some mix-ups and trouble in the teams. Dealing with conflicts between different departments and within our own teams was tough. Managing workloads was challenging, especially when people had other important responsibilities to handle first. Making decisions during critical moments was part of the job, but it sometimes disappointed, created tensions among team members and hurt feelings. Feeling like I didn't have enough power due to the hierarchy made me question my role and whether I was taken seriously.
 The last problem regarding human interaction was the difficulty to manage time, objectives and tasks with non-responsive people. The lack of communication from them resulted in greater delays, work that was unfinished  or hadn’t even been started despite the fact that it had been planned. We also suffered from a wave of coronavirus that really didn’t help and reduced productivity too.
