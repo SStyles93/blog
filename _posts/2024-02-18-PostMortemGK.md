@@ -1,5 +1,5 @@
 ---
-title: Post Mortem Girl & Kitty and VR - Specialization project
+title: Post-Mortem Projects GK & VR - Specialization Projects
 categories: [Graphic, Producing]
 image: assets/images/ueshaderwork/PP_Intro.gif
 ---

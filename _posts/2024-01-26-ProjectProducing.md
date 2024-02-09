@@ -1,5 +1,5 @@
 ---
-title: Project Producing - Specialization Project
+title: Project Producing - Specialization Projects
 categories: [Producing]
 image: /assets/images/projectproducing/PP_Intro.gif
 ---
