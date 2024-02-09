@@ -6,12 +6,11 @@ image: assets/images/projectproducing/PP_Intro.gif
 
 # Post-Mortem Project GK
 ## Context
-During the 3rd year of studies at SAE Institute, the Game Programming, Game Art and Audio Engineering students are tasked to make a game together. This year, it was a bit special, since we made two games instead of one. One of them is a puzzle adventure game where you play a girl and a cat solving puzzles in dreamlike worlds (Project Girl and Kitty). The other one is a VR game inspired by escape rooms where you have to solve puzzles to get out of a room with a dead body (Project VR). This document is only about Project VR.
-The pre-production went from June 2023 to September 2023. The production of a vertical slice of the game lasted until February the 9th. The goal was not to have a full game, but to demonstrate a part of it with the quality pushed to the maximum.
+During the 3rd year of studies at SAE Institute, the Game Programming, Game Art and Audio Engineering students have to make a game together. This year was a bit special, since we made two games instead of one. One of them is a puzzle adventure game where you play a girl and a cat solving puzzles in dreamlike worlds (Project Girl and Kitty). The other one is a VR game inspired by escape rooms where you have to solve puzzles to get out of a room with a dead body (Project VR). This document is only about both projects and the process.
+The pre-production went from June 2023 to September 2023. The production of a vertical slice of the games lasted until February the 9th. The goal was not to have two finished game, but to demonstrate a part of it with the final quality.
 ### Constraint
-For this project the constraint, imposed by our teacher, Elias Farhan, was to use Unreal Engine 5.
-Pitch
-The pitch for this project was the following:  “Explore the dream worlds of a sick child in the company of a cat with magical powers in Project Girl and Kitty, a contemplative 3D puzzle-adventure game. Manipulate objects by making them change size using the cat's powers to solve unique puzzles, and immerse yourself in a captivating adventure combining imagination and challenges.”
+For the project GK the constraint, imposed by our teacher, Elias Farhan, was to use Unreal Engine 5.
+The pitch for the Girl and Kitty project was the following:  “Explore the dream worlds of a sick child in the company of a cat with magical powers in Project Girl and Kitty, a contemplative 3D puzzle-adventure game. Manipulate objects by making them change size using the cat's powers to solve unique puzzles, and immerse yourself in a captivating adventure combining imagination and challenges.”
 
 For the project VR, we had the following constraints:
 
@@ -28,8 +27,9 @@ by solving puzzles in their closed apartment.
 ]
 
 ### Team
-The team was split into three teams : Programming, Art and Audio. Each person also had a more specific role. For the artists, it was assigned by the teacher, as for the programmers, it appeared from the skills of each and everyone.
-The goal was for the audio team to be able to work on the game though a WWise session hosted on a perforce server. However, during the production, we weren’t able to set that up due to technical difficulties. Meaning that we couldn’t integrate the audio engineering section’s work before the end of the final deadline and that the integration could only be done before with a USB key.
+The team was split into three teams : Programming, Art and Audio. Each person also had a more specific role. For the artists, roles were assigned by the teacher, as for the programmers, tasks were undertaken according to skills.
+The goal for the audio team was to be able to work on the game though a WWise session hosted on a perforce server. However, during the production, we weren’t able to set that up due to technical difficulties. Meaning that we couldn’t integrate the audio engineering section’s work before the end of the final deadline and that the integration could only be done before with a USB key.
+Each department had the following members.
 
 #### Stakeholders:
 - Elias Farhan (Head Game Programming)
@@ -104,12 +104,10 @@ The game was made on Unreal Engine 5. We mostly used blueprints, so we rarely ha
 The project's source was also hosted on the Git repository. The assets were on. The hard-surface models were made using Maya or 3DS Max. As for the organic meshes, they were made on ZBrush. As for the textures, the artists used Substance Painter.
 
 ### Organisation
-At the start of the project, we received a production lesson from William Marié, a Producer at Old Skull Games. This is what guided us for the biggest part of our organisation.
-There were two management roles in the group : Samuel as Producer and Johanna as Product Owner. As a Producer, Samuel’s role was to keep a good group dynamic and organise the different milestones and presentations. As for Johanna, her responsibility was to define what tasks (user stories) were to be done by the team for the following sprint. A sprint is a 2 week period where the team tries to do a set amount of work. Each task has an intensity attached to it. It is similar to the time it takes to do, but it is not exactly the same. This intensity is supposed to serve as a guide on if there was too much or too little work during the sprint. However, this metric was not very useful on this project, since the amount of time everyone could put on the project varied frequently and it was hard to estimate the duration of tasks that we never did before.
+At the beginning of the projects, we received a production lesson from William Marié, a Producer at Old Skull Games. This is what guided us for the biggest part of our organisation.
+There were two management roles in the group : Samuel as Producer, Fabian and Johanna as Product Owners. As a Producer, Samuel’s role was to keep a good group dynamic and organise the different milestones and presentations. As for Fabian and Johanna, their responsibility was to define what tasks (user stories) were to be done by the team for the following sprint. A sprint is a 2 week period where the team tries to do a set amount of work. Each task has an intensity attached to it. It is similar to the time it takes to do, but it is not exactly the same. This intensity is supposed to serve as a guide on if there was too much or too little work during the sprint. However, this metric was not very useful on this project, since the amount of time everyone could put on the project varied frequently and it was hard to estimate the duration of tasks that we never did before.
 At the end of each sprint, we did a Sprint Review / Sprint Planning / Sprint Retrospective (yes, all at the same time !). This is taken from the SCRUM method. The goal was for people to be able to tell their frustrations with the production and to improve things as they were advancing. We had to merge the three meetings into one, since there were very few moments where we could bring everyone together in the same room.
 In parallel to the sprint reviews, we did weekly meetings on Fridays with Elias Farhan where we presented the work we did during the week. The goal of this meeting was mostly for Elias to see who did what and to raise red flags if he saw any. We could also ask him questions and get guidance.
-
-For the project VR the process was the same except that the Product Owner \(PO\) was Fabian Huber.
 
 ## My role as a Producer
 The role of a producer was one of the responsibilities assigned to me during this project. Thanks to Nicolas Brière, our head of department, Elias Farhan was able to arrange a master class with William Marié, a senior producer who had worked with OldSkullGames. Thanks to his guidance, the role that I took on without prior knowledge became more manageable.
@@ -142,4 +140,4 @@ Throughout this process, I had the occasion of learning and mastering crucial fa
 Discovering and learning in depth the Unreal Shader Pipeline, I developed expertise in optimising the unreal rendering processes, unravelling the intricacies of shader development. The node-based material system became my primary tool, where I mastered the art of material creation, utilising master nodes and material instances to reproduce a specific art style. I also discovered the post-processing tools that became very useful for refining visual quality and landscape and foliage tools that gave me the possibility to sculpt expansive and detailed outdoor environments. The adoption of virtual texturing transformed my approach to handling textures, allowing for the creation of virtual terrains without compromising performance. Linking C++ classes to shaders added a layer of interactivity to my creations, bringing them to life with responsive elements. 
 Overall the knowledge acquired during this project was priceless, especially given that Unreal Engine is a vastly used engine in the game development industry. 
 ## Conclusion
-This project was overall really interesting. Even though the technical problems piled up, making the process really hard, the end result is acceptable given circumstances. I think we can still say that we all did our best despite the difficulties.
+These projects were overall really interesting. Even though the technical problems piled up, making the process really hard, the end result is acceptable given circumstances. I think we can still say that we all did our best despite the difficulties.
