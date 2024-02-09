@@ -1,7 +1,7 @@
 ---
 title: Post-Mortem Projects GK & VR - Specialization Projects
 categories: [Graphic, Producing]
-image: assets/images/ueshaderwork/PP_Intro.gif
+image: assets/images/projectproducing/PP_Intro.gif
 ---
 
 # Post-Mortem Project GK
