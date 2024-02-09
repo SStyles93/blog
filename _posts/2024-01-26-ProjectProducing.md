@@ -1,5 +1,5 @@
 ---
-title: Project Producing - First experience as a Producer
+title: Project Producing - Specialization Project
 categories: [Producing]
 image: /assets/images/projectproducing/PP_Intro.gif
 ---
