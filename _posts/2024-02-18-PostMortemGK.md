@@ -1,7 +1,7 @@
 ---
-title: Post Mortem Girl and Kitty - Specialization project
-categories: [Graphic, UnrealEngine]
-image: assets/images/ueshaderwork/FireFly.gif
+title: Post Mortem Girl & Kitty and VR - Specialization project
+categories: [Graphic, Producing]
+image: assets/images/ueshaderwork/PP_Intro.gif
 ---
 
 # Post-Mortem Project GK
@@ -13,6 +13,20 @@ For this project the constraint, imposed by our teacher, Elias Farhan, was to us
 Pitch
 The pitch for this project was the following:  “Explore the dream worlds of a sick child in the company of a cat with magical powers in Project Girl and Kitty, a contemplative 3D puzzle-adventure game. Manipulate objects by making them change size using the cat's powers to solve unique puzzles, and immerse yourself in a captivating adventure combining imagination and challenges.”
 
+For the project VR, we had the following constraints:
+
+- Using Unreal Engine 5
+- Making a VR game
+- Start the project with the provided pitch
+
+The pitch was :
+
+#quote()[
+Project VR is a virtual reality puzzle game where the main character, in
+the midst of a hangover, must reconstruct the events of the previous day
+by solving puzzles in their closed apartment.
+]
+
 ### Team
 The team was split into three teams : Programming, Art and Audio. Each person also had a more specific role. For the artists, it was assigned by the teacher, as for the programmers, it appeared from the skills of each and everyone.
 The goal was for the audio team to be able to work on the game though a WWise session hosted on a perforce server. However, during the production, we weren’t able to set that up due to technical difficulties. Meaning that we couldn’t integrate the audio engineering section’s work before the end of the final deadline and that the integration could only be done before with a USB key.
@@ -23,15 +37,25 @@ The goal was for the audio team to be able to work on the game though a WWise se
 - Stéphane Chapelle (Head Audio)
 - Nicolas Brière (Project Guidance)
 #### Programmers: 
-- Samuel (Producer & Graphic programmer)
-- Dylan (Gameplayer Programmer)
-- Némoz (Gameplayer Programmer and Game Designer)
+- Samuel (Producer on GK & VR & Graphic programmer on GK)
+- Dylan (Gameplayer Programmer on GK)
+- Némoz (Gameplayer Programmer on GK and Game Designer on GK & VR)
+- Benjamin (Programmer and Game Designer on VR)
+- Edouard (Programmer on VR and Game Designer on GK & VR)
+- Fabian (Product Owner on VR and SysAdmin on GK & VR)
 #### Artists:
+GK: 
 - Johanna (Product Owner & Lead concept)
 - Carla (Character & Asset modelling)
 - José (Character, Asset, Environment modelling & integration)
 - Elodie (Environment & Asset modelling)
-- Matthias (Research & Development) 
+- Matthias (Research & Development)
+VR:
+- Jessica (Lead Props / FX)
+- Eliot (Lead UI)
+- Jeremy (Lead R&D)
+- Aliya (Lead Concepts / Character)
+- Aurore (Lead Environnement / Animations / Integration)
 #### Audio:
 - Eliott (Lead audio & Music production)
 - Théo (Lead audio & Music production/mixing with Wwise)
@@ -59,16 +83,34 @@ For the interface Carto and Dordogne where suggested.
 
 ![]({{ site.baseurl }}/assets/images/postmortemgk/Art_ref3.PNG "Art references of Amelicart and Dordogne"){: width="100%"} _Carto and Dordogne user interface examples_
 
-
 The final decision was made by Nicolas Vallée, the head of the game art section.
+
+For the VR project the graphic style, would be inspired by _Overwatch_,
+_Paladin_, _Dauntless_ and _Agents of Mayhem_. As for
+the palette and atmosphere, it is inspired by _Team Fortress 2_,
+_Sky: Children of the Light_ and _Ratchet & Clank_ and
+finally, for the environment, it is inspired by _NiBiRu: Age of
+Secrets_ and _Black Mirror_.
+
+![]({{ site.baseurl }}/assets/images/postmortemgk/VR_Concept.PNG "Art references of "){: width="100%"} _Vr Concept art_
+
 ### Production Tools
-The game is made on Unreal Engine 5. We mostly used C++ so we had to use Visual Studio 2022 as IDE. The project’s source was hosted on a Git repository located on a self-hosted GitLab instance. The assets were hosted on a Nextcloud instance. The hard-surface models were made using Maya or 3DS Max. As for the organic meshes, they were made on ZBrush.
+#### Project GK
+The game was made on Unreal Engine 5. We mostly used C++ so we had to use Visual Studio 2022 as IDE. The project’s source was hosted on a Git repository located on a self-hosted GitLab instance. The assets were hosted on a Nextcloud instance. The hard-surface models were made using Maya or 3DS Max. As for the organic meshes, they were made on ZBrush.
 The texturing process was eliminated for the artists since we used Unreal Engine 5’ s material system and decomposed meshes to texture the assets.
+
+#### Project VR
+The game was made on Unreal Engine 5. We mostly used blueprints, so we rarely had to use an IDE, but when we did, we used Visual Studio 2022.
+The project's source was also hosted on the Git repository. The assets were on. The hard-surface models were made using Maya or 3DS Max. As for the organic meshes, they were made on ZBrush. As for the textures, the artists used Substance Painter.
+
 ### Organisation
 At the start of the project, we received a production lesson from William Marié, a Producer at Old Skull Games. This is what guided us for the biggest part of our organisation.
 There were two management roles in the group : Samuel as Producer and Johanna as Product Owner. As a Producer, Samuel’s role was to keep a good group dynamic and organise the different milestones and presentations. As for Johanna, her responsibility was to define what tasks (user stories) were to be done by the team for the following sprint. A sprint is a 2 week period where the team tries to do a set amount of work. Each task has an intensity attached to it. It is similar to the time it takes to do, but it is not exactly the same. This intensity is supposed to serve as a guide on if there was too much or too little work during the sprint. However, this metric was not very useful on this project, since the amount of time everyone could put on the project varied frequently and it was hard to estimate the duration of tasks that we never did before.
 At the end of each sprint, we did a Sprint Review / Sprint Planning / Sprint Retrospective (yes, all at the same time !). This is taken from the SCRUM method. The goal was for people to be able to tell their frustrations with the production and to improve things as they were advancing. We had to merge the three meetings into one, since there were very few moments where we could bring everyone together in the same room.
 In parallel to the sprint reviews, we did weekly meetings on Fridays with Elias Farhan where we presented the work we did during the week. The goal of this meeting was mostly for Elias to see who did what and to raise red flags if he saw any. We could also ask him questions and get guidance.
+
+For the project VR the process was the same except that the Product Owner \(PO\) was Fabian Huber.
+
 ## My role as a Producer
 The role of a producer was one of the responsibilities assigned to me during this project. Thanks to Nicolas Brière, our head of department, Elias Farhan was able to arrange a master class with William Marié, a senior producer who had worked with OldSkullGames. Thanks to his guidance, the role that I took on without prior knowledge became more manageable.
 The role itself comprised several tasks, including organising milestone objectives, reviewing sprint objectives with the product owners (PO), preparing and presenting the specific work and overall progress accomplished each week to the stakeholders, ensuring productivity, and resolving potential issues, whether they were human or technically related.
