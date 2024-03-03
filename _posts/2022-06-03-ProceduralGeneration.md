@@ -8,7 +8,7 @@ Overview of the work and research done on procedural generation using binary spa
 
 ## Introduction
 
-"Intelligent" monsters! Randomly generated maps! Replayability! 
+"Intelligent" monsters! Randomly generated maps! Repeatability! 
 
 Those are the key goals we must reach in order to make a game that will
 feel more or less as a "new experience" every time it is played.
