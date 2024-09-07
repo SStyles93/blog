@@ -1,6 +1,6 @@
 ---
 title: Unreal Stylized Shaders - Specialization projects
-categories: [Graphic, UnrealEngine]
+categories: [Unreal Engine, Graphic]
 image: assets/images/ueshaderwork/FireFly.gif
 ---
 

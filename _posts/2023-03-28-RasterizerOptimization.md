@@ -1,6 +1,6 @@
 ---
 title: Rasterizer - From a naive implementation to an optimized version
-categories: [Graphic, CPU]
+categories: [Graphics Programming, CPU]
 image: /assets/images/rasterizer/RenderScene.PNG
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Unreal Dynamic Shaders - Specialization projects
-categories: [Graphic, UnrealEngine]
+categories: [Unreal Engine, Graphic]
 image: assets/images/ueshaderwork/Outline_Use.gif
 ---
 

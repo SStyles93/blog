@@ -1,6 +1,6 @@
 ---
 title: OpenGL Scene - Detailed Implementation
-categories: [Graphic, OpenGL]
+categories: [Graphics Programming, OpenGL]
 image: /assets/images/opengl/lastScene.PNG
 ---
 

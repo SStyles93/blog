@@ -1,6 +1,6 @@
 ---
 title: Post-Mortem Projects GK & VR - Specialization Projects
-categories: [Graphic, Producing]
+categories: [Producing]
 image: assets/images/projectproducing/PP_Intro.gif
 ---
 
