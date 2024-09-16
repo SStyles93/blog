@@ -358,6 +358,3 @@ For those who are interested in giving it a try, my only piece of advice
 would be to go slowly and get help if you are stuck. Along my journey I
 often got mad at myself for going too quickly and ending up being stuck
 because of a method I thought was working but was actually not.
-
-I hope this blogpost was clear enough to be understood and not too long
-to read. Best wishes and good luck on your dev journey ;)
