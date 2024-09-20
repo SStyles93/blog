@@ -13,6 +13,12 @@ During my studies, I worked for projects at Styles Studio SàRL. During that tim
 Renaming a unique object isn't a problem, but when there are thousands it can be quite time consuming.
 For that reason I decided to create a script that would automatically rename object according to the desired input.
 
+## Installation
+
+https://dev.epicgames.com/documentation/en-us/unreal-engine/scripting-the-editor-using-python?application_version=4.27
+
+C:\Program Files\Epic Games\UE_5.3\Engine\Plugins\Experimental\PythonScriptPlugin\Content\Python
+
 ## Renaming script
 
 ### Code
