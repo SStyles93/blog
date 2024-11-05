@@ -558,9 +558,11 @@ Kajiya, T. and von Herzen, B., (1984). Ray tracing volume densities. ACM SIGGRAP
 
 Lengyel, J., Praun, E., Finkelstein, A. and Hoppe, H., (2001). Real-time fur over arbitrary surfaces. Symposium on Interactive 3D Graphics (I3D) 2001, pp.227-232. Available [here](https://hhoppe.com/fur.pdf).  
 
-Marschner, S.R., Cornell University, Jensen, H.W., University of California—San Diego, Cammarano, M., Stanford University, Worley, S., Worley Laboratories, Hanrahan, P. and Stanford University, (2003). Light Scattering from Human Hair Fibers. Available [here](http://www.graphics.stanford.edu/papers/hair/hair-sg03final.pdf) [Accessed 16 June 2024].  
+Marschner, S.R., Cornell University, Jensen, H.W., University of California—San Diego, Cammarano, M., Stanford University, Worley, S., Worley Laboratories, Hanrahan, P. and Stanford University, (2003). Light Scattering from Human Hair Fibers. Available [here] [Accessed 16 June 2024].  
+<!-- (http://www.graphics.stanford.edu/papers/hair/hair-sg03final.pdf) -->
 
-Rapp, M., (2014). Real-Time hair rendering [Master Thesis, Stuttgart Media University]. In Stuttgart Media University, Computer Science and Media M.Sc. Available [here](http://markusrapp.de/wordpress/wp-content/uploads/hair/MarkusRapp-MasterThesis-RealTimeHairRendering.pdf) [Accessed 16 June 2024].  
+Rapp, M., (2014). Real-Time hair rendering [Master Thesis, Stuttgart Media University]. In Stuttgart Media University, Computer Science and Media M.Sc. Available[here] [Accessed 16 June 2024].  
+<!-- (http://markusrapp.de/wordpress/wp-content/uploads/hair/MarkusRapp-MasterThesis-RealTimeHairRendering.pdf) -->
 
 Tariq, S., (2007). Fur (using shells and fins). NVIDIA. Available [here](https://developer.download.nvidia.com/SDK/10/direct3d/Source/Fur/doc/FurShellsAndFins.pdf) [Accessed 3 June 2024].  
 
@@ -659,7 +661,8 @@ Samsung Developers. (n.d.). GPUWatch. [online] Available [here](https://develope
 
 Softo, (2024.). How to show FPS on Android phones: Xiaomi, Samsung, and other brands, 22 March. Available [here](https://www.softo.org/p/show-fps-on-android-phones-xiaomi-samsung-and-other-brands) [Accessed 6 June 2024].  
 
-Souls modding, (n.d.). FromSoftware game engines. Available [here](http://soulsmodding.wikidot.com/topic:engines) [Accessed 6 June 2024].  
+Souls modding, (n.d.). FromSoftware game engines. Available [here] [Accessed 6 June 2024].  
+<!-- (http://soulsmodding.wikidot.com/topic:engines)  -->
 
 Technologies, U. (n.d.-a). Unity - Manual: Optimizing graphics performance. [online] docs.unity3d.com. Available [here](https://docs.unity3d.com/2017.3/Documentation/Manual/OptimizingGraphicsPerformance.html) [Accessed 14 Jul. 2024].  
 
