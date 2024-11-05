@@ -1,15 +1,15 @@
 ---
-title: Bachelor's Project - 3D Fur generation":"Rendering realistic fur in Unity using shell texturing.
+title: Bachelor's Project - 3D Fur generation - Rendering realistic fur in Unity using shell texturing.
 categories: [Unity, Graphic]
 image: assets/images/bachelorproject/Picture58.png
 ---
 
+During my last year of bachelor's degree in Game Programming, I worked on a HLSL Fur rendering project in Unity.
+This project is details in this blogpost.
+
 [Foreword](#foreword) - [Acknowledgment](#acknowledgment) - [Abstract](#abstract) - [Introduction](#1-introduction) -
 [State of the Art](#2-state-of-the-art) - [Qualitative analysis](#3-qualitative-analysis) - [Test protocol](#4-test-protocol) -
 [Practical project](#5-practical-project) - [Quantitative analysis](#6-quantitative-analysis) - [Conclusion and further research](#7-conclusion-and-further-research) - [Appendices](#10-appendices)
-
-During my last year of bachelor's degree in Game Programming, I worked on a HLSL Fur rendering project in Unity.
-This project is details in this blogpost.
 
 ## Foreword
 After multiple years of studies in commercial-related fields, I wanted to better understand the world and the way it worked; keep my mind active; accumulate knowledge and stay physically active. For those reasons I decided to change paths and go towards mechanical engineering.  
@@ -35,17 +35,20 @@ This study addresses visual issues with shell texturing in real-time environment
 **Key words**: Shell-Texturing, Video game, Fur rendering, Unity, URP, HLSL, Shaders, Graphics programming.
 
 ## 1. Introduction
-Dark Souls III the “fastest selling title in the history of Bandai Namco Entertainment America” (Porter, 2017) was released with graphical issues regarding fur. Four years later, Genshin Impact “reported to have the highest revenue ever for a game in its first year” (Tyler, 2021) is released with the same problems when rendering grass. This observation is the reason that motivates this research around what is commonly known as Shell-Texturing.
+Dark Souls III the “fastest selling title in the history of Bandai Namco Entertainment America” (Porter, 2017) was released with graphical issues regarding fur. Four years later, Genshin Impact “reported to have the highest revenue ever for a game in its first year” (Tyler, 2021) is released with the same problems when rendering grass. This observation is the reason that motivates this research around what is commonly known as Shell-Texturing.  
+  
 With the constant improvement of hardware, the last decade has seen major innovations in the way graphics are rendered. Many technologies are currently used and developed throughout diverse domains that require the use of graphical illustrations. From the gaming industry that must render an image in a few milliseconds or the visual effects and film industry that will tend to expose the most perfect image possible, all require their own specific hardware, software, and tools. Regarding the generation of fur, it is necessary to differentiate the practices related to each domain. In the film industry, where images are pre-calculated and the experience is already scripted, there is no need to meet real-time requirements, thus enabling the possibility of pushing the boundaries in terms of visual rendering by directly sculpting or modelling hair or fur with a high level of detail. The necessary adjustments, such as physical interactions, can be calculated during long periods of time without impacting the way it is perceived by the viewer. 
  
-![]({{ site.baseurl }}assets/images/bachelorproject/Picture1.png "") {: width="100%"} _Figure 1 - Hair and fur Render Time on characters. (Edgardlop, 2013)"_
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture1.png)_Figure 1 - Hair and fur Render Time on characters. (Edgardlop, 2013)_
 
 On the other hand, the gaming industry requires the image to change dynamically according to events such as the user’s input.
-That significant difference adds a layer of complexity when it comes to fur rendering. The outcome is that, in a real-time environment, rendering hair or fur is either created with a complex mesh but is intended to be static in game, meaning that there are no physical interactions with the fur or hair, or with simple planes or guides, where visual fidelity is discarded beforehand but physical interactions are possible. In both scenarios there is a trade-off between visual quality and fidelity of physical behaviour. This trade-off is precisely what will be measured and the main reason for the research that will be pursued in this thesis. 
-The primary goal is to develop a Unity project using the URP render pipeline to implement Shell-Texturing through HLSL shaders. Following this initial step, the same shader will be employed across different scenes of varying complexity. Subsequently, an executable will be generated, exported, and tested on multiple platforms to collect data for comparative analysis. The overarching goal is to enhance the shader project by leveraging the gathered data, thus refining it, and presenting an optimised setup that carefully balances trade-offs for optimal performance and visual fidelity.
+That significant difference adds a layer of complexity when it comes to fur rendering. The outcome is that, in a real-time environment, rendering hair or fur is either created with a complex mesh but is intended to be static in game, meaning that there are no physical interactions with the fur or hair, or with simple planes or guides, where visual fidelity is discarded beforehand but physical interactions are possible. In both scenarios there is a trade-off between visual quality and fidelity of physical behaviour. This trade-off is precisely what will be measured and the main reason for the research that will be pursued in this thesis.  
+  
+The primary goal is to develop a Unity project using the URP render pipeline to implement Shell-Texturing through HLSL shaders. Following this initial step, the same shader will be employed across different scenes of varying complexity. Subsequently, an executable will be generated, exported, and tested on multiple platforms to collect data for comparative analysis. The overarching goal is to enhance the shader project by leveraging the gathered data, thus refining it, and presenting an optimised setup that carefully balances trade-offs for optimal performance and visual fidelity.  
+  
 The plan will start with the state of the art, providing a comprehensive definition and precise explanations of the key terms involved. Following this, a paragraph will delve into various examples of use of the shell-texturing technique within the AAA game industry. 
-To conclude, a brief introduction to the project and its procedure will be done. Once the foundational overview and historical context are established, the project will be described in detail including the metrics, software, hardware, procedure, and technical implementation. Lastly an examination of the project’s results will be conducted leading to the final chapter of this thesis, the paths to further research.
- 
+To conclude, a brief introduction to the project and its procedure will be done. Once the foundational overview and historical context are established, the project will be described in detail including the metrics, software, hardware, procedure, and technical implementation. Lastly an examination of the project’s results will be conducted leading to the final chapter of this thesis, the paths to further research.  
+  
 The initial approach was to create three projects: a Unity projects using the URP pipeline to mimic Genshin Impact’s style; an Unreal Engine project to approach the rendering style of Dark Souls III; a DirectX12 rendering engine to implement necessary techniques by hand and have better control and understanding of the entire pipeline. This approach proved to be too challenging and had to be scaled back to fit into the time available. The Unreal Engine project was therefore abandoned since it was more oriented towards technical art than graphics programming skills. Regarding the DirectX12 project, after beginning with tutorials and a simple triangle rendering project, the amount of time required was evaluated and projected to be overly time-consuming. Thus, making it impossible to fulfil in an acceptable manner. For these reasons, the project focuses on the Unity version and its seamless exportation to multiple platforms. Delving deeply into techniques within Unity's Universal Render Pipeline (URP), will facilitate a comprehensive grasp and practical application of graphics programming principles.
 
 ## 2. State of the Art
@@ -53,23 +56,26 @@ The initial approach was to create three projects: a Unity projects using the UR
 #### 2.1.1 Fur in video games
 Fur in the context of video games refers to the simulated representation of animal pelage, providing a lifelike and visually compelling aspect to virtual creatures. It involves the depiction of dense hair-like structures on the surface of characters or objects, enhancing their realism and adding depth to the gaming experience. Fur rendering techniques aim to capture the intricate details of fur, such as its length, colour, and overall appearance, contributing to the aesthetics of the virtual world (Kajiya & von Herzen, 1984).
  
-Figure 2 - Fur generation example from Real-Time Fur over Arbitrary Surfaces. (Lengyel et al., 2001)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture2.png)_2 - Fur generation example from Real-Time Fur over Arbitrary Surfaces. (Lengyel et al., 2001)_  
+
 When referring to fur, it is important to exclude aspects related to human hair or hairstyles, grooming, and similar elements. While these aspects are essential in various digital representations, the intention here is to dive deeply into the technical and artistic challenges associated with replicating the unique characteristics of animal fur. 
  
-Figure 3 - 80.lv student hair for games from Greg Mourino. (80.lv, 2018) & Detective Pikachu film caption.
- (Machkovech, 2019)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture3.png)_3 - 80.lv student hair for games from Greg Mourino. (80.lv, 2018) & Detective Pikachu film caption. (Machkovech, 2019)_  
+
 By setting aside discussions on human hair, the exploration can be focused on the intricacies of rendering fur in a gaming environment. This exclusion allows for a more concentrated examination of the complexities involved in simulating animal pelage, providing a clear understanding of the specialised field of fur rendering in video game development.
  
 #### 2.1.2 Realistic rendering
 Rendering is the process of generating an image from a model by simulating how light interacts with surfaces. It involves calculations to determine the colour, shadow, texture, and visual attributes of the objects in a scene. Rendering is essential in computer graphics for creating realistic or stylised visuals in various applications like animation, gaming, and virtual reality (Shirley et al, 2021).
  
-Figure 4 - Realistic Dog Portrait: Experimenting with Real-Time Fur. (80.lv, 2021)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture4.png)_4 - Realistic Dog Portrait: Experimenting with Real-Time Fur. (80.lv, 2021)_  
+
 When referring to realistic rendering, the focus lies on accurately simulating how light behaves in the real world to create lifelike images. This involves complex calculations to model light interactions such as reflection, refraction, and absorption on surfaces. By meticulously calculating these phenomena, realistic rendering aims to produce visuals that closely resemble how objects appear in the physical environment, adding depth, detail, and authenticity to computer-generated imagery (Adobe, n.d.; Chaos, n.d.; Bluebird International, n.d.).
  
 #### 2.1.3 Unity
 Unity is a powerful and widely used game engine that allows creators to build interactive experiences for various platforms. It provides a user-friendly suite of tools for designing, prototyping, and deploying games and interactive content. Since 2015, Unity has developed versions of its engine, each with its own set of tools and improvements. These versions are archived and available on their website ("Download archive”, n.d.-b).
  
-Figure 5 - Unity download archive. (Unity Technologies, n.d.-b)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture5.png)_5 - Unity download archive. (Unity Technologies, n.d.-b)_  
+
 Since Unity is continuously improving (Figure 5), these versions are categorised in two ways:
 ●	Tech Stream: considered as unsafe: 
 
@@ -77,7 +83,8 @@ Since Unity is continuously improving (Figure 5), these versions are categorised
 
 ●	Long-Term Support: considered safe: “It is the release for creators who value maximum stability and support for their next project” (“LTS vs Tech Stream: Choose the right Unity release for you.”, n.d.-d).
  
-Figure 6 - Unity Hub 3.7.0 Installs screenshot, (Styles, 2024)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture6.png)_6 - Unity Hub 3.7.0 Installs screenshot, (Styles, 2024)_  
+
 ##### 2.1.3.1 Unity’s graphics pipelines and their differences:
 Regarding the graphics pipelines, there are three main setups:
 ●	BRP: “This pipeline offers broad compatibility and ease of use, suitable for most projects. It provides a balance between visual quality and performance, with features like dynamic lighting, shadows, and post-processing effects.” (“Using the Built-in Render Pipeline”, n.d.-g).
@@ -92,94 +99,113 @@ Each pipeline offers different trade-offs in terms of visual quality, performanc
 #### 2.2.1 Shell-Texturing
 The Shell-Texturing technique focuses on creating multiple shells around the object allowing for efficient and realistic rendering of fur without the need to individually model each hair strand. This method plays a crucial role in achieving convincing fur effects in video games, enriching the visual narrative, and pushing the boundaries of graphical realism (Döllner, Hinkenjann, & Wiemker, 2006).
  
-Figure 7 – A shell-based fur strand example. (GiM, n.d.)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture7.png)_7 – A shell-based fur strand example. (GiM, n.d.)_  
+
 This method stands out for its remarkable efficiency in rendering fur, as it cleverly constructs a shell around the object. This approach eliminates the need to model each individual hair strand, making it a highly optimised solution for various applications, especially in the context of video games (Döllner, Hinkenjann, & Wiemker, 2006).
  
-Figure 8 - Visualisation of shells on low-poly mesh. (GiM, n.d.)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture8.png)_8 - Visualisation of shells on low-poly mesh. (GiM, n.d.)_  
+
 However, it is essential to acknowledge that while Shell-Texturing excels in terms of optimisation, it does come with certain visual trade-offs that are related to the camera’s perspective. Depending on the viewing angle and distance, some imperfections may become apparent, impacting the overall visual quality. Despite these considerations, the Shell-Texturing technique remains a powerful tool in terms of graphical rendering, offering a compelling balance between performance and aesthetics. (XBDEV.net, n.d.; NVIDIA, n.d.; Kajiya & Lischinski, 1993; “Fur shader”, n.d.-c; Lengyel et al., 2001).
  
-Figure 9 - Example of coloured Shell-based fur. (Afanasev, 2018)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture9.png)_9 - Example of coloured Shell-based fur. (Afanasev, 2018)_  
  
 #### 2.2.2 Fin
 The fin technique consists in generating extra geometry inside a triangle, composition of vertices, and extruding what is commonly referred to as a fin, to later apply a 2D texture map on that extruded part.
  
-Figure 10 - Illustration of fin extrusion. (Lengyel et al., 2001)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture10.png)_10 - Illustration of fin extrusion. (Lengyel et al., 2001)_  
+
 As explained by Lengyel & al in 2001 in the paper Real-Time Fur over Arbitrary Surfaces:
 
-“We place “fins” normal to the surface and render these using conventional 2D texture maps sampled from the volume texture in the direction of hair growth. The method generates convincing imagery of fur at interactive rates for models of moderate complexity. Further-more, the scheme allows real-time modification of viewing and lighting conditions, as well as local control over hair color, length, and direction, this technique already allowed its users to have a lot of control over the result.” (Lengyel et al., 2001)
- 
+“We place “fins” normal to the surface and render these using conventional 2D texture maps sampled from the volume texture in the direction of hair growth. The method generates convincing imagery of fur at interactive rates for models of moderate complexity. Further-more, the scheme allows real-time modification of viewing and lighting conditions, as well as local control over hair color, length, and direction, this technique already allowed its users to have a lot of control over the result.” (Lengyel et al., 2001)  
+  
 Nvidia later published a white paper about this technique, improving it thanks to graphics programming modernization and DirectX10 allowing the use of geometry shaders as mentioned in Nvidia’s white paper: “Fins are rendered by creating new geometry per frame along the silhouette edges of a mesh. Before DirectX 10 this required adding degenerate triangles to the mesh at every edge but now fins can be generated efficiently using the Geometry Shader.” (Tariq, 2007) 
 
  
-Figure 11 - Fin generation example and illustration. (Tariq, 2007)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture11.png)_11 - Fin generation example and illustration. (Tariq, 2007)_  
  
 #### 2.2.3 Polygon
 The polygon method consists in manually positioning planes or polygons to later project 2D textures on them to obtain hair or fur.
  
-Figure 12 - Polygonal hair example from The Last of Us. (Imgur, n.d.)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture12.png)_12 - Polygonal hair example from The Last of Us. (Imgur, n.d.)_  
+
 On the image above 2D planes (Figure 12, right), a combination of few vertices, were manually placed on the character’s head so that each hair strand could be coloured afterwards (Figure 12, left) 
 This technique is used in video games due to its very efficient results. The full process is explained on the YouTube channel CG Cookie - Unity Training (CG Cookie – Unity Training, n.d.).
  
 #### 2.2.4 Geometry
 One of the common usages of dynamic geometry creation in real-time is for grass generation in games. Although grass does not have the same physical properties as hair or fur, it probably needs to be at least as optimal since it often covers considerably more space in games than fur (White, 2008).
  
-Figure 13 - Vertex shader with adaptive mesh according to LOD. (GDCVault, n.d.)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture13.png)_13 - Vertex shader with adaptive mesh according to LOD. (GDCVault, n.d.)_  
+
 Procedural Grass in 'Ghost of Tsushima' is a conference where the developers cleverly generated grass with relatively simple geometry. The grass adapts its geometry according to the distance of the camera. On the left side of the image above (Figure 13), the mesh is subdivided into 15 vertices for more detail when the camera is close. On the right side, the mesh is rendered with fewer vertices since the distance of the camera does not require as many details to seem visually accurate (GDC, 2022).
  
 ### 2.3 Shell Texturing in the gaming industry
 #### 2.3.1 Shadow of Colossus
 The first example of the use of a shell texturing system in a AAA game was Shadow of Colossus, “a 2005 action-adventure game developed by Japan Studio and Team Ico, and published by Sony Computer Entertainment for the PlayStation 2.” (“Shadow of the Colossus”, 2024.-a).
  
-Figure 14 - Shadow of Colossus in game caption of the player looking at a Colossus. (Froyok, n.d.)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture14.png)_14 - Shadow of Colossus in game caption of the player looking at a Colossus. (Froyok, n.d.)_  
+
 In Shadow of Colossus, the Shell-Texturing was used for some of the colossuses’ fur. Léna Piquet , known under the pseudonym Froyok, did a breakdown that covers aspects going from the number of layers to the direction of the fur according to the mesh. Piquet’s blog also gives a translation of an interview, originally in Japanese, with the team that created the game. (Froyok, n.d.)
  
 #### 2.3.2 Viva Piñata
 “Viva Piñata was released in 2006 and created by Xbox Game Studios and Rare” (“Viva Piñata”, 2023).
  
-Figure 15 - Viva Piñata in Game Caption. (NBC News, 2006)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture15.png)_15 - Viva Piñata in Game Caption. (NBC News, 2006)_  
+
 In Viva Piñata, shell texturing was used to simulate the paper-like fur and the environment’s grass. Unfortunately, no information about the engine and technology used for its creation was found.
  
 #### 2.3.3 Dark Souls 3
 Dark Souls III, produced by FromSoftware and published by Bandai Namco Entertainment in 2016 (“Dark Souls III”, 2020), is a reference to demonstrate that shell texturing is used in a game with realistic graphics.
  
-Figure 16 - Dark Souls III Wolf boss (Sif). (Creswell, 2021)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture16.png)_16 - Dark Souls III Wolf boss (Sif). (Creswell, 2021)_  
+
 According to a souls modding community forum, the engine used by FromSoftware was called Dantelion and it is also proprietary. The only information gathered on its development is that it relied on third party software such as the Havok engine for physics, Fmod for audio. Any information directly related to the fur rendering does not seem available (Souls modding, n.d.).
  
 #### 2.3.4 Genshin Impact
 The most relevant game to point out for this project is undoubtedly Genshin Impact since it is a more recent example of a game where Shell texturing is used (“Genshin Impact”, 2024.-d).
  
-Figure 17 - Genshin impact illustration. (For The Win, 2022)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture17.png)_17 - Genshin impact illustration. (For The Win, 2022)_  
+
 This game was created by miHoYo and published in 2020. This reference is an example of the use of shell texturing to render grass and fur in a stylised graphical environment.
  
-Figure 18 - In-game caption of Genshin Impact. (X (formerly Twitter), 2024)
-The use of Unity as the game engine in Genshin Impact ([ANSWERED], n.d.) presents a significant advantage for this Bachelor’s project. Serving as a valuable point of reference, the game offers a tangible benchmark for comparison and enhancement throughout our project's development. This not only facilitates iterative improvements but also sets the minimum thresholds and requirements aimed to be surpassed.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture18.png)_18 - In-game caption of Genshin Impact. (X (formerly Twitter), 2024)_  
+
+The use of Unity as the game engine in Genshin Impact ([ANSWERED], n.d.) presents a significant advantage for this Bachelor’s project. Serving as a valuable point of reference, the game offers a tangible benchmark for comparison and enhancement throughout our project's development. This not only facilitates iterative improvements but also sets the minimum thresholds and requirements aimed to be surpassed.  
+
 ### 2.4 Unity Shell Texturing Project
 #### 2.4.1 Objectives and limitations
 The objective of this project is to focus primarily on the understanding of what is shell texturing and how it is made in a real-time environment. The understanding of how to code in HLSL will be necessary and since Unity has its own methods, an adaptation to that understanding will have to be made to be able to code inside the Unity editor.
 The final goal of the project is to determine how to resolve the shell rendering problems when fur strands are perpendicular to the direction the camera is facing and to understand in what configurations this resolution is not feasible.
-As a Bachelor’s degree student, it is essential to acknowledge the limitations related to an academic setting. Primarily, the time available to develop the project is restricted by an academic calendar, allowing limited time for its creation. Furthermore, despite rigorous and dedicated study, the level of expertise necessary for such a project would probably require years of specialised experience and exposure to industry-standard practices and technologies.
-The project's ambition is calibrated to reflect a learning exercise and a demonstration of potential rather than a product ready for professional application. This perspective ensures that the project remains a demonstrative tool, designed to expose understanding and skills, rather than meeting commercial standards. It is important to acknowledge that many researchers and professional graphics programmers have already treated this subject and are still working towards its improvement. 
+As a Bachelor’s degree student, it is essential to acknowledge the limitations related to an academic setting.  
+Primarily, the time available to develop the project is restricted by an academic calendar, allowing limited time for its creation. Furthermore, despite rigorous and dedicated study, the level of expertise necessary for such a project would probably require years of specialised experience and exposure to industry-standard practices and technologies.
+The project's ambition is calibrated to reflect a learning exercise and a demonstration of potential rather than a product ready for professional application. This perspective ensures that the project remains a demonstrative tool, designed to expose understanding and skills, rather than meeting commercial standards. It is important to acknowledge that many researchers and professional graphics programmers have already treated this subject and are still working towards its improvement.  
+
 #### 2.4.2 Unity projects
-The Unity projects will focus mainly on the replication of the shell texturing method seen in Genshin impact and if possible, its improvement. It will be decomposed in six steps, each adding a layer of improvement either related to the technical or visual outcome.
+The Unity projects will focus mainly on the replication of the shell texturing method seen in Genshin impact and if possible, its improvement. It will be decomposed in six steps, each adding a layer of improvement either related to the technical or visual outcome.  
+
 ##### 2.4.2.1 Initial approach
-The first approach will be a naïve attempt to produce, without prior knowledge, a technique combining simple shaders and C# scripts to produce the shell texturing. The objective of this first approach is to understand how to replicate shell texturing ideally without having to focus on the intricacies of HLSL. Any specific algorithms related to graphical fidelity such as light simulation, reflection, and shadowing will be ignored at this point since the focus is on understanding the theory and not producing a high-quality project.
+The first approach will be a naïve attempt to produce, without prior knowledge, a technique combining simple shaders and C# scripts to produce the shell texturing. The objective of this first approach is to understand how to replicate shell texturing ideally without having to focus on the intricacies of HLSL. Any specific algorithms related to graphical fidelity such as light simulation, reflection, and shadowing will be ignored at this point since the focus is on understanding the theory and not producing a high-quality project.  
+
 ##### 2.4.2.2 HLSL attempt
 Once that first step is accomplished, the project will be improved by exclusively using shader language to generate the necessary shells for producing fur. The use of a geometry shader is intended to remove these shells. Eliminating the C# scripts will align the project more closely with professional graphics programming practices. During the process, the objective will be to improve the code and test its limitations to have the most visually pleasing outcome without neglecting its optimality. At this point, the project will ideally contain some graphically accurate lighting and shading models.
  
 ##### 2.4.2.3 Shell and Fin
-Once the shell-texturing shader is done, the implementation of a fin shader will produce extracted vertices over the entire surface of any object on which textures of fur strands will be projected. Since both shaders are exactly opposite (Lengyel et al., 2001), the idea is to create a merged version to either render shells or fins according to circumstances such as the distance and angle of the camera. This adaptation will allow it to seamlessly transition from shell to fin and avoid edge cases where the viewer obviously sees flaws.
+Once the shell-texturing shader is done, the implementation of a fin shader will produce extracted vertices over the entire surface of any object on which textures of fur strands will be projected. Since both shaders are exactly opposite (Lengyel et al., 2001), the idea is to create a merged version to either render shells or fins according to circumstances such as the distance and angle of the camera. This adaptation will allow it to seamlessly transition from shell to fin and avoid edge cases where the viewer obviously sees flaws.  
+
 ##### 2.4.2.4 Scene variations
-With the different fur generating shaders created, tests will be done throughout multiple scenes of defined complexities to be able to obtain data such as frame rate and memory usage. These scenes will contain objects with shapes of different levels of complexity to evaluate specific edge cases and varying size environments to push the boundaries of the hardware used and obtain measurements that will later be compared to those extracted from different devices.
+With the different fur generating shaders created, tests will be done throughout multiple scenes of defined complexities to be able to obtain data such as frame rate and memory usage. These scenes will contain objects with shapes of different levels of complexity to evaluate specific edge cases and varying size environments to push the boundaries of the hardware used and obtain measurements that will later be compared to those extracted from different devices.  
+
 ##### 2.4.2.5 Hardware implementations
-Once that comparison is done on a personal computer, the project will be ported on hardware setups such as the Nintendo Switch and Android mobiles so that an analysis of frame rate and visual outcome can be made. The comparison made on different hardware will first demonstrate the possibility of using the created shaders on lower capacity machines, but it will also deliver insight on possible improvements or limitations.
+Once that comparison is done on a personal computer, the project will be ported on hardware setups such as the Nintendo Switch and Android mobiles so that an analysis of frame rate and visual outcome can be made. The comparison made on different hardware will first demonstrate the possibility of using the created shaders on lower capacity machines, but it will also deliver insight on possible improvements or limitations.  
+
 ##### 2.4.2.6 Other Improvements and edge cases
-Lastly, improvements will be attempted regarding lighting, shadowing and physical behaviour by implementing algorithms found in different papers.
- 
+Lastly, improvements will be attempted regarding lighting, shadowing and physical behaviour by implementing algorithms found in different papers.  
+
 #### 2.4.3 Anticipated protocol
 Up to this point, the shell texturing, fin, geometry and polygon techniques have been used and developed over time to render hair, fur or grass. These five methods have the same common point of interest being rendered in real-time.
-Regarding the test protocol, it is expected to have at least three scenes that will mimic Genshin Impact’s shell texturing technique. These three scenes will be declined with each developed method, the naïve shell rendering, the HLSL geometry technique, and the shell and fin technique for a total of nine scenes. 
+Regarding the test protocol, it is expected to have at least three scenes that will mimic Genshin Impact’s shell texturing technique. These three scenes will be declined with each developed method, the naïve shell rendering, the HLSL geometry technique, and the shell and fin technique for a total of nine scenes.  
+
 Each scene will contain objects with different levels of complexity, the first scene will be rendering a simple plane with four vertices, the second will contain the same plane and multiple basic Unity spheres and the last will contain multiple complex objects. 
-The extraction of data such as frame rate and memory used will be done for each scene. To extract this data multiple tools will be used. The first tools used will be Unity's set of tools such as the Statistics window, the Frame debugger, the Profiler, and the Render Debugger. Secondly, the use of RenderDoc or Nvidia Nsight Graphics will be used to analyse frames.
+The extraction of data such as frame rate and memory used will be done for each scene. To extract this data multiple tools will be used. The first tools used will be Unity's set of tools such as the Statistics window, the Frame debugger, the Profiler, and the Render Debugger. Secondly, the use of RenderDoc or Nvidia Nsight Graphics will be used to analyse frames.  
 
 ### 2.5 Conclusion
 Throughout this state of the art, the definition of the important composites of the problematic was laid out, exposing the most common ways to render fur and hair, reviewing four games that have been using shell texturing for several years and finally exposing the objectives and components of the anticipated project.
@@ -187,39 +213,49 @@ Throughout this state of the art, the definition of the important composites of 
 
 ## 3. Qualitative Analysis
 ### 3.1 Interviews
-With the projects and anticipated protocols defined, it was important to reach out to professionals and experts in the graphics programming field to see what their thoughts about the approach were, or if they had any feedback or tips about the methodology. The questions varied according to each specialist and all of them can be found in the appendixes (See Appendix A &B). Unfortunately, only one specialist answered the given questions.
-The most important information gathered was first the mention of the Real time rendering 4th edition that seemed to be relevant to the project and secondly the advice regarding the project itself. Resuming the advice received can be summarised in two key points: knowing and keeping in mind the platform on which the project is being developed and the purpose for which the shaders are being created (Sena, e-mail, 14 May 2024) (see Appendix A).
+With the projects and anticipated protocols defined, it was important to reach out to professionals and experts in the graphics programming field to see what their thoughts about the approach were, or if they had any feedback or tips about the methodology. The questions varied according to each specialist and all of them can be found in the appendixes (See Appendix A &B). Unfortunately, only one specialist answered the given questions.  
+
+The most important information gathered was first the mention of the Real time rendering 4th edition that seemed to be relevant to the project and secondly the advice regarding the project itself. Resuming the advice received can be summarised in two key points: knowing and keeping in mind the platform on which the project is being developed and the purpose for which the shaders are being created (Sena, e-mail, 14 May 2024) (see Appendix A).  
+
 Due to a lack of answers from professionals and given the wide use of AI nowadays the interview was attempted using ChatGPT and the answers gave interesting insight about the process of fur creation. One of the common pieces of advice from ChatGPT and David Sena was the importance of context. The optimisation strategies and techniques will differ according to the use and platform for which the project is developed. The second converging element is the way the process should be approached (ChatGPT, Interview, 2024) (see Appendix B).The mention of Unreal Engine and any other suggested tools was discarded since the project aims at hand coded reproduction and improvement of fur shaders in a stylised fashion.
  
 ### 3.2 Project Analysis
 Two projects have been selected for analysis mainly because they were created with Unity but also because they both have shell texturing and use the URP rendering pipeline.
-The analysis criteria are first and foremost the visual quality and time to render a frame, then data related to the memory usage, the number of vertices and lastly, if possible, how optimal they are on lower capacity machines such as Nintendo Switch or mobile phones.
+The analysis criteria are first and foremost the visual quality and time to render a frame, then data related to the memory usage, the number of vertices and lastly, if possible, how optimal they are on lower capacity machines such as Nintendo Switch or mobile phones.  
+
 #### 3.2.1 Genshin Impact
-Genshin Impact is the first project selected for analysis, first because it brought up the question of the utility of shell texturing given the flaws of that method but also because it was exported to lower capacity machines like mobile phones as seen in the minimal hardware requirements given by Danielson and Yonezawa (2024) on the website ScreenRant.
-Originally the intention was to use software such as RenderDoc of Nvidia Nsight graphics to capture a frame from the game and be able to compare it to the project. Unfortunately, due to an anti-cheat system (Hoyoverse.com, 2024) it was impossible to use such a tool on this game. One possibility would have been to use a cracked version of the game or use an anti-hack bypass such as the EasyPeasy-Bypass given by the github user gmh5225 (Gmh, n.d.). However, none of these seemed to be an ethical choice. For that reason and after multiple trials using RenderDoc and Nvidia Nsight Graphics, the decision to stop trying and do a purely visual analysis of it had to be made.
- 
+Genshin Impact is the first project selected for analysis, first because it brought up the question of the utility of shell texturing given the flaws of that method but also because it was exported to lower capacity machines like mobile phones as seen in the minimal hardware requirements given by Danielson and Yonezawa (2024) on the website ScreenRant.  
+
+Originally the intention was to use software such as RenderDoc of Nvidia Nsight graphics to capture a frame from the game and be able to compare it to the project. Unfortunately, due to an anti-cheat system (Hoyoverse.com, 2024) it was impossible to use such a tool on this game. One possibility would have been to use a cracked version of the game or use an anti-hack bypass such as the EasyPeasy-Bypass given by the github user gmh5225 (Gmh, n.d.). However, none of these seemed to be an ethical choice. For that reason and after multiple trials using RenderDoc and Nvidia Nsight Graphics, the decision to stop trying and do a purely visual analysis of it had to be made.  
+
 Regarding the visual quality, the method used to render grass is shell texturing, recognizable due to the discontinuity of layers (Figure 19, Yellow rectangle). 
  
-Figure 19 - Genshin impact caption with coloured rectangle highlighting specific elements. (X (formerly Twitter), 2024)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture19.png)_19 - Genshin impact caption with coloured rectangle highlighting specific elements. (X (formerly Twitter), 2024)_  
+
 The colour seems to be randomly distributed between two values of green (Figure 19, Blue rectangle). The most interesting fact about Genshin’s Impact grass shader is the reaction to light sources (Figure 19, Red rectangle).
  
 #### 3.2.2. Hecomi – UnityFurURP
 Thanks to Hecomi a Unity Fur project was developed with the URP pipeline (Hecomi, 2024). In this project, available on github, multiple shaders are shown exposing three methods of fur rendering: shell, fin, and geometry (Figure 20) (Hecomi, n.d.).
  
-Figure 20 - Caption in Unity editor of the cloned github project from Hecomi showing shell, fin, and geometry shader from left to right. (Styles, 2024)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture20.png)_20 - Caption in Unity editor of the cloned github project from Hecomi showing shell, fin, and geometry shader from left to right. (Styles, 2024)_  
+
 Since the project is based primarily on shell texturing, it is useful to compare it with a version developed by an experienced graphics programmer (Hecomi, 2024).
  
-Figure 21 - Caption in Unity editor of the cloned github project from Hecomi showing shell. (Styles, 2024)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture21.png)_21 - Caption in Unity editor of the cloned github project from Hecomi showing shell. (Styles, 2024)_  
+
 The shell scene contains a sphere with 515 vertices, a directional light, and a post processing volume adding ACES tonemapping, bloom and vignetting. The sphere with shell textured fur has the same problems identified in Genshin Impact (Figure 21).
 The shader itself enables the material to have multiple exposed parameters like colour, number and length of shells (Figure 22).
  
-Figure 22 - Caption in Unity editor of the cloned github project from Hecomi showing shell material parameters . (Styles, 2024)
-The parameters exposed give the user the possibility of changing the way the fur is rendered including specific parameters like wind and rim lighting (Figure 22). 
- 
-Regarding the code itself, a geometry shader was used to extrude layers but the code being sliced in 6 HLSL files makes it hard to understand for a beginner in graphics programming. The Unity Fur project will still be useful as a reference. On the statistical side, data related to the rendering process can be extracted thanks to Unity’s profiler tool.
- 
-Figure 23 - Caption in Unity editor of the project from Hecomi showing measures taken. (Styles, 2024)
-The entire render pipeline takes 2,35ms per frame, varying between 0,06 and 2,16ms for a GPU frame containing a total of 7160 vertices with 1.33 GB of memory used. The GPU frame takes on average 1.38ms (Figure 23). These values, taken from Hecomi’s shell scene, will be very useful for our project when it comes to analysing efficiency and visual appeal.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture22.png)_22 - Caption in Unity editor of the cloned github project from Hecomi showing shell material parameters . (Styles, 2024)_  
+
+The parameters exposed give the user the possibility of changing the way the fur is rendered including specific parameters like wind and rim lighting (Figure 22).  
+
+Regarding the code itself, a geometry shader was used to extrude layers but the code being sliced in 6 HLSL files makes it hard to understand for a beginner in graphics programming. The Unity Fur project will still be useful as a reference. On the statistical side, data related to the rendering process can be extracted thanks to Unity’s profiler tool.  
+
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture23.png)_23 - Caption in Unity editor of the project from Hecomi showing measures taken. (Styles, 2024)_  
+
+The entire render pipeline takes 2,35ms per frame, varying between 0,06 and 2,16ms for a GPU frame containing a total of 7160 vertices with 1.33 GB of memory used. The GPU frame takes on average 1.38ms (Figure 23). These values, taken from Hecomi’s shell scene, will be very useful for our project when it comes to analysing efficiency and visual appeal.  
+
 ### 3.3 Conclusion 
 Throughout this qualitative analysis, information from a senior graphics engineer and an AI tool was obtained. The analysis of two projects that brought a point of comparison in terms of efficiency and visual appeal was done.
 
@@ -233,70 +269,94 @@ The frame time is an essential metric used to define if our project is efficient
 It is understandable that, related to his experience, visual quality is important but not as much as fluidity of frame rate.
 In this project the measure will not be done in frames per second but in seconds per frame or how much time it takes for our renderer to finish its work and display the result of the shader for one frame. The time measurement will be done globally and specifically, respectively accounting for all passes and only the pass rendering the shells itself.
  
-Figure 24 - Capture of the Render Debugger from Unity. (Styles, 2024)
-Regarding the requirements, the human perception threshold is stated to be at a minimum of 24 frames per second and a maximum 60 although this maximum limit is currently still being debated. This means that a frame must take up to 0.041666 seconds or 41.66666ms maximum (“ Flicker fusion threshold”, 2024.-b). The objective is to not go over this time per entire frame and stay under the 2,16ms per GPU frame obtained from Hecomi’s project analysis in section 3.2.2.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture24.png)_24 - Capture of the Render Debugger from Unity. (Styles, 2024)_  
+
+Regarding the requirements, the human perception threshold is stated to be at a minimum of 24 frames per second and a maximum 60 although this maximum limit is currently still being debated. This means that a frame must take up to 0.041666 seconds or 41.66666ms maximum (“ Flicker fusion threshold”, 2024.-b). The objective is to not go over this time per entire frame and stay under the 2,16ms per GPU frame obtained from Hecomi’s project analysis in section 3.2.2.  
+
 #### 4.1.2 Memory usage
-The memory usage is the second point to measure. Since the improvement of technology described by Moore’s law (“Moore’s law”, 2024.-c) does not apply to memory, it is even more important to be able to measure it and limit its usage.
-Thanks to Unity it is possible to obtain the values for the Managed heap “The used heap size and total heap size that managed code uses” and the Graphics “The estimated amount of memory the driver uses on Textures, render targets, Shaders, and Mesh data.” Normally one would try to obtain a VRAM usage value, but Unity has not yet been able to determine that value since it is platform specific thus rendering the measurement very complex (“How to use Unity’s memory profiling tools”, n.d.).
+The memory usage is the second point to measure. Since the improvement of technology described by Moore’s law (“Moore’s law”, 2024.-c) does not apply to memory, it is even more important to be able to measure it and limit its usage.  
+Thanks to Unity it is possible to obtain the values for the Managed heap “The used heap size and total heap size that managed code uses” and the Graphics “The estimated amount of memory the driver uses on Textures, render targets, Shaders, and Mesh data.”  
+Normally one would try to obtain a VRAM usage value, but Unity has not yet been able to determine that value since it is platform specific thus rendering the measurement very complex (“How to use Unity’s memory profiling tools”, n.d.).
  
-Figure 25 - Unity editor caption of the Memory Profiler tool indicating the difference memory allocations. (Styles, 2024)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture25.png)_25 - Unity editor caption of the Memory Profiler tool indicating the difference memory allocations. (Styles, 2024)_  
+
 With that in mind the principal value indicating the performance of the shaders is the graphics (estimated) allocated memory.
-The expectation is to stay in the same order of magnitude as the measures on Hecomi’s shell shader, meaning 446.8 MB for the graphics estimated total. Any excess of memory usage will indicate a problem in the procedure and shader itself.
+The expectation is to stay in the same order of magnitude as the measures on Hecomi’s shell shader, meaning 446.8 MB for the graphics estimated total. Any excess of memory usage will indicate a problem in the procedure and shader itself.  
+
 #### 4.1.3 Vertices
-Since our project intakes a certain number of vertices to increase them and render the fur on multiple extruded layers, one of the measurements of interest is the number of vertices resulting from the shader’s action.
-The values expected must be sensibly close to those obtained on Hecomi’s shader, in this case 14 times the original amount (7160 output /515 input = 13.90291). Due to a lack of experience, values exceeding that amount will be tolerated if they do not surpass twice of that amount.
+Since our project intakes a certain number of vertices to increase them and render the fur on multiple extruded layers, one of the measurements of interest is the number of vertices resulting from the shader’s action.  
+The values expected must be sensibly close to those obtained on Hecomi’s shader, in this case 14 times the original amount (7160 output /515 input = 13.90291). Due to a lack of experience, values exceeding that amount will be tolerated if they do not surpass twice of that amount.  
+
 ### 4.2 Measurement Tools
-Unity, being a very complete game engine, will give us access to an entire set of tools that will be specifically useful for measuring the values previously exposed. This chapter will expose all the tools used throughout the project.
+Unity, being a very complete game engine, will give us access to an entire set of tools that will be specifically useful for measuring the values previously exposed. This chapter will expose all the tools used throughout the project.  
+
 #### 4.2.1 Unity Statistics:
 The Unity statistics tool is a window exposing the most common values used for performance optimisation and analysis.
  
-Figure 26 - Unity editor Statistics tool. (Styles, 2024)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture26.png)_26 - Unity editor Statistics tool. (Styles, 2024)_  
+
 The values of interest are mainly:
 - Render thread: time taken by the rendering thread to do its work for a frame
 - Tris: the number of triangles rendered 
 - Verts: the number of vertices rendered 
 #### 4.2.2 Unity Profiler & Timeline
-The Unity profiler is a very complete tool used to analyse a lot of elements such as CPU usage, rendering, memory, audio, video, and many others. It also gives a timeline in which the different the different threads can be analysed in detail.
- 
-Figure 27 - Unity Profiler (top) and Timeline (bottom). (Styles, 2024)
-In this case the interest is focused on the rendering and memory sections of that tool.
-#### 4.2.3 Rendering Debugger
-The rendering debugger is a tool used to modify what is seen in Unity and apply masks and be able analyse visually specific points like triangles and vertices in the case of the wireframe mesh visualisation.
- 
-Figure 28 - Unity Rendering Debugger tool showing the Display Stats category. (Styles, 2024)
-The values to focus on are in the “Display Stats” category where the different frame rates can be found. 
-To be able to have a good estimation of the GPU frame time, the average will be calculated from 1000 measurements obtained directly from the Unity projects. The values will be captured at run-time in the editor by storing them in an array of doubles thanks to a C# script (See Appendix P). The data collected in a .txt file to be reported to an excel spreadsheet to be averaged.
-#### 4.2.4 Memory Profiler
-Unity’s memory profiler is a complete tool that is useful when it comes to measuring memory use (“How to use Unity’s memory profiling tools”, n.d.).
- 
-Figure 29  - Unity editor caption of the Memory Profiler tool. (Styles, 2024)
-A simple version of the profiler is already integrated in the Unity profiler 4.2.2 but in this case the use of the detailed version will give more information about the memory usage, especially regarding the graphics memory allocation. 
-#### 4.2.5 Unity Frame debugger
-Unity’s frame debugger is a useful tool when it comes to analysing specific frames. It exposes all the different passes or steps the rendering goes through to display the final image and gives all the data, values, and textures accounted for in the process.
- 
-Figure 30 - Unity editor screenshot of the Frame Debugger tool. (Styles, 2024)
-#### 4.2.6 RenderDoc
-RenderDoc is a tool that sensibly resembles Unity’s frame debugger as it also exposes all the passes. The main difference is that, since it is a software dedicated to frame analysis, it has more in-depth information for each step.
- 
-Figure 31 - RenderDoc used on Hecomi's project. (Styles, 2024)
-This project might not need it but in case specific information cannot be found with Unity it is still a useful resource to consider. 
-#### 4.2.7 Nvidia Nsight Graphics
-Lastly, like Unity's frame debugger and RenderDoc, Nsight Graphics is a tool used to analyse frames and output precise information. Again, the project will probably not need to use it except on lower capacity machines where the former tools might not work.
- 
-Figure 32 - NVIDIA Nsight Graphics used on the initial approach project. (Styles, 2024)
-#### 4.2.8 GPU Watch
-The project will be tested on a Samsung Galaxy A50 phone. Samsung delivers a tool called GPUWatch which is said to be:
+The Unity profiler is a very complete tool used to analyse a lot of elements such as CPU usage, rendering, memory, audio, video, and many others. It also gives a timeline in which the different the different threads can be analysed in detail.  
 
-“A tool for observing GPU activity in your application. GPUWatch is made for developers who use Samsung devices to get GPU related information with the least effort. Detailed information is overlaid onto the screen in real-time. And it is very simple to enable -no PC required.” (Samsung Developers, n.d.)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture27.png)_27 - Unity Profiler (top) and Timeline (bottom). (Styles, 2024)_  
+
+In this case the interest is focused on the rendering and memory sections of that tool.  
+
+#### 4.2.3 Rendering Debugger
+The rendering debugger is a tool used to modify what is seen in Unity and apply masks and be able analyse visually specific points like triangles and vertices in the case of the wireframe mesh visualisation.  
  
-Figure 33 - Combination of screenshots resuming the process to activate GPUWatch on Samsung Galaxy A50. 
-(Styles, 2024)
-This tool will deliver indicative information such as the current average frame per second rate, CPU and GPU load (Figure 32, right part). The FPS value will mostly be considered as indicative since it depends on factors such as VSync and inaccurate averaging (phort99, 2015) but it will still gives a global idea of how the project behaves on the Galaxy A50 mobile phone.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture28.png)_28 - Unity Rendering Debugger tool showing the Display Stats category. (Styles, 2024)_  
+
+The values to focus on are in the “Display Stats” category where the different frame rates can be found.  
+To be able to have a good estimation of the GPU frame time, the average will be calculated from 1000 measurements obtained directly from the Unity projects. The values will be captured at run-time in the editor by storing them in an array of doubles thanks to a C# script (See Appendix P). The data collected in a .txt file to be reported to an excel spreadsheet to be averaged.  
+
+#### 4.2.4 Memory Profiler
+Unity’s memory profiler is a complete tool that is useful when it comes to measuring memory use (“How to use Unity’s memory profiling tools”, n.d.).  
+ 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture29.png)_29  - Unity editor caption of the Memory Profiler tool. (Styles, 2024)_  
+
+A simple version of the profiler is already integrated in the Unity profiler 4.2.2 but in this case the use of the detailed version will give more information about the memory usage, especially regarding the graphics memory allocation.  
+
+#### 4.2.5 Unity Frame debugger
+Unity’s frame debugger is a useful tool when it comes to analysing specific frames. It exposes all the different passes or steps the rendering goes through to display the final image and gives all the data, values, and textures accounted for in the process.  
+ 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture30.png)_30 - Unity editor screenshot of the Frame Debugger tool. (Styles, 2024)_  
+
+#### 4.2.6 RenderDoc
+RenderDoc is a tool that sensibly resembles Unity’s frame debugger as it also exposes all the passes. The main difference is that, since it is a software dedicated to frame analysis, it has more in-depth information for each step.  
+ 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture31.png)_31 - RenderDoc used on Hecomi's project. (Styles, 2024)_  
+
+This project might not need it but in case specific information cannot be found with Unity it is still a useful resource to consider.  
+
+#### 4.2.7 Nvidia Nsight Graphics
+Lastly, like Unity's frame debugger and RenderDoc, Nsight Graphics is a tool used to analyse frames and output precise information.  
+Again, the project will probably not need to use it except on lower capacity machines where the former tools might not work.  
+ 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture32.png)_32 - NVIDIA Nsight Graphics used on the initial approach project. (Styles, 2024)_  
+
+#### 4.2.8 GPU Watch
+The project will be tested on a Samsung Galaxy A50 phone. Samsung delivers a tool called GPUWatch which is said to be:  
+
+“A tool for observing GPU activity in your application. GPUWatch is made for developers who use Samsung devices to get GPU related information with the least effort. Detailed information is overlaid onto the screen in real-time. And it is very simple to enable -no PC required.” (Samsung Developers, n.d.)  
+ 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture33.png)_33 - Combination of screenshots resuming the process to activate GPUWatch on Samsung Galaxy A50. 
+(Styles, 2024)_  
+
+This tool will deliver indicative information such as the current average frame per second rate, CPU and GPU load (Figure 32, right part). The FPS value will mostly be considered as indicative since it depends on factors such as VSync and inaccurate averaging (phort99, 2015) but it will still gives a global idea of how the project behaves on the Galaxy A50 mobile phone.  
+
 ### 4.3 Conclusion
-In this chapter, the metrics used to measure the project have been defined and a list of tools that will be used have been exposed. The metrics, as seen in the first part of this chapter, are principally focused on visual performance. Any other parameters except for edge cases, where significant differences would lead to a frame fluidity problem, will not be retained. Regarding the list of tools, the main focus will be on those available in Unity. The others might end up being useful if the main set of tools does not allow sufficient analysis results.
+In this chapter, the metrics used to measure the project have been defined and a list of tools that will be used have been exposed. The metrics, as seen in the first part of this chapter, are principally focused on visual performance.  
+Any other parameters except for edge cases, where significant differences would lead to a frame fluidity problem, will not be retained.  
+Regarding the list of tools, the main focus will be on those available in Unity. The others might end up being useful if the main set of tools does not allow sufficient analysis results.  
 
 ## 5. Practical Project
-The objective of the project is to be able to understand how shell-texturing is created and reproduce a shader mimicking the styles of Genshin Impact’s grass and create it in a way that will allow multiple usages across different scenes of diverse complexities. For that purpose, the shader will have to be able to adapt to the given objects, those being complex, like furry characters, or simple objects like planes, cubes or spheres. The project will ultimately allow measurements to be carried out on multiple devices and finally understand the shader’s limitations regarding scene complexity on different hardware.
+The objective of the project is to be able to understand how shell-texturing is created and reproduce a shader mimicking the styles of Genshin Impact’s grass and create it in a way that will allow multiple usages across different scenes of diverse complexities. For that purpose, the shader will have to be able to adapt to the given objects, those being complex, like furry characters, or simple objects like planes, cubes or spheres. The project will ultimately allow measurements to be carried out on multiple devices and finally understand the shader’s limitations regarding scene complexity on different hardware.  
+
 ### 5.1 Development environment
 #### 5.1.1 The hardware used
 The personal computer used for creation and initial testing of the project is an Acer ConceptD with an Intel Core i7 9750H at 2.60GHz, which has 32 Gbytes of DDR4 memory, an Nvidia GeForce RTX 2060 graphics card and an 4K Ultra HD (3840 x 2160) 60Hz display. 
@@ -307,7 +367,8 @@ The Samsung mobile phone used for the tests has the following description:
 #### 5.1.2 The software used 
 Regarding the software and tools, this project uses Unity version 2022.3.24f1, the latest LTS version available. All the sets of Unity tools used for measurement are related to that version.
  
-Figure 34 - UnityHub screenshot of the Installs category showing the 2022.3.24f1 LTS version. (Styles, 2024)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture34.png)_34 - UnityHub screenshot of the Installs category showing the 2022.3.24f1 LTS version. (Styles, 2024)_  
+
 The additional packages used for this project were the following:
 ●	Input System 1.7.0
 ●	TextMeshPro 3.0.9
@@ -315,235 +376,305 @@ The additional packages used for this project were the following:
 ●	Visual Studio Editor 2.0.22
 The JetBrains Rider editor 3.0.28 was installed in the Unity packages but disabled in the IDE.
  
-Figure 35 - Unity editor Package manager tool showing the installed packages. (Styles, 2024)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture35.png)_35 - Unity editor Package manager tool showing the installed packages. (Styles, 2024)_  
+
 The IDE used for development is the Visual Studio Community 2019 version 16.11.34 with the .NET desktop development and Game development with Unity packages installed.
  
-Figure 36 - Visual Studio IDE Installer showing the packages category. (Styles, 2024)
-The RenderDoc version is the 1.33 using Qt version 5.15.2 and the Nvidia Nsight Graphics version is the 2024.1.0.0, build 34057410.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture36.png)_36 - Visual Studio IDE Installer showing the packages category. (Styles, 2024)_  
+
+The RenderDoc version is the 1.33 using Qt version 5.15.2 and the Nvidia Nsight Graphics version is the 2024.1.0.0, build 34057410.  
+
 ### 5.2 Limitations 
-Throughout this project some of the initial intentions were not fulfilled. Regarding the project itself, a limiting decision was pre-emptively made by following the stylised style of Genshin Impact, discarding more realistic texturing and lighting to focus of the main objective that was to find an optimal solution to the camera’s perspective and compare it to a project that was effectively made in Unity.
-In its current state the points described in 2.4.2.1 & 2.4.2.2 are successful but required a considerable amount of time between the learning of the HLSL and the transition of the basic CG implementation to the HLSL version.
-Point 2.4.2.3 was attempted but was not successful due to a lack of expertise regarding the technical challenge of merging two distinct methods in a single shader and an underestimation of the time required for such a project. That element was the main reason for time-loss on the project.
-The 2.4.2.4 was done despite the previous blocking objective. 
-The 2.4.2.5 was accomplished but not tested on a wide range of machines as initially intended since only the Acer ConceptD and the Samsung Galaxy A50 were continuously available. The learning process and high challenge coupled with time-loss due to compilation and coding errors did not allow the build to be done on Nintendo Switch. 
-The 2.4.2.6 was successful and added a layer of improvement to the shader with shadows and simple physical behaviour.
+Throughout this project some of the initial intentions were not fulfilled. Regarding the project itself, a limiting decision was pre-emptively made by following the stylised style of Genshin Impact, discarding more realistic texturing and lighting to focus of the main objective that was to find an optimal solution to the camera’s perspective and compare it to a project that was effectively made in Unity.  
+
+In its current state the points described in 2.4.2.1 & 2.4.2.2 are successful but required a considerable amount of time between the learning of the HLSL and the transition of the basic CG implementation to the HLSL version.  
+
+Point 2.4.2.3 was attempted but was not successful due to a lack of expertise regarding the technical challenge of merging two distinct methods in a single shader and an underestimation of the time required for such a project. That element was the main reason for time-loss on the project.  
+
+The 2.4.2.4 was done despite the previous blocking objective.  
+
+The 2.4.2.5 was accomplished but not tested on a wide range of machines as initially intended since only the Acer ConceptD and the Samsung Galaxy A50 were continuously available. The learning process and high challenge coupled with time-loss due to compilation and coding errors did not allow the build to be done on Nintendo Switch.  
+
+The 2.4.2.6 was successful and added a layer of improvement to the shader with shadows and simple physical behaviour.   
+
 ### 5.3 Projects procedure 
-The implementation of shell texturing as described in 2.2.1 relies on the extraction of layers from an object to colour them degressively according to a given noise. The initial project 2.4.2.1 used a Unity sphere object containing a camera in a scene with a directional light, a canvas prefab to draw UI and an event system component to be able to navigate in the UI.
+The implementation of shell texturing as described in 2.2.1 relies on the extraction of layers from an object to colour them degressively according to a given noise. The initial project 2.4.2.1 used a Unity sphere object containing a camera in a scene with a directional light, a canvas prefab to draw UI and an event system component to be able to navigate in the UI.  
  
-Figure 37 - Unity editor NaïveShell project exposing the Canvas prefab in the Hierarchy. (Styles, 2024)
-The layer extraction was done with a C# script that communicated with a shader file for coloration written in CG. The full HLSL version 2.4.2.2 contains the same elements with the exception of the C# script and shader file which were replaced by a shader file written in HLSL.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture37.png)_37 - Unity editor NaïveShell project exposing the Canvas prefab in the Hierarchy. (Styles, 2024)_  
+
+The layer extraction was done with a C# script that communicated with a shader file for coloration written in CG. The full HLSL version 2.4.2.2 contains the same elements with the exception of the C# script and shader file which were replaced by a shader file written in HLSL.  
  
-Figure 38 - Unity editor screenshots of two Inspectors exposing the SimpleShell script and HLSLGeom shader material parameters. (Styles, 2024)
-The resolution of the problem of the camera’s perspective described in 2.4.2.3 was attempted with a sphere containing two materials and an HLSL shader that combines both shell and fin texturing, but the results were not visually pleasing. 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture38.png)_38 - Unity editor screenshots of two Inspectors exposing the SimpleShell script and HLSLGeom shader material parameters. (Styles, 2024)_  
+
+The resolution of the problem of the camera’s perspective described in 2.4.2.3 was attempted with a sphere containing two materials and an HLSL shader that combines both shell and fin texturing, but the results were not visually pleasing.  
  
-Figure 39 - Unity scene showing attempts at Shell and Fin shader merging. (Styles, 2024)
-The implementation was abandoned at that point in order to advance on the project.
-The objective described in 2.4.2.4 was first applied by adding a point light and a plane in the scene to add a layer of complexity and measure the impact of lighting and shadow projection.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture39.png)_39 - Unity scene showing attempts at Shell and Fin shader merging. (Styles, 2024)_  
+
+The implementation was abandoned at that point in order to advance on the project.  
+The objective described in 2.4.2.4 was first applied by adding a point light and a plane in the scene to add a layer of complexity and measure the impact of lighting and shadow projection.  
  
-Figure 40 - Unity editor screenshot showing the HLSLGeom1 scene with light information in the inspector. 
-(Styles, 2024)
-The second level of diversification was achieved by adding a skybox, a plane and 18 spheres in the scene to simulate a complex environment and measuring how the shader impacts performance when widely used.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture40.png)_40 - Unity editor screenshot showing the HLSLGeom1 scene with light information in the inspector. 
+(Styles, 2024)_  
+
+The second level of diversification was achieved by adding a skybox, a plane and 18 spheres in the scene to simulate a complex environment and measuring how the shader impacts performance when widely used.  
  
-Figure 41 - Unity editor screenshot showing the HLSL_ComplexScene. (Styles, 2024)
-The hardware implementation described in 2.4.2.5 was done by building the project for Android and windows through Unity’s build settings. 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture41.png)_41 - Unity editor screenshot showing the HLSL_ComplexScene. (Styles, 2024)_  
+
+The hardware implementation described in 2.4.2.5 was done by building the project for Android and windows through Unity’s build settings.  
  
-Figure 42 - Capture of the Unity Build Settings window. (Styles, 2024)
-The improvements described in 2.4.2.6 were added after analysing shader code given by Hecomi for light interaction and shadows. The physical interaction was accomplished by gradually modifying the shader and transmitting the user’s input using Unity’s input system and a C# script to transmit information to the shader.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture42.png)_42 - Capture of the Unity Build Settings window. (Styles, 2024)_  
+
+The improvements described in 2.4.2.6 were added after analysing shader code given by Hecomi for light interaction and shadows. The physical interaction was accomplished by gradually modifying the shader and transmitting the user’s input using Unity’s input system and a C# script to transmit information to the shader.  
  
-Figure 43 - Unity editor screenshot of the Inspector window showing the relation between player input and HLSL shader. (Styles, 2024)
-Additionally, an asset downloaded from TurboSquid (TurboSquid, n.d.) was integrated into the project and the collaboration of a game artist on the creation of textures coupled with some shader modifications brought the results presented in the figure below (Figure 43).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture43.png)_43 - Unity editor screenshot of the Inspector window showing the relation between player input and HLSL shader. (Styles, 2024)_  
+
+Additionally, an asset downloaded from TurboSquid (TurboSquid, n.d.) was integrated into the project and the collaboration of a game artist on the creation of textures coupled with some shader modifications brought the results presented in the figure below (Figure 43).  
  
-Figure 44 - Unity editor screenshot showing the rigger horse from TruboSquid with the HLSL shader on it. (Styles, 2024)
-The last improvement added to the project was a scene manager with basic UI to be able to transition between scenes without having to build and run each scene independently.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture44.png)_44 - Unity editor screenshot showing the rigger horse from TruboSquid with the HLSL shader on it. (Styles, 2024)_  
+
+The last improvement added to the project was a scene manager with basic UI to be able to transition between scenes without having to build and run each scene independently.  
  
 ### 5.4 Technical implementation
 #### 5.4.1 Initial approach
-The initial project was created using a Unity Sphere Mesh Filter as the base mesh on which the fur is rendered. It was initially created thanks to a video of Garrett Gunnell that explained the process and the general idea for the code (Acerola, 2023).
+The initial project was created using a Unity Sphere Mesh Filter as the base mesh on which the fur is rendered. It was initially created thanks to a video of Garrett Gunnell that explained the process and the general idea for the code (Acerola, 2023).  
  
-Figure 45 - Unity capture showing the Sphere object's inspector. (Styles, 2024)
-The extraction of layers in the first version is done first with a C# script by adding extra objects containing MeshFilters and MeshRenderers, parenting them to the initial object and assigning them an index for each layer.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture45.png)_45 - Unity capture showing the Sphere object's inspector. (Styles, 2024)_  
+
+The extraction of layers in the first version is done first with a C# script by adding extra objects containing MeshFilters and MeshRenderers, parenting them to the initial object and assigning them an index for each layer.  
  
-Figure 46 - Unity editor showing the mesh layering from the initial approach project. (Styles, 2024)
-Afterwards the layer index is transferred to the HLSL shader so that it knows what object to modify. Additional parameters contained in the Simple Shell script are also transferred to the shader at the same time. (Styles, 2024) (see Appendix E).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture46.png)_46 - Unity editor showing the mesh layering from the initial approach project. (Styles, 2024)_  
+
+Afterwards the layer index is transferred to the HLSL shader so that it knows what object to modify. Additional parameters contained in the Simple Shell script are also transferred to the shader at the same time. (Styles, 2024) (see Appendix E).  
  
-Figure 47 - Capture of the SimpleShell.cs script in the Visual Studio IDE. (Styles, 2024)
-The shader, originally written in CG (Styles, 2024) (see Appendix C) was translated to HLSL (Styles, 2024) (see Appendix D) for the purpose of compatibility with the URP pipeline.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture47.png)_47 - Capture of the SimpleShell.cs script in the Visual Studio IDE. (Styles, 2024)_  
+
+The shader, originally written in CG (Styles, 2024) (see Appendix C) was translated to HLSL (Styles, 2024) (see Appendix D) for the purpose of compatibility with the URP pipeline.  
  
-Figure 48 - Capture of Hugo Elias’ hashing function from the Shell.shader script in the Visual Studio IDE. (Styles, 2024)
-A hash function was borrowed from Hugo Elias and found on ShaderToy (Beautypi, n.d.) to be able to rely on generated noise instead of a noise texture.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture48.png)_48 - Capture of Hugo Elias’ hashing function from the Shell.shader script in the Visual Studio IDE. (Styles, 2024)_  
+
+A hash function was borrowed from Hugo Elias and found on ShaderToy (Beautypi, n.d.) to be able to rely on generated noise instead of a noise texture.  
  
-Figure 49 - Capture of the Vertex shader code from the Shell.shader script in the Visual Studio IDE. (Styles, 2024)
-The shader itself works in two parts. First the vertex shader, called Varyings in URP, is responsible for displacing the meshes along the normal vectors according to a previously calculated height obtained from the index of the currently treated shell divided by the number of shells. The displacement modifications (Figure 48, Red rectangle) change the orientation of the fur at run-time with a C# script and Unity’s input system (Styles, 2024) (see Appendix L).
-The second part of the shader, the fragment shader, is responsible for the colouration of the different meshes.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture49.png)_49 - Capture of the Vertex shader code from the Shell.shader script in the Visual Studio IDE. (Styles, 2024)_  
+
+The shader itself works in two parts. First the vertex shader, called Varyings in URP, is responsible for displacing the meshes along the normal vectors according to a previously calculated height obtained from the index of the currently treated shell divided by the number of shells. The displacement modifications (Figure 48, Red rectangle) change the orientation of the fur at run-time with a C# script and Unity’s input system (Styles, 2024) (see Appendix L).  
+The second part of the shader, the fragment shader, is responsible for the colouration of the different meshes.  
  
-Figure 50 - Capture of the fragment shader code from the Shell.shader script in the Visual Studio IDE. (Styles, 2024)
-It uses the hash function with a previously calculated number obtained from the UV coordinates to generate a random height value and define what part of the different meshes are coloured of not. A check is then done to discard pixels that do not correspond to the current height threshold.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture50.png)_50 - Capture of the fragment shader code from the Shell.shader script in the Visual Studio IDE. (Styles, 2024)_  
+
+It uses the hash function with a previously calculated number obtained from the UV coordinates to generate a random height value and define what part of the different meshes are coloured of not. A check is then done to discard pixels that do not correspond to the current height threshold.  
  
-Figure 51 - Capture of the initial approach scene in the Unity editor. (Styles, 2024)
-The colour is then applied to the non-discarded pixels using the half-lambert lighting model (Jordan Stevens, n.d.) 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture51.png)_51 - Capture of the initial approach scene in the Unity editor. (Styles, 2024)_  
+
+The colour is then applied to the non-discarded pixels using the half-lambert lighting model (Jordan Stevens, n.d.)  
+
 #### 5.4.2 HLSL 
-The full HLSL version’s parameters and layer extraction are all contained in the shader files, giving access to them directly in the material parameters of the inspector window.
+The full HLSL version’s parameters and layer extraction are all contained in the shader files, giving access to them directly in the material parameters of the inspector window.  
  
-Figure 52 - Unity editor capture of the HLSLGeom shader's material showing parameters in the inspector window. (Styles, 2024)
-This modification is achieved by first declaring the properties in the shader file (Styles, 2024) (see Appendix G). The body of the programme is declared in a separate file to avoid code repetition and improve readability. 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture52.png)_52 - Unity editor capture of the HLSLGeom shader's material showing parameters in the inspector window. (Styles, 2024)_  
+
+This modification is achieved by first declaring the properties in the shader file (Styles, 2024) (see Appendix G). The body of the programme is declared in a separate file to avoid code repetition and improve readability.  
  
-Figure 53 - Capture of the Geometry shader code from the Fur.hlsl script in the Visual Studio IDE. (Styles, 2024)
-The extraction of the mesh previously done with the C# script is done with a geometry shader and the SetupVertex function and the fragment programme that used a pseudo-random generator is replaced by two noise textures (Styles, 2024) (see Appendix H).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture53.png)_53 - Capture of the Geometry shader code from the Fur.hlsl script in the Visual Studio IDE. (Styles, 2024)_  
+
+The extraction of the mesh previously done with the C# script is done with a geometry shader and the SetupVertex function and the fragment programme that used a pseudo-random generator is replaced by two noise textures (Styles, 2024) (see Appendix H).  
  
-Figure 54 - Unity editor capture of the HLSLGeom scene. (Styles, 2024)
-The analysis of Hecomi’s code added a layer of improvement regarding lighting and shadows with the addition of multiple Unity keywords, a shadow caster pass and functions for shadow calculations (Styles, 2024) (see Appendix I). Finally, the use of Unity’s UniversalFragmentPBR function replaces the previous lighting model (“Unity-Technologies/Graphics”, n.d.-h).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture54.png)_54 - Unity editor capture of the HLSLGeom scene. (Styles, 2024)_  
+
+The analysis of Hecomi’s code added a layer of improvement regarding lighting and shadows with the addition of multiple Unity keywords, a shadow caster pass and functions for shadow calculations (Styles, 2024) (see Appendix I). Finally, the use of Unity’s UniversalFragmentPBR function replaces the previous lighting model (“Unity-Technologies/Graphics”, n.d.-h).  
+
 #### 5.4.3 HLSL Complex object
-The last version of the shader incorporates the use of textures for the base colour, occlusion, roughness, metalness and emissive by declaring 2D variables in the .shader file and TEXTURE2D and SAMPLER variables in the .hlsl file (Styles, 2024) (see Appendix J & K).
+The last version of the shader incorporates the use of textures for the base colour, occlusion, roughness, metalness and emissive by declaring 2D variables in the .shader file and TEXTURE2D and SAMPLER variables in the .hlsl file (Styles, 2024) (see Appendix J & K).  
  
-Figure 55 - Unity editor capture of the material parameters in the inspector window. (Styles, 2024)
-The previous values for each channel are used as influence modifiers to reduce the impact of each texture if necessary. 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture55.png)_55 - Unity editor capture of the material parameters in the inspector window. (Styles, 2024)_  
+
+The previous values for each channel are used as influence modifiers to reduce the impact of each texture if necessary.  
  
-Figure 56 - Unity editor capture of the HLSL_ComplexObject scene showing the riggerd horse without colour (left) and with colour (right). (Styles, 2024)
-This implementation allows complex meshes to be coloured according to the textures produced by an artist.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture56.png)_56 - Unity editor capture of the HLSL_ComplexObject scene showing the riggerd horse without colour (left) and with colour (right). (Styles, 2024)_  
+
+This implementation allows complex meshes to be coloured according to the textures produced by an artist.  
  
-Figure 57 - Unity editor inspector window capture showing the shell detail parameters. (Styles, 2024)
-The use of noise textures for the fur generation gives the possibility to define parts of the mesh that must be with or without fur by inputting a black and white texture in one of the detail channels.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture57.png)_57 - Unity editor inspector window capture showing the shell detail parameters. (Styles, 2024)_  
+
+The use of noise textures for the fur generation gives the possibility to define parts of the mesh that must be with or without fur by inputting a black and white texture in one of the detail channels.  
  
-Figure 58 - Unity editor capture of three shader variations showing the rigged horse with short (right), long (middle), and red tinted (left) fur. (Styles, 2024)
-With all these improvements, the users can modify the object’s appearance at their convenience.
-Since complex objects like the horse character (Figure 57) often use SkinMeshRenderers, a modification of the C# controller script was made to be able to take multiple renderers instead of one (Styles, 2024) (see Appendix M).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture58.png)_58 - Unity editor capture of three shader variations showing the rigged horse with short (right), long (middle), and red tinted (left) fur. (Styles, 2024)_  
+
+With all these improvements, the users can modify the object’s appearance at their convenience.  
+Since complex objects like the horse character (Figure 57) often use SkinMeshRenderers, a modification of the C# controller script was made to be able to take multiple renderers instead of one (Styles, 2024) (see Appendix M).  
  
-Figure 59 - Unity editor inspector capture showing the Animator component. (Styles, 2024)
-Finaly, motion was added with an animator component and an animation clip to be able to visualise the fur’s reaction to mesh movements in real-time (SamuelStyles, 2024).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture59.png)_59 - Unity editor inspector capture showing the Animator component. (Styles, 2024)_  
+
+Finaly, motion was added with an animator component and an animation clip to be able to visualise the fur’s reaction to mesh movements in real-time (SamuelStyles, 2024).    
  
 #### 5.4.4 UI and Scene Management
-To be able to measure conveniently all the scenes exposed in 5.3 on all platforms described in 2.4.2.5, a UI was created with the Unity Canvas, Buttons and TextMeshPro – Text(UI) components (Figure 59).
+To be able to measure conveniently all the scenes exposed in 5.3 on all platforms described in 2.4.2.5, a UI was created with the Unity Canvas, Buttons and TextMeshPro – Text(UI) components (Figure 59).  
  
-Figure 60 - Unity editor Hierarchy capture showing the Canvas prefab hierarchy. (Styles, 2024)
-The user input was dealt with the Unity input system and an EventSystem component (Figure 60).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture60.png)_60 - Unity editor Hierarchy capture showing the Canvas prefab hierarchy. (Styles, 2024)_  
+
+The user input was dealt with the Unity input system and an EventSystem component (Figure 60).  
  
-Figure 61 - Unity editor inspector window capture showing the EventSytem component. (Styles, 2024)
-To deal with the scene management two C# scripts were created. One responsible for the loading of scenes in run-time (Styles, 2024) (see Appendix N) and the other for the creation of a scriptable object (“Unity - Manual: ScriptableObject”, n.d.-f) that holds the current scene index across scenes (Styles, 2024) (see Appendix O).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture61.png)_61 - Unity editor inspector window capture showing the EventSytem component. (Styles, 2024)_  
+
+To deal with the scene management two C# scripts were created. One responsible for the loading of scenes in run-time (Styles, 2024) (see Appendix N) and the other for the creation of a scriptable object (“Unity - Manual: ScriptableObject”, n.d.-f) that holds the current scene index across scenes (Styles, 2024) (see Appendix O).  
  
-Figure 62 - Unity editor capture of the Project Settings window showing the Active Input Handling parameter. (Styles, 2024)
-The last modification that had to be made for cross-platform compatibility was to change the Active Input Handling in the Project Settings window under the Player menu to only tolerate the Input System Package (New) (Figure 61). Without that modification, the Android build does not compile.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture62.png)_62 - Unity editor capture of the Project Settings window showing the Active Input Handling parameter. (Styles, 2024)_  
+
+The last modification that had to be made for cross-platform compatibility was to change the Active Input Handling in the Project Settings window under the Player menu to only tolerate the Input System Package (New) (Figure 61). Without that modification, the Android build does not compile.  
+
 ### 5.5 Conclusion
-In this chapter the development of the project was exposed, describing the hardware and software in 5.1.1 and 5.1.2 respectively. The project primarily based on the visuals obtained from the project analysis of Genshin Impact in 3.2.1 was improved with the analysis of Hecomi’s code in 3.2.2.
-The entire procedure leading to the final version of the shell texturing shader including the limitations and technical implementation was described in 5.2, 5.3 and 5.4.
+In this chapter the development of the project was exposed, describing the hardware and software in 5.1.1 and 5.1.2 respectively. The project primarily based on the visuals obtained from the project analysis of Genshin Impact in 3.2.1 was improved with the analysis of Hecomi’s code in 3.2.2.  
+The entire procedure leading to the final version of the shell texturing shader including the limitations and technical implementation was described in 5.2, 5.3 and 5.4.  
 
 ## 6. Quantitative Analysis
-The objective of this analysis is to use three versions of the shell-texturing shader and measure them in five different scenes, as described in section 5.3 with the tools described in section 4.2, the values of frame time, memory usage and vertex multiplication.
+The objective of this analysis is to use three versions of the shell-texturing shader and measure them in five different scenes, as described in section 5.3 with the tools described in section 4.2, the values of frame time, memory usage and vertex multiplication.  
  
-Figure 63 - Hecomi's project measurements, (Styles, 2024)
-The limit values must not be over 14 times the original value for the vertex multiplication factor (Figure 63, middle) and 446.8 MB for the graphics total memory allocation (Figure 63, right) as measured in section 3.2.2.
-Regarding the GPU frame time, the measurements, 3.30ms (Figure 63) taken on Hecomi’s project with the script developed and described in section 4.2.3, ended up being higher than the initial 2.16ms per GPU frame time exposed by the Unity render debugger. For that reason, the new value will be use as point of comparison for the following measurements.
-The final measurement, taken on the Android mobile phone described in section 5.1.1, will give an indication on how the project runs on a lower capacity machine.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture63.png)_63 - Hecomi's project measurements, (Styles, 2024)_  
+
+The limit values must not be over 14 times the original value for the vertex multiplication factor (Figure 63, middle) and 446.8 MB for the graphics total memory allocation (Figure 63, right) as measured in section 3.2.2.  
+Regarding the GPU frame time, the measurements, 3.30ms (Figure 63) taken on Hecomi’s project with the script developed and described in section 4.2.3, ended up being higher than the initial 2.16ms per GPU frame time exposed by the Unity render debugger. For that reason, the new value will be use as point of comparison for the following measurements.  
+The final measurement, taken on the Android mobile phone described in section 5.1.1, will give an indication on how the project runs on a lower capacity machine.  
  
 ### 6.1 Measurement conditions
-All the measurements are done the 24th of June 2024, in Lausanne, Switzerland. 
+All the measurements are done the 24th of June 2024, in Lausanne, Switzerland.  
  
-Figure 64 - Unity editor bottom left UI options showing the release (left) and debug (right) presets. (Styles, 2024)
-The projects, as done with Hecomi’s in section 3.2.2, are measured in the Unity editor in release mode (Figure 62, left) for the Acer ConceptD computer. The Android Galaxy measurements are made with a build of the project. All the measurements, although a script enabling fur movement was added, are taken in a static object state.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture64.png)_64 - Unity editor bottom left UI options showing the release (left) and debug (right) presets. (Styles, 2024)_  
+
+The projects, as done with Hecomi’s in section 3.2.2, are measured in the Unity editor in release mode (Figure 62, left) for the Acer ConceptD computer. The Android Galaxy measurements are made with a build of the project. All the measurements, although a script enabling fur movement was added, are taken in a static object state.  
+
 ### 6.2 Project Measurements
 #### 6.2.1 Initial approach
-Measurements on the first version of the project give interesting results (Figure 65).
+Measurements on the first version of the project give interesting results (Figure 65).  
  
-Figure 65 - Measurement of the Initial approach project. (Styles,  2024)
-At an average of 3.23ms (Figure 66), the GPU frame time from the rendering debugger could be considered as over the limit compared to the initial 2.16ms. Considering the measurement of 0.86ms (Figure 65, left), the project happens to be more optimal than Hecomi’s. This result could be explained by the four passes the rendering goes through on Hecomi's project.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture65.png)_65 - Measurement of the Initial approach project. (Styles,  2024)_  
+
+At an average of 3.23ms (Figure 66), the GPU frame time from the rendering debugger could be considered as over the limit compared to the initial 2.16ms. Considering the measurement of 0.86ms (Figure 65, left), the project happens to be more optimal than Hecomi’s. This result could be explained by the four passes the rendering goes through on Hecomi's project.  
  
-Figure 66 - Unity editor capture showing the measurement of the NaïveShell scene. (Styles, 2024)
-The vertex multiplication factor criteria, with an output at 132’090 vertices for an original input of 515, exceeds the validation threshold. The memory usage given by the memory profiler, with a total of 2.03GB, also surpasses the targeted value.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture66.png)_66 - Unity editor capture showing the measurement of the NaïveShell scene. (Styles, 2024)_  
+
+The vertex multiplication factor criteria, with an output at 132’090 vertices for an original input of 515, exceeds the validation threshold. The memory usage given by the memory profiler, with a total of 2.03GB, also surpasses the targeted value.  
  
-Figure 67 - Unity editor capture showing the Memory Profiler on the NaïveShell scene. (Styles, 2024)
-These two values, being over the limit of validation, clearly indicate a problem with the initial version of the project.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture67.png)_67 - Unity editor capture showing the Memory Profiler on the NaïveShell scene. (Styles, 2024)_  
+
+These two values, being over the limit of validation, clearly indicate a problem with the initial version of the project.  
  
-Figure 68 - Screen capture of the Android Galaxy A50 measurements for the NaïveShell scene. (Styles, 2024)
-As expected, the values measured from the Android phone give a low frame rate at an average of 19 frames per second (Figure 68). In this state, the movement of the object is not fluid, and the flickering is noticeable.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture68.png)_68 - Screen capture of the Android Galaxy A50 measurements for the NaïveShell scene. (Styles, 2024)_  
+
+As expected, the values measured from the Android phone give a low frame rate at an average of 19 frames per second (Figure 68). In this state, the movement of the object is not fluid, and the flickering is noticeable.  
  
 #### 6.2.2 HLSL
-The second version of the project that uses only shader files and relies on HLSL instead of C# scripts for layer generation already gives better results than the previous version.
+The second version of the project that uses only shader files and relies on HLSL instead of C# scripts for layer generation already gives better results than the previous version.  
  
-Figure 69 - Measurements of the HLSL Shader project. (Styles, 2024)
-As expected, the use of a geometry shader not only reduces the time of a GPU frame but also impacts the multiplication factor and the memory allocation as exposed in figure 69.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture69.png)_69 - Measurements of the HLSL Shader project. (Styles, 2024)_  
+
+As expected, the use of a geometry shader not only reduces the time of a GPU frame but also impacts the multiplication factor and the memory allocation as exposed in figure 69.  
  
-Figure 70 - Unity editor capture showing the measurement of the HLSLGeom scene. (Styles, 2024)
-The vertex value outputs 2,790 vertices for a factor of multiplication of 5.42, meaning that the validation criterion is reached. This change is mainly due to the difference between the use of a C# script layering meshes on top of each other and the use of the geometry shader to execute the same task.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture70.png)_70 - Unity editor capture showing the measurement of the HLSLGeom scene. (Styles, 2024)_  
+
+The vertex value outputs 2,790 vertices for a factor of multiplication of 5.42, meaning that the validation criterion is reached. This change is mainly due to the difference between the use of a C# script layering meshes on top of each other and the use of the geometry shader to execute the same task.  
  
-Figure 71 - Unity editor capture showing the Memory Profiler on the HLSLGeom scene. (Styles, 2024)
-Regarding the graphics memory allocation, an improvement compared to the initial version is noticed but it still stays over the targeted value of 446.8 MB. This measurement can be explained by the reduction in the amount of meshes that are rendered.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture71.png)_71 - Unity editor capture showing the Memory Profiler on the HLSLGeom scene. (Styles, 2024)_  
+
+Regarding the graphics memory allocation, an improvement compared to the initial version is noticed but it still stays over the targeted value of 446.8 MB. This measurement can be explained by the reduction in the amount of meshes that are rendered.  
  
-Figure 72 - Screen capture of the Android Galaxy A50 measurements for the HLSLGeom scene. (Styles, 2024)
-With the Android mobile measurements, the project significantly improves in terms of fluidity with a current average at 30 frames per second and no noticeable flickering (Figure 72). 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture72.png)_72 - Screen capture of the Android Galaxy A50 measurements for the HLSLGeom scene. (Styles, 2024)_  
+
+With the Android mobile measurements, the project significantly improves in terms of fluidity with a current average at 30 frames per second and no noticeable flickering (Figure 72).  
  
-Figure 73 - Unity editor capture showing the measurement of the HLSLGeom1 scene. (Styles, 2024)
-The following phenomenon happens in the third version when adding lighting to the scene and having shadows cast on a plane: the GPU frame time is not substantially impacted by the lighting, nor is the memory allocation. On the other hand, the multiplication factor is practically doubled.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture73.png)_73 - Unity editor capture showing the measurement of the HLSLGeom1 scene. (Styles, 2024)_  
+
+The following phenomenon happens in the third version when adding lighting to the scene and having shadows cast on a plane: the GPU frame time is not substantially impacted by the lighting, nor is the memory allocation. On the other hand, the multiplication factor is practically doubled.  
  
-Figure 74 - Measurement comparison on the HLSL Shader project with and without light
-The hypothesis for this result is the duplication of passes, since the shader does twice its work when rendering shadows (See Appendix G).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture74.png)_74 - Measurement comparison on the HLSL Shader project with and without light_  
+
+The hypothesis for this result is the duplication of passes, since the shader does twice its work when rendering shadows (See Appendix G).  
  
-Figure 75 - Screen capture of the Android Galaxy A50 measurements for the HLSLGeom1 scene. (Styles, 2024)
-The mobile measurements give an average frame rate of 18 which is comparable to the initial version of the shader without any lighting or shadow projection. One noticeable difference is that the additional lighting on the mobile build does not seem to be rendered (Figure 75).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture75.png)_75 - Screen capture of the Android Galaxy A50 measurements for the HLSLGeom1 scene. (Styles, 2024)_  
+
+The mobile measurements give an average frame rate of 18 which is comparable to the initial version of the shader without any lighting or shadow projection. One noticeable difference is that the additional lighting on the mobile build does not seem to be rendered (Figure 75).  
  
-Figure 76 - Unity editor capture showing the measurement of the HLSL_ComplexeScene scene. (Styles, 2024)
-For the fourth project, when applying the shader to an entire scene with 18 spheres and a 10 by 10 plane for a total count of 9391 vertices results in an output of 44560 vertices. 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture76.png)_76 - Unity editor capture showing the measurement of the HLSL_ComplexeScene scene. (Styles, 2024)_  
+
+For the fourth project, when applying the shader to an entire scene with 18 spheres and a 10 by 10 plane for a total count of 9391 vertices results in an output of 44560 vertices.   
  
-Figure 77 - Measurement of the HLSL Shader in the complex scene project. (Styles, 2024)
-The vertex multiplication factor at 4.47, is a better result than in the HLSL single sphere scene (Figure 77, middle). 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture77.png)_77 - Measurement of the HLSL Shader in the complex scene project. (Styles, 2024)_  
+
+The vertex multiplication factor at 4.47, is a better result than in the HLSL single sphere scene (Figure 77, middle).   
  
-Figure 78 - Capture of RenderDoc usage on the HLSL_ComplexeScene scene. (Styles, 2024)
-RenderDoc gives information about the rendering process. The value is lower due to frustrum culling and other Unity built-in graphical optimisation techniques. 
-The value to acknowledge is the GPU frame that increases up to 6.36ms (Figure 77) or 92.59% (Figure 85) more than the targeted value. This result indicates the influence of a broad use of the shader and how it can influence fluidity when used on many objects.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture78.png)_78 - Capture of RenderDoc usage on the HLSL_ComplexeScene scene. (Styles, 2024)_  
+
+RenderDoc gives information about the rendering process. The value is lower due to frustrum culling and other Unity built-in graphical optimisation techniques.  
+The value to acknowledge is the GPU frame that increases up to 6.36ms (Figure 77) or 92.59% (Figure 85) more than the targeted value.   This result indicates the influence of a broad use of the shader and how it can influence fluidity when used on many objects.  
  
-Figure 79 - Unity editor capture showing the Memory Profiler on the HLSL_ComplexeScene scene. (Styles, 2024)
-Regarding the memory allocation value, it is interesting to consider that for 18 times more objects, lights and shadows, the HLSL shader is at the same level as the first one.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture79.png)_79 - Unity editor capture showing the Memory Profiler on the HLSL_ComplexeScene scene. (Styles, 2024)_  
+
+Regarding the memory allocation value, it is interesting to consider that for 18 times more objects, lights and shadows, the HLSL shader is at the same level as the first one.  
  
-Figure 80 - Screen capture of the Android Galaxy A50 measurements for the HLSL_ComplexeScene scene. (Styles, 2024)
-The mobile measurements, giving an average of seven frames per second with 77% of the CPU load, seem to indicate that the shader is not optimal when widely used. The results in terms of fluidity and flickering are dreadful despite the graphical optimisation techniques given by the Unity engine.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture80.png)_80 - Screen capture of the Android Galaxy A50 measurements for the HLSL_ComplexeScene scene. (Styles, 2024)_  
+
+The mobile measurements, giving an average of seven frames per second with 77% of the CPU load, seem to indicate that the shader is not optimal when widely used. The results in terms of fluidity and flickering are dreadful despite the graphical optimisation techniques given by the Unity engine.  
  
 #### 6.2.3 HLSL Complex object
-The results gathered on the fifth project are probably the most representative of a normal use of the shader since it is targeted on an animated character instead of an entire scene.
+The results gathered on the fifth project are probably the most representative of a normal use of the shader since it is targeted on an animated character instead of an entire scene.  
  
-Figure 81 - Measurements of the HLSL Complex object scene. (Styles, 2024)
-The measurements for the GPU frame time give 1.15ms (Figure 82), identical to the lighted version of the HLSL shader, when measured on the rendering debugger. The difference lies in the measurements gathered with the DataExtractor script (See Appendix P) where it appears to be 33% slower than the lighted version (Figure 81, left).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture81.png)_81 - Measurements of the HLSL Complex object scene. (Styles, 2024)_  
+
+The measurements for the GPU frame time give 1.15ms (Figure 82), identical to the lighted version of the HLSL shader, when measured on the rendering debugger. The difference lies in the measurements gathered with the DataExtractor script (See Appendix P) where it appears to be 33% slower than the lighted version (Figure 81, left).  
  
-Figure 82 - Unity editor capture showing the measurement of the HLSL_ComplexeObject scene. (Styles, 2024)
-This difference can be explained by the amount of surface the shader covers going from 5700 vertices for the sphere to 21680 for the 3D horse model. With an input of 1862 vertices for the head, 1407 for the body and 3269 in total, the vertex multiplication factor is at 47% of the targeted value which meets the validation criterion.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture82.png)_82 - Unity editor capture showing the measurement of the HLSL_ComplexeObject scene. (Styles, 2024)_  
+
+This difference can be explained by the amount of surface the shader covers going from 5700 vertices for the sphere to 21680 for the 3D horse model. With an input of 1862 vertices for the head, 1407 for the body and 3269 in total, the vertex multiplication factor is at 47% of the targeted value which meets the validation criterion.  
  
-Figure 83 - Unity editor capture showing the Memory Profiler on the HLSL_ComplexeObject scene. (Styles, 2024)
-The memory allocation, with a value of 456.2MB, represents an increase of 2% compared to the original target value which is a considerable increase compared to the two
- previous shader versions.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture83.png)_83 - Unity editor capture showing the Memory Profiler on the HLSL_ComplexeObject scene. (Styles, 2024)_  
+
+The memory allocation, with a value of 456.2MB, represents an increase of 2% compared to the original target value which is a considerable increase compared to the two previous shader versions.  
  
-Figure 84 - Screen capture of the Android Galaxy A50 measurements for the HLSL_ComplexeObject scene. (Styles, 2024)
-The mobile measurements seem to be as optimal as the first HLSL version even with an increase in the number of vertices and the use of an animator system. 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture84.png)_84 - Screen capture of the Android Galaxy A50 measurements for the HLSL_ComplexeObject scene. (Styles, 2024)_  
+
+The mobile measurements seem to be as optimal as the first HLSL version even with an increase in the number of vertices and the use of an animator system.  
 
 ### 6.3 Project Analysis 
-Figure 85 - Measurements of the GPU frame time and comparison on all projects. (Styles, 2024)
-Regarding the GPU frame time, measurements indicate its relationship with shader passes and shader usage. Hecomi’s shader, having four passes, appears to be less optimal than any other shader using two render passes, as long as the shader is restrained in its usage (Figure 85).
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture85.png)_85 - Measurements of the GPU frame time and comparison on all projects. (Styles, 2024)_  
+
+Regarding the GPU frame time, measurements indicate its relationship with shader passes and shader usage. Hecomi’s shader, having four passes, appears to be less optimal than any other shader using two render passes, as long as the shader is restrained in its usage (Figure 85).  
  
-Figure 86 - Measurements of the multiplication factor and comparison on all projects. (Styles, 2024)
-Concerning the multiplication factor, the influence of layering seems to be correlated with the way the shader processes the initial mesh. In the case of the initial approach (Figure 86) the addition of meshes, without any specific treatment after that process, gives unacceptable results in terms of optimisation. Projects relying on geometry shaders give better results despite the number of objects on which the shader is used (Figure 86).
-An observation to consider is the impact of the number of passes used to render fur. Since the shader uses two passes and the multiplication factor is doubled, the measurements of the HLSL lighted scene (Figure 86) indicate a direct correlation between them.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture86.png)_86 - Measurements of the multiplication factor and comparison on all projects. (Styles, 2024)_  
+
+Concerning the multiplication factor, the influence of layering seems to be correlated with the way the shader processes the initial mesh. In the case of the initial approach (Figure 86) the addition of meshes, without any specific treatment after that process, gives unacceptable results in terms of optimisation. Projects relying on geometry shaders give better results despite the number of objects on which the shader is used (Figure 86).  
+An observation to consider is the impact of the number of passes used to render fur. Since the shader uses two passes and the multiplication factor is doubled, the measurements of the HLSL lighted scene (Figure 86) indicate a direct correlation between them.  
  
-Figure 87 - Measurements of the graphical memory allocation and comparison on all projects. (Styles, 2024)
-Regarding the graphical memory allocation, shaders relying on the use of textures for the fur’s colour are less memory consuming than those using variables, despite the number of vertices contained in the object on which the shader is used. These measurements are counter-intuitive since the HLSL Complex shader does not remove the use of colour parameters but adds 2D textures multiplied by them as exposed in section 5.4.3. 
-One of the possible reasons behind these results could be related to texture compression or another optimisation done by the Unity engine (Technologies, n.d.-a & -b). Unfortunately, due to a lack of time, the reason behind this phenomenon couldn’t be demystified.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture87.png)_87 - Measurements of the graphical memory allocation and comparison on all projects. (Styles, 2024)_  
+
+Regarding the graphical memory allocation, shaders relying on the use of textures for the fur’s colour are less memory consuming than those using variables, despite the number of vertices contained in the object on which the shader is used. These measurements are counter-intuitive since the HLSL Complex shader does not remove the use of colour parameters but adds 2D textures multiplied by them as exposed in section 5.4.3.  
+One of the possible reasons behind these results could be related to texture compression or another optimisation done by the Unity engine (Technologies, n.d.-a & -b). Unfortunately, due to a lack of time, the reason behind this phenomenon couldn’t be demystified.  
  
-Figure 88 - Measurements of the frames per second and comparison on all projects. (Styles, 2024)
-In terms of frames per second, although the values in figure 88 cannot be considered as appropriate due to factors such as VSync, it is still relevant to acknowledge the impact of elements such as lighting and shadows and the repercussion of wide usage of the shader despite the graphical optimisations given by Unity.
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture88.png)_88 - Measurements of the frames per second and comparison on all projects. (Styles, 2024)_  
+
+In terms of frames per second, although the values in figure 88 cannot be considered as appropriate due to factors such as VSync, it is still relevant to acknowledge the impact of elements such as lighting and shadows and the repercussion of wide usage of the shader despite the graphical optimisations given by Unity.  
  
 ### 6.4 Conclusion
-In this chapter, some of the tools discussed in section 4.2 were employed to measure the metrics outlined in section 4.1 across all projects presented in section 5.3.
-The collected data reveals that versions using HLSL shaders demonstrate superior performance compared to those relying on C# scripts for GPU data transfer. However, even with optimised HLSL shaders, complex scenes can still encounter performance bottlenecks due to the high output of vertices.
-The initial approach project, while maintaining fluidity on portable computers, proves itself impractical for complex scenes or lower-end hardware usage. HLSL shaders significantly outperform the initial approach, particularly in scenarios involving minimal use of fur shaders and simple lighting setups.
-The latest shader version reflects insights and improvements from a professional graphics programmer, notably enhancing performance, particularly in terms of memory management.
-In terms of validation criteria, HLSL versions effectively manage GPU frame time when shader usage is limited to essential elements. The vertex multiplication factor criterion is consistent across all HLSL cases, likely due to Hecomi employing multiple passes for depth, light, and shadow calculations, all contributing to the layering effect produced by the geometry shader. While achieving visually similar results, the question of the purpose behind using so many passes could be raised.
+In this chapter, some of the tools discussed in section 4.2 were employed to measure the metrics outlined in section 4.1 across all projects presented in section 5.3.  
+The collected data reveals that versions using HLSL shaders demonstrate superior performance compared to those relying on C# scripts for GPU data transfer. However, even with optimised HLSL shaders, complex scenes can still encounter performance bottlenecks due to the high output of vertices.  
+The initial approach project, while maintaining fluidity on portable computers, proves itself impractical for complex scenes or lower-end hardware usage. HLSL shaders significantly outperform the initial approach, particularly in scenarios involving minimal use of fur shaders and simple lighting setups.  
+The latest shader version reflects insights and improvements from a professional graphics programmer, notably enhancing performance, particularly in terms of memory management.  
+In terms of validation criteria, HLSL versions effectively manage GPU frame time when shader usage is limited to essential elements. The vertex multiplication factor criterion is consistent across all HLSL cases, likely due to Hecomi employing multiple passes for depth, light, and shadow calculations, all contributing to the layering effect produced by the geometry shader. While achieving visually similar results, the question of the purpose behind using so many passes could be raised.  
 
 ## 7. Conclusion and further research
-This study aimed to identify the cause of the visual problem encountered when using shell texturing in real-time environments and the possible improvements leading to its resolution.
+This study aimed to identify the cause of the visual problem encountered when using shell texturing in real-time environments and the possible improvements leading to its resolution.  
+
 The first chapter highlighted two examples of the use of this method in AAA games. It exposed the main differences between real-time and pre-calculated experiences, as well as the project's guidelines, its development, and the anticipation of certain limitations.
-Based on this, the second chapter refined the concepts of fur, realistic rendering, and understanding what Unity’s engine is. It also presented different methods for rendering fur and four examples of use of shell texturing in the video game industry over the past 20 years. A rough plan of the project was also presented.
-Interviews with an experienced professional, David Sena, and ChatGPT, along with their analyses, validated the interest in the topic and highlighted the importance of resource gathering when undertaking such a project. Some resources, not applicable to the use of Unity, were set aside but their analysis provided insights into the current state of methodologies for creating fur in real-time environments.
-The empirical methodology employed led to the use of HLSL shaders, which were used to improve the initial project and allowed for adaptations meeting the validation criteria established in the fourth chapter, dealing with metrics, their threshold values, acceptance criteria, and the measurement tools for gathering these values. The resolution of the problem initially presented proved to be much more complex than initially anticipated and allowed a better understanding of the complexity of the role of a graphics programmer.
-The quantitative chapter allowed for tests to be conducted under predefined conditions on all versions of the project. This quantitative study revealed that optimisation criteria such as GPU frame time and memory usage are important factors to consider when evaluating a graphics project. In contrast, the multiplication factor criterion is less recognised as relevant to the measurement itself due to technologies provided by the Unity engine, such as frustum culling, but it highlights the impact of the final vertex count in a scene. 
-Finally, the results of the project highlight several key aspects: It is possible to render fur in real-time, and multiple methodologies are available to do so regardless of the engine used. Designing a shader that addresses the issue of the camera’s perspective requires a much deeper understanding of the domain or a resolution using another method, which might be less optimal than shell texturing. Additionally, it is pertinent to emphasise the importance of the context for which these shaders are developed, as each project needs to be created with specific targets in mind for its final use, whether in terms of platform, capabilities, or visual rendering quality. 
+Based on this, the second chapter refined the concepts of fur, realistic rendering, and understanding what Unity’s engine is. It also presented different methods for rendering fur and four examples of use of shell texturing in the video game industry over the past 20 years. A rough plan of the project was also presented.  
+
+Interviews with an experienced professional, David Sena, and ChatGPT, along with their analyses, validated the interest in the topic and highlighted the importance of resource gathering when undertaking such a project. Some resources, not applicable to the use of Unity, were set aside but their analysis provided insights into the current state of methodologies for creating fur in real-time environments.  
+
+The empirical methodology employed led to the use of HLSL shaders, which were used to improve the initial project and allowed for adaptations meeting the validation criteria established in the fourth chapter, dealing with metrics, their threshold values, acceptance criteria, and the measurement tools for gathering these values. The resolution of the problem initially presented proved to be much more complex than initially anticipated and allowed a better understanding of the complexity of the role of a graphics programmer.  
+
+The quantitative chapter allowed for tests to be conducted under predefined conditions on all versions of the project. This quantitative study revealed that optimisation criteria such as GPU frame time and memory usage are important factors to consider when evaluating a graphics project. In contrast, the multiplication factor criterion is less recognised as relevant to the measurement itself due to technologies provided by the Unity engine, such as frustum culling, but it highlights the impact of the final vertex count in a scene.  
+
+Finally, the results of the project highlight several key aspects: It is possible to render fur in real-time, and multiple methodologies are available to do so regardless of the engine used. Designing a shader that addresses the issue of the camera’s perspective requires a much deeper understanding of the domain or a resolution using another method, which might be less optimal than shell texturing. Additionally, it is pertinent to emphasise the importance of the context for which these shaders are developed, as each project needs to be created with specific targets in mind for its final use, whether in terms of platform, capabilities, or visual rendering quality.  
+
 These elements are, however, subject to temporal and technological factors due to constant improvements in both hardware and software. 
 While the findings of this work provide insights and guidance on the subject, it is important to consider limiting factors such as a lack of professional experience in the field, the time taken to study graphic languages, and the laborious iterative process.
-During the study, several points of interest emerged, such as the use of other game engines, the development of a custom rendering engine to facilitate the implementation and measurement of shaders, and the exploration of other methods that could provide development pathways for another Bachelor's student interested in the subject or for further research in the context of a Master's thesis.
+During the study, several points of interest emerged, such as the use of other game engines, the development of a custom rendering engine to facilitate the implementation and measurement of shaders, and the exploration of other methods that could provide development pathways for another Bachelor's student interested in the subject or for further research in the context of a Master's thesis. 
 
 ## 8. References
 ### 8.1 Articles
@@ -730,10 +861,13 @@ XBDEV.net. (n.d.). Fur rendering. [online] Available [here](https://www.xbdev.ne
 ## 10. Appendices
 ### Appendix A: Interview of David Sena
 
-
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture89.png) 
  
 ### Appendix B: Interview of ChatGPT
 
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture90.png)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture91.png)
+![]({{ site.baseurl }}/assets/images/bachelorproject/Picture92.png)
 
 ### Appendix C: Shell_Original.shader code
 ```C#
