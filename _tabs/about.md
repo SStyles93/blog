@@ -6,7 +6,7 @@ order: 4
 
 Hi!  
 
-I'm **Samuel Styles** a **Graphic Programming** enthusiast!  
+I'm **Samuel Styles** a **Software Engineer | Game Developer** !  
 I am currently doing a **Bachelor's degree** at **[SAE Institute](https://www.sae.edu/ch-ge/)** and working on other projects on the side.  
 I am also and working as **head of programming** at [StylesStudio](https://styles-studio.com/).
 
